@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<!-- <prevencao> -->
+	<!-- <codigoCelular>123</codigoCelular> -->
+	<!-- <foco_codigo>1</foco_codigo> -->
+	<!-- <dataCriacao>2015-01-12</dataCriacao> -->
+	<!-- <dataPrazo>2015-01-15</dataPrazo> -->
+	<!-- <dataEfetuada>2015-01-13</dataEfetuada> -->
+	<!-- </prevencao> -->
+	<foco codigo="2" nome="ralos" como_limpar="Lavar com detergente." />
+	<endereco id="1" bairro="Jardim Quietude" cidade="Praia Grande"
+		estado="São Paulo" />
+	<prevencao codigo_celular="1234" foco_codigo="2"
+		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" />
+</dataset>
