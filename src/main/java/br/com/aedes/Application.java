@@ -9,12 +9,4 @@ public class Application{
 		SpringApplication.run(Application.class, args);
 	}
 	
-//	@Bean
-//	public InternalResourceViewResolver getViewResolver() {
-//		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//		resolver.setPrefix("WEB-INF/view/");
-//		resolver.setSuffix(".html");
-//		return resolver;
-//	}
-
 }
