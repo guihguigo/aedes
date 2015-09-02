@@ -7,8 +7,8 @@ public class PercentualPrevencao implements Percentual{
 	private long emDia;
 	private long atrasada;
 	
-	public PercentualPrevencao(List<Prevencao> prevencoes) {
-		this.prevencoes = prevencoes;
+	public PercentualPrevencao(PrevencoesSeparadas prevencoes) {
+		this.prevencoes = prevencoes.getLista();
 		this.calcular();
 	}
 	

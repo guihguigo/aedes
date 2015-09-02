@@ -31,7 +31,7 @@ import com.github.springtestdbunit.annotation.DatabaseTearDown;
     DbUnitTestExecutionListener.class })
 public class CalculadorPercentualMesTest {
 	@Autowired
-	private CalculadorPercentualMes calculador;
+	private CalculadorPercentual calculador;
 	
 	@Autowired
 	private PrevencaoRepository repository;
