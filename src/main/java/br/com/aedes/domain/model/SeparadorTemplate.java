@@ -8,7 +8,7 @@ import java.util.Map;
  * @author guilherme
  *
  */
-public interface Organizador {
+public interface SeparadorTemplate {
 	/**
 	 * 
 	 * @param prevencoes

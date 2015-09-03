@@ -1,12 +1,12 @@
 package br.com.aedes.domain.model;
 
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -36,14 +36,19 @@ public class CalculadorPercentualMesTest {
 	@Autowired
 	private PrevencaoRepository repository;
 	
+	@Autowired
+	@Qualifier("separadorPorMes")
+	private SeparadorTemplate organizador;
+	
 	@Test
 	@DatabaseSetup("classpath:dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:dbunit/prevencaoPopuladaData.xml")
-	public void testCalcularPercentual() {
+	public void testCalcularPercentualPorMes() {
 		List<Prevencao> prevencoes = (List<Prevencao>) repository.findAll();
 		
-		Set<Percentual> percentuais = calculador.converterPercentual(prevencoes);
+		List<Percentual> percentuais = calculador.converterPercentual(organizador, prevencoes);
 		
 		Assert.assertEquals(1, percentuais.size());
+		Assert.assertEquals(3, percentuais.get(0).tamanho());
 	}
 }

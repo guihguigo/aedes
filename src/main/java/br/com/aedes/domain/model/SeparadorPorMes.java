@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class OrganizarPorMes implements Organizador {
+public class SeparadorPorMes implements SeparadorTemplate {
 
 	/**
 	 * Separa a prevenção por meses do ano
@@ -37,7 +37,6 @@ public class OrganizarPorMes implements Organizador {
 				prevencoesSeparadasPorMes.add(prevencao);
 				
 				prevencoesPorMes.put(mes, prevencoesSeparadasPorMes);
-				
 			}
 		}
 

@@ -6,9 +6,11 @@ public class PercentualPrevencao implements Percentual{
 	private List<Prevencao> prevencoes;
 	private long emDia;
 	private long atrasada;
+	private int mes;
 	
 	public PercentualPrevencao(PrevencoesSeparadas prevencoes) {
 		this.prevencoes = prevencoes.getLista();
+		this.mes = prevencoes.getLista().get(0).getMesDataPrazo();
 		this.calcular();
 	}
 	
@@ -73,7 +75,11 @@ public class PercentualPrevencao implements Percentual{
 
 	@Override
 	public Integer getMes() {
-		return 1;
+		return mes;
+	}
+	
+	public int tamanho() {
+		return this.prevencoes.size();
 	}
 	
 }

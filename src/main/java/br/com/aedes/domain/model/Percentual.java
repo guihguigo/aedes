@@ -18,4 +18,6 @@ public interface Percentual {
     public void setNomeFoco(String nomeFoco);
     
     public Integer getMes();
+    
+    public int tamanho();
 }

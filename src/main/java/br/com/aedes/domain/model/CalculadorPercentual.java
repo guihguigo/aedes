@@ -6,16 +6,21 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Calcula o percentual de prevenções
+ * @author guilherme
+ *
+ */
 @Component
 public class CalculadorPercentual {
 	
-	public List<Percentual> converterPercentual(Organizador organizar, List<Prevencao> prevencoes) {
+	public List<Percentual> converterPercentual(SeparadorTemplate separador, List<Prevencao> prevencoes) {
 		if (prevencoes.isEmpty())
 			return null;
 		
 		List<Percentual> percentuais = new ArrayList<>();
 		
-		Map<Integer,PrevencoesSeparadas> prevencoesSeparadas = organizar
+		Map<Integer,PrevencoesSeparadas> prevencoesSeparadas = separador
 				.separar(prevencoes);
 		
 		// aqui varro o map e adiciono a um set ordenado utilizando lambda

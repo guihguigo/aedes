@@ -3,6 +3,11 @@ package br.com.aedes.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Encapsula um conjunto de prevenções separadas por mês
+ * @author guilherme
+ *
+ */
 public class PrevencoesSeparadasPorMes implements PrevencoesSeparadas, Comparable<PrevencoesSeparadasPorMes>{
 	private Integer mes;
 	private List<Prevencao> prevencoes;
@@ -12,6 +17,9 @@ public class PrevencoesSeparadasPorMes implements PrevencoesSeparadas, Comparabl
 	}
 	
 	public PrevencoesSeparadasPorMes(Integer mes) {
+		if (mes < 0 || mes > 11)
+			throw new IllegalStateException("Mês inválido");
+		
 		this.prevencoes = new ArrayList<>();
 	}
 
@@ -30,7 +38,7 @@ public class PrevencoesSeparadasPorMes implements PrevencoesSeparadas, Comparabl
 	 * @throws Lança exceção caso a exceção não seja do mesmo mês correto
 	 */
 	public void add(Prevencao prevencao) {
-		if (!prevencao.getMesDataPrazo().equals(mes))
+		if (mes != null && !prevencao.getMesDataPrazo().equals(mes))
 			throw new RuntimeException("Prevenção não é do mês " + this.mes);
 		
 		this.prevencoes.add(prevencao);
