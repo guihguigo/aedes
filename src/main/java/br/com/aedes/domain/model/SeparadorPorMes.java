@@ -33,7 +33,7 @@ public class SeparadorPorMes implements SeparadorTemplate {
 				prevencoesSeparadasPorMes = prevencoesPorMes.get(mes);
 				prevencoesSeparadasPorMes.add(prevencao);
 			} else {
-				prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(mes);
+				prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes();
 				prevencoesSeparadasPorMes.add(prevencao);
 				
 				prevencoesPorMes.put(mes, prevencoesSeparadasPorMes);

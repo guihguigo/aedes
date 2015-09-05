@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 @Entity
@@ -19,6 +20,7 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
 	private static final long serialVersionUID = 2294204926764998765L;
 
 	@EmbeddedId
+	@Getter
 	private PrevencaoId id;
     
 	private Date dataPrazo;
@@ -42,6 +44,10 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
         }
     }
     
+    /**
+     * Retorna o mês do prazo
+     * @return mês 
+     */
 	public Integer getMesDataPrazo() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(this.dataPrazo);

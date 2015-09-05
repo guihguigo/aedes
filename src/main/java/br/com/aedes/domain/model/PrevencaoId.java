@@ -18,11 +18,12 @@ import lombok.ToString;
 @ToString
 public class PrevencaoId implements Serializable{
 	private static final long serialVersionUID = 3667910347363573384L;
-
+	
 	private Long codigoCelular;
     
 	@OneToOne
 	@JoinColumn(name = "foco_codigo")
+	@Getter
 	private Foco foco;
 
 	@Temporal(TemporalType.DATE)

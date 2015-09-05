@@ -12,22 +12,27 @@ public class PrevencoesSeparadasPorMes implements PrevencoesSeparadas, Comparabl
 	private Integer mes;
 	private List<Prevencao> prevencoes;
 	
-	public PrevencoesSeparadasPorMes(Integer mes, List<Prevencao> prevencoes) {
+	public PrevencoesSeparadasPorMes(List<Prevencao> prevencoes) {
+		this.validaPrevencoes(prevencoes);
 		this.prevencoes = prevencoes;
+		this.mes = prevencoes.get(0).getMesDataPrazo();
 	}
 	
-	public PrevencoesSeparadasPorMes(Integer mes) {
-		if (mes < 0 || mes > 11)
-			throw new IllegalStateException("Mês inválido");
-		
+	public PrevencoesSeparadasPorMes() {
 		this.prevencoes = new ArrayList<>();
 	}
-
+	
+	private void validaPrevencoes(List<Prevencao> prevencoes) {
+		if (prevencoes == null || prevencoes.isEmpty())
+			throw new IllegalStateException("Prevenções vazia ou null");
+	}
+	
 	@Override
 	public int compareTo(PrevencoesSeparadasPorMes o) {
 		return this.mes.compareTo(o.mes);
 	}
 	
+	@Override
 	public boolean estaVazio() {
 		return this.prevencoes.isEmpty();
 	}
@@ -37,13 +42,15 @@ public class PrevencoesSeparadasPorMes implements PrevencoesSeparadas, Comparabl
 	 * @param prevencao
 	 * @throws Lança exceção caso a exceção não seja do mesmo mês correto
 	 */
+	@Override
 	public void add(Prevencao prevencao) {
-		if (mes != null && !prevencao.getMesDataPrazo().equals(mes))
+		if (this.mes != null && !this.mes.equals(prevencao.getMesDataPrazo()))
 			throw new RuntimeException("Prevenção não é do mês " + this.mes);
 		
 		this.prevencoes.add(prevencao);
 	}
 	
+	@Override
 	public List<Prevencao> getLista() {
 		return this.prevencoes;
 	}

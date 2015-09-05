@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class CalculadorPercentual {
+public class ConversorPercentual {
 	
 	public List<Percentual> converterPercentual(SeparadorTemplate separador, List<Prevencao> prevencoes) {
-		if (prevencoes.isEmpty())
+		if (prevencoes == null || prevencoes.isEmpty() || separador == null)
 			return null;
 		
-		List<Percentual> percentuais = new ArrayList<>();
-		
-		Map<Integer,PrevencoesSeparadas> prevencoesSeparadas = separador
+		Map<?, PrevencoesSeparadas> prevencoesSeparadas = separador
 				.separar(prevencoes);
+		
+		List<Percentual> percentuais = new ArrayList<>();
 		
 		// aqui varro o map e adiciono a um set ordenado utilizando lambda
 		prevencoesSeparadas.forEach((chave, valor) -> percentuais

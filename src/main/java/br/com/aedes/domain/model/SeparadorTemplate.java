@@ -14,6 +14,6 @@ public interface SeparadorTemplate {
 	 * @param prevencoes
 	 * @return
 	 */
-	public Map<Integer, PrevencoesSeparadas> separar(List<Prevencao> prevencoes);
+	public Map<?, PrevencoesSeparadas> separar(List<Prevencao> prevencoes);
 	
 }

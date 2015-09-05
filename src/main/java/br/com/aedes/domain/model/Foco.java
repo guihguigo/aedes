@@ -3,10 +3,13 @@ package br.com.aedes.domain.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import lombok.Getter;
+
 @Entity
 public class Foco implements Comparable<Foco> {
 	@Id
 	private Integer codigo;
+	@Getter
 	private String nome;
 	private String comoLimpar;
 

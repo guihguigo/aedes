@@ -1,85 +1,71 @@
 package br.com.aedes.domain.model;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
-public class PercentualPrevencao implements Percentual{
+import lombok.Getter;
+
+public class PercentualPrevencao implements Percentual {
 	private List<Prevencao> prevencoes;
-	private long emDia;
-	private long atrasada;
-	private int mes;
 	
+	@Getter
+	private double emDia;
+
+	@Getter
+	private double atrasada;
+
 	public PercentualPrevencao(PrevencoesSeparadas prevencoes) {
+		if (prevencoes == null || prevencoes.getLista() == null
+				|| prevencoes.getLista().isEmpty())
+			throw new IllegalStateException(PrevencoesSeparadas.class
+					+ " em estado inválido");
+
 		this.prevencoes = prevencoes.getLista();
-		this.mes = prevencoes.getLista().get(0).getMesDataPrazo();
 		this.calcular();
 	}
-	
+
+	/**
+	 * Calcula o percentual da lista de prevenções
+	 */
 	private void calcular() {
-        for (Prevencao prevencao : prevencoes) {
-            if (prevencao.isAtrasada()) 
-                atrasada++;
-            else 
-                emDia++;
-        }
-        
-        this.emDia = (this.emDia * 100) / prevencoes.size();
-        this.atrasada = (this.atrasada * 100) / prevencoes.size();
+		double emDia = 0;
+		double atrasada = 0;
+		
+		for (Prevencao prevencao : prevencoes) {
+			if (prevencao.isAtrasada())
+				atrasada++;
+			else
+				emDia++;
+		}
+		
+		this.emDia = emDia != 0 ? this.formatarPercentual((emDia * 100) / prevencoes.size()) : 0;
+		this.atrasada = atrasada != 0 ? this.formatarPercentual((atrasada * 100) / prevencoes.size()) : 0;
+	}
+
+	/**
+	 * Formata o percentual
+	 * @param percentual
+	 * @return
+	 */
+	private double formatarPercentual(double percentual) {
+		NumberFormat format = NumberFormat.getInstance(Locale.US);
+		format.setMaximumFractionDigits(2);
+		
+		return Double.parseDouble(format.format(percentual));
 	}
 	
+	/**
+	 * Retorna o tamanho
+	 */
 	@Override
-	public void setPercentualAtrasada(double percentAtualrasada) {
-		
-	}
-
-	@Override
-	public void setPercentualEmDia(double percentualEmDia) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public double getPercentualAtrasada() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getPercentualEmDia() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String getNomeMes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setNomeMes(String nomeFoco) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getNomeFoco() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setNomeFoco(String nomeFoco) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Integer getMes() {
-		return mes;
-	}
-	
 	public int tamanho() {
 		return this.prevencoes.size();
 	}
 	
+	@Override
+	public Prevencao getPrevencao(int indice) {
+		return this.prevencoes.get(indice);
+	}
+ 
 }

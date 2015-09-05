@@ -6,4 +6,6 @@ public interface PrevencoesSeparadas {
 	public void add(Prevencao prevencao);
 	
 	public List<Prevencao> getLista();
+
+	public boolean estaVazio();
 }
