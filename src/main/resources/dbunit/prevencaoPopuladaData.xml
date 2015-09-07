@@ -1,97 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<!-- <prevencao> -->
-	<!-- <codigoCelular>123</codigoCelular> -->
-	<!-- <foco_codigo>1</foco_codigo> -->
-	<!-- <dataCriacao>2015-01-12</dataCriacao> -->
-	<!-- <dataPrazo>2015-01-15</dataPrazo> -->
-	<!-- <dataEfetuada>2015-01-13</dataEfetuada> -->
-	<!-- </prevencao> -->
-	<foco codigo="2" nome="ralos" como_limpar="Lavar com detergente." />
+ 	<foco codigo="1" nome="Vasos (Flores e Plantas)" como_limpar="Água, esponja e sabão. Depositar areia
+	na vasilha sob o vaso a cada limpeza." />
+	<foco codigo="2" nome="Ralos" como_limpar="Jogar água
+	sanitária. Mantê-los vedados caso não o utilize."/>,
+	<foco codigo="3" nome="Recipientes de Água" como_limpar="Água, esponja e sabão. (Jarras, garrafas, potes e
+	baldes" />
+	<foco codigo="4" nome="Caixa dágua" como_limpar="Água, sabão e água sanitária. Devem ser
+	mantidas tampadas durante todo o tempo." /> 
+	<foco codigo="5" nome="Piscinas" como_limpar="Água, sabão e
+	água sanitária. O cloro deve estar sempre no nível adequado, tratando a
+	água. Manter coberta, caso não esteja usando." />
+	<foco codigo="6" nome="Bebedouros de
+	Animais" como_limpar="Água, esponja e sabão. Mantê-los limpo, trocando a água
+	diariamente." /> 
+	<foco codigo="7" nome="Calhas','Água, sabão e água sanitária. Remova tudo
+	que possa impedir a passagem da água." />
+	<foco codigo="8" nome="Bromélias (Planta)" como_limpar="Diluir uma colher (sopa) de água sanitária em 1 litro de
+	água limpa e regá-las. Eliminá-las poderia afetar o equilíbrio
+	ecológico, portanto o melhor é preservar de maneira
+	correta." />
+	<foco codigo="9" nome="Pneus Velhos" como_limpar="4 colheres de sopa de borra de café, para
+	cada 300 ml de água. Devem ser furados para eliminar a água que
+	eventualmente se acumule ou guardados em lugar coberto e nunca joga-los
+	em terrenos baldios." />
+	<foco codigo="10" nome="Recipientes Descartáveis.','Usar Água e
+	sabão. Mantê-los secos e bem guardados. Separar para serem levados pela
+	coleta de lixo, nunca joga-los em terrenos baldios." />
+	<foco codigo="11" nome="Garagens e Subsolos." como_limpar="Diluir 4 colheres de sopa de borra de café, para cada 300
+	ml de água. (De acordo com o objeto em questão). Veja se a água da
+	chuva que cai nas telhas circula e se não há nenhum objeto em que a
+	água possa se acumular eventualmente." />
+	
+	<foco codigo="12" nome="Depressões de
+	Terrenos" como_limpar="Preencha-os com areia, pois podem acumular água da chuva.
+	Repor a areia, caso a mesma tenha saído por causa da água." />
+	<foco codigo="13" nome="Sacos de Lixo" como_limpar="Devem ser bem fechados e DIARIAMENTE recolhidos pela coleta
+	de lixo. Depositá-lo no exterior da moradia, no lugar correto para que
+	a coleta o leve." />
+	<foco codigo="14" nome="Caixa de Ar Condicionado" como_limpar="Deve ser instalada
+	de forma que esta não possa acumular água. Verificar o acúmulo de água
+	não apenas depois de usá-lo, também após as
+	chuvas." /> 
+	<foco codigo="15" nome="Geladeiras" como_limpar="4 colheres de sopa de borra de café, para
+	cada 300 ml de água, depositar na gaveta que algumas geladeiras
+	possuem, abaixo, no seu exterior. Verifique se esta não tem vazamento e
+	consequentemente acúmulo de água." />
+	
 	<endereco id="1" bairro="Jardim Quietude" cidade="Praia Grande"
 		estado="São Paulo" />
-		
+
+	<prevencao codigo_celular="1234" foco_codigo="1"
+		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" />
+	<prevencao codigo_celular="12345" foco_codigo="1"
+		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" />
+	<prevencao codigo_celular="123456" foco_codigo="1"
+		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" />
+
 	<prevencao codigo_celular="1234" foco_codigo="2"
-		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
-		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
-		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
 		data_criacao="2015-02-15" data_prazo="2015-02-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="2"
 		data_criacao="2015-02-15" data_prazo="2015-02-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="2"
 		data_criacao="2015-02-15" data_prazo="2015-02-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="3"
 		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="3"
 		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="3"
 		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="4"
 		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="2"
 		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="2"
 		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="4"
 		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="2"
 		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="2"
 		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="5"
 		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="5"
 		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="5"
 		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="6"
 		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="6"
 		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="6"
 		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="7"
 		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="7"
 		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="7"
 		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="8"
 		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="8"
 		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="8"
 		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="9"
 		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="9"
 		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="9"
 		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="10"
 		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="10"
 		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="10"
 		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" />
-		
-		<prevencao codigo_celular="1234" foco_codigo="2"
+
+	<prevencao codigo_celular="1234" foco_codigo="11"
 		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="12345" foco_codigo="2"
+	<prevencao codigo_celular="12345" foco_codigo="11"
 		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" />
-		<prevencao codigo_celular="123456" foco_codigo="2"
+	<prevencao codigo_celular="123456" foco_codigo="11"
 		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" />
 </dataset>

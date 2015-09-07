@@ -27,16 +27,16 @@ public class SeparadorPorMes implements SeparadorTemplate {
 		PrevencoesSeparadas  prevencoesSeparadasPorMes = null;
 
 		for (Prevencao prevencao : prevencoes) {
-			Integer mes = prevencao.getMesDataPrazo();
-			
-			if (prevencoesPorMes.containsKey(mes)) {
-				prevencoesSeparadasPorMes = prevencoesPorMes.get(mes);
+			Integer key = prevencao.getMesDataPrazo();
+					
+			if (prevencoesPorMes.containsKey(key)) {
+				prevencoesSeparadasPorMes = prevencoesPorMes.get(key);
 				prevencoesSeparadasPorMes.add(prevencao);
 			} else {
-				prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes();
+				prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(key);
 				prevencoesSeparadasPorMes.add(prevencao);
 				
-				prevencoesPorMes.put(mes, prevencoesSeparadasPorMes);
+				prevencoesPorMes.put(key, prevencoesSeparadasPorMes);
 			}
 		}
 

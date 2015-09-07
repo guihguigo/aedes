@@ -22,10 +22,9 @@ import br.com.aedes.repository.PrevencaoRepository;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringApplicationConfiguration(classes = { Application.class })
+@SpringApplicationConfiguration(classes = Application.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DirtiesContextTestExecutionListener.class,
 		TransactionalTestExecutionListener.class,
@@ -54,7 +53,7 @@ public class ConversorPercentualTest {
 		List<Percentual> percentuais = calculador.converterPercentual(
 				separadorPorMes, prevencoes);
 
-		Assert.assertEquals(12, percentuais.size());
+		Assert.assertThat(12, Matchers.is(percentuais.size()));
 
 		Assert.assertEquals(3, percentuais.get(0).tamanho());
 		Assert.assertThat(percentuais.get(0).getPrevencao(0).getMesDataPrazo(), Matchers.is(0));
@@ -96,7 +95,7 @@ public class ConversorPercentualTest {
 	@Test
 	@DatabaseSetup("classpath:dbunit/prevencaoVazioData.xml")
 	@DatabaseTearDown("classpath:dbunit/prevencaoVazioData.xml")
-	public void TestConverterPercentualPorMes$prevencoesVazia() {
+	public void TestConverterPercentualPorMes$prevencoesNull() {
 		List<Prevencao> prevencoes = (List<Prevencao>) repository.findAll();
 
 		List<Percentual> percentuais = calculador.converterPercentual(
@@ -104,15 +103,17 @@ public class ConversorPercentualTest {
 		
 		Assert.assertNull(percentuais);
 	}
-
-	@Test
-	@DatabaseSetup("classpath:dbunit/prevencaoPopuladaData.xml")
-	@DatabaseTearDown("classpath:dbunit/prevencaoVazioData.xml")
-	public void testConverterPercentualPorFoco() {
-		List<Prevencao> prevencoes = (List<Prevencao>) repository.findAll();
-
-		List<Percentual> percentuais = this.calculador.converterPercentual(
-				separadorPorFoco, prevencoes);
-
-	}
+	
+//	@Test
+//	@DatabaseSetup("classpath:dbunit/prevencaoPopuladaData.xml")
+//	@DatabaseTearDown("classpath:dbunit/prevencaoVazioData.xml")
+//	public void testConverterPercentualPorFoco() {
+//		List<Prevencao> prevencoes = (List<Prevencao>) repository.findAll();
+//
+//		List<Percentual> percentuais = this.calculador.converterPercentual(
+//				separadorPorFoco, prevencoes);
+//		
+//		Assert.assertThat(percentuais.size(), Matchers.is(1));
+//
+//	}
 }

@@ -32,7 +32,7 @@ public class PercentualPrevencaoTest {
 
 	@Test
 	public void testCalcular$porcentagemRedonda() {
-		PrevencoesSeparadasPorMes prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(
+		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
 				Arrays.asList(prevencao1, prevencao2));
 		Percentual percentual = new PercentualPrevencao(
 				prevencoesSeparadasPorMes);
@@ -49,7 +49,7 @@ public class PercentualPrevencaoTest {
 		Prevencao prevencao3 = Mockito.mock(Prevencao.class);
 		Mockito.when(prevencao3.isAtrasada()).thenReturn(false);
 		
-		PrevencoesSeparadasPorMes prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(
+		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
 				Arrays.asList(prevencao1, prevencao2, prevencao3));
 		Percentual percentual = new PercentualPrevencao(
 				prevencoesSeparadasPorMes);
@@ -63,11 +63,11 @@ public class PercentualPrevencaoTest {
 	}
 
 	@Test
-	public void TestCalcular$porcentagemEmdiaZero() {
+	public void TestCalcular$todasPorcentagensAtrasadas() {
 		Prevencao prevencao3 = Mockito.mock(Prevencao.class);
 		Mockito.when(prevencao3.isAtrasada()).thenReturn(true);
 		
-		PrevencoesSeparadasPorMes prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(
+		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
 				Arrays.asList(prevencao2, prevencao3));
 		Percentual percentual = new PercentualPrevencao(
 				prevencoesSeparadasPorMes);
@@ -80,11 +80,11 @@ public class PercentualPrevencaoTest {
 	}
 	
 	@Test
-	public void testCalcular$porcentagemAtrasadaZero() {
+	public void testCalcular$todasPorcentagensEmDia() {
 		Prevencao prevencao3 = Mockito.mock(Prevencao.class);
 		Mockito.when(prevencao3.isAtrasada()).thenReturn(false);
 		
-		PrevencoesSeparadasPorMes prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(
+		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
 				Arrays.asList(prevencao1, prevencao3));
 		Percentual percentual = new PercentualPrevencao(
 				prevencoesSeparadasPorMes);

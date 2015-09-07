@@ -22,7 +22,7 @@ public class SeparadorPorFoco implements SeparadorTemplate{
 				prevencoesSeparadas = prevencoesPorFoco.get(key);
 				prevencoesSeparadas.add(prevencao);
 			} else {
-				prevencoesSeparadas = new PrevencoesSeparadsPorFoco();
+				prevencoesSeparadas = new PrevencoesSeparadasPorFoco(key);
 				prevencoesSeparadas.add(prevencao);
 				
 				prevencoesPorFoco.put(key, prevencoesSeparadas);

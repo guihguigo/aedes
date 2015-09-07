@@ -1,58 +1,39 @@
 package br.com.aedes.domain.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Encapsula um conjunto de prevenções separadas por mês
- * @author guilherme
- *
- */
-public class PrevencoesSeparadasPorMes implements PrevencoesSeparadas, Comparable<PrevencoesSeparadasPorMes>{
+import org.springframework.util.Assert;
+
+import lombok.Getter;
+
+public class PrevencoesSeparadasPorMes extends PrevencoesSeparadas implements
+		Comparable<PrevencoesSeparadasPorMes> {
+	@Getter
 	private Integer mes;
-	private List<Prevencao> prevencoes;
-	
-	public PrevencoesSeparadasPorMes(List<Prevencao> prevencoes) {
-		this.validaPrevencoes(prevencoes);
-		this.prevencoes = prevencoes;
-		this.mes = prevencoes.get(0).getMesDataPrazo();
+
+	public PrevencoesSeparadasPorMes(Integer mes) {
+		this.mes = mes;
 	}
-	
-	public PrevencoesSeparadasPorMes() {
-		this.prevencoes = new ArrayList<>();
+
+	public PrevencoesSeparadasPorMes(Integer mes, List<Prevencao> prevencoes) {
+		super(prevencoes);
+		this.mes = mes;
 	}
-	
-	private void validaPrevencoes(List<Prevencao> prevencoes) {
-		if (prevencoes == null || prevencoes.isEmpty())
-			throw new IllegalStateException("Prevenções vazia ou null");
-	}
-	
-	@Override
-	public int compareTo(PrevencoesSeparadasPorMes o) {
-		return this.mes.compareTo(o.mes);
-	}
-	
-	@Override
-	public boolean estaVazio() {
-		return this.prevencoes.isEmpty();
-	}
-	
+
 	/**
-	 * Adiciona prevenção a lista
-	 * @param prevencao
-	 * @throws Lança exceção caso a exceção não seja do mesmo mês correto
+	 * Ordena por mês em ordem crescente
 	 */
 	@Override
-	public void add(Prevencao prevencao) {
-		if (this.mes != null && !this.mes.equals(prevencao.getMesDataPrazo()))
-			throw new RuntimeException("Prevenção não é do mês " + this.mes);
-		
-		this.prevencoes.add(prevencao);
+	public int compareTo(PrevencoesSeparadasPorMes o) {
+		return this.mes.compareTo(o.getMes());
 	}
-	
+
 	@Override
-	public List<Prevencao> getLista() {
-		return this.prevencoes;
+	public void add(Prevencao prevencao) {
+		Assert.isTrue(prevencao != null
+				&& this.mes.equals(prevencao.getMesDataPrazo()));
+
+		super.add(prevencao);
 	}
-	
+
 }
