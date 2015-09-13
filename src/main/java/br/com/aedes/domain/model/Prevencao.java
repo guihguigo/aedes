@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -20,14 +21,18 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
 	private static final long serialVersionUID = 2294204926764998765L;
 
 	@EmbeddedId
-	@Getter
+	@Getter @Setter
 	private PrevencaoId id;
     
+	@Setter
 	private Date dataPrazo;
-    private Date dataEfetuada;
+    
+	@Setter
+	private Date dataEfetuada;
     
     @ManyToOne
     @JoinColumn(name = "endereco_id")
+    @Setter
     private Endereco endereco;
  
     @Override

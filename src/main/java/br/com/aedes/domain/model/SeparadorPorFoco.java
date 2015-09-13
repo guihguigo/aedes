@@ -10,13 +10,16 @@ import org.springframework.stereotype.Component;
 public class SeparadorPorFoco implements SeparadorTemplate{
 
 	@Override
-	public Map<String, PrevencoesSeparadas> separar(List<Prevencao> prevencoes) {
-		Map<String, PrevencoesSeparadas> prevencoesPorFoco = new TreeMap<>();
+	public Map<Integer, PrevencoesSeparadas> separar(List<Prevencao> prevencoes) {
+		Map<Integer, PrevencoesSeparadas> prevencoesPorFoco = new TreeMap<>();
+		
+		if (prevencoes == null)
+			throw new IllegalArgumentException("Prevencoes não pode ser null");
 		
 		PrevencoesSeparadas prevencoesSeparadas = null;
 		
 		for (Prevencao prevencao : prevencoes) {
-			String key = prevencao.getId().getFoco().getNome();
+			Integer key = prevencao.getId().getFoco().getCodigo();
 			
 			if (prevencoesPorFoco.containsKey(key)) {
 				prevencoesSeparadas = prevencoesPorFoco.get(key);

@@ -4,13 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class Foco implements Comparable<Foco> {
 	@Id
+	@Setter @Getter
 	private Integer codigo;
-	@Getter
+	
+	@Getter @Setter
 	private String nome;
+	
+	@Setter
 	private String comoLimpar;
 
 	public Foco(Integer codigo, String nome, String comoLimpar) {

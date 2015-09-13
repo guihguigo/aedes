@@ -1,10 +1,11 @@
 package br.com.aedes.domain.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -13,86 +14,90 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
+import br.com.aedes.builder.PrevencaoBuilder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = Application.class)
 public class PercentualPrevencaoTest {
-	private Prevencao prevencao1;
-	private Prevencao prevencao2;
 
-	@Before
-	public void before() {
-		prevencao1 = Mockito.mock(Prevencao.class);
-		prevencao2 = Mockito.mock(Prevencao.class);
+	@Test
+	public void testConverterPercentualPorMes$percentualQuebrado() {
+		Prevencao prevencaoAtrasada1 = new PrevencaoBuilder().constroiPadrao(false);
+		Prevencao prevencaoAtrasada2 = new PrevencaoBuilder().constroiPadrao(false);
+		Prevencao prevencaoEmDia = new PrevencaoBuilder().constroiPadrao(true);
+		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2, prevencaoEmDia);
 
-		Mockito.when(prevencao1.isAtrasada()).thenReturn(false);
-		Mockito.when(prevencao2.isAtrasada()).thenReturn(true);
+		PrevencoesSeparadas prevencoesSeparadas = this.consntroiPrevencoesSeparadasMock(prevencoes);
+
+		Percentual percentual = new PercentualPrevencao(prevencoesSeparadas);
+
+		Mockito.verify(prevencoesSeparadas, Mockito.atLeastOnce()).getLista();
+
+		Assert.assertThat(percentual.tamanho(), Matchers.is(3));
+		Assert.assertThat(percentual.getAtrasada(), Matchers.is(66.67));
+		Assert.assertThat(percentual.getEmDia(), Matchers.is(33.33));
+
 	}
 
 	@Test
-	public void testCalcular$porcentagemRedonda() {
-		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
-				Arrays.asList(prevencao1, prevencao2));
-		Percentual percentual = new PercentualPrevencao(
-				prevencoesSeparadasPorMes);
+	public void testConverterPercentual$percentualRedondo() {
+		Prevencao prevencaoAtrasada1 = new PrevencaoBuilder().constroiPadrao(false);
+		Prevencao prevencaoAtrasada2 = new PrevencaoBuilder().constroiPadrao(false);
+		Prevencao prevencaoEmDia1 = new PrevencaoBuilder().constroiPadrao(true);
+		Prevencao prevencaoEmDia2 = new PrevencaoBuilder().constroiPadrao(true);
+		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2, prevencaoEmDia1, prevencaoEmDia2);
 
-		Assert.assertThat(percentual.getEmDia(), Matchers.is(50.0));
+		PrevencoesSeparadas prevencoesSeparadas = this.consntroiPrevencoesSeparadasMock(prevencoes);
+
+		Percentual percentual = new PercentualPrevencao(prevencoesSeparadas);
+
+		Mockito.verify(prevencoesSeparadas, Mockito.atLeastOnce()).getLista();
+
+		Assert.assertThat(percentual.tamanho(), Matchers.is(4));
 		Assert.assertThat(percentual.getAtrasada(), Matchers.is(50.0));
-
-		Mockito.verify(prevencao1).isAtrasada();
-		Mockito.verify(prevencao2).isAtrasada();
+		Assert.assertThat(percentual.getEmDia(), Matchers.is(50.0));
 	}
 
 	@Test
-	public void testCalcular$porcentagemQuebrada() {
-		Prevencao prevencao3 = Mockito.mock(Prevencao.class);
-		Mockito.when(prevencao3.isAtrasada()).thenReturn(false);
-		
-		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
-				Arrays.asList(prevencao1, prevencao2, prevencao3));
-		Percentual percentual = new PercentualPrevencao(
-				prevencoesSeparadasPorMes);
+	public void testConverterPercentual$percentualZerado() {
+		Prevencao prevencaoAtrasada1 = new PrevencaoBuilder().constroiPadrao(false);
+		Prevencao prevencaoAtrasada2 = new PrevencaoBuilder().constroiPadrao(false);
+		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2);
 
-		Assert.assertThat(percentual.getEmDia(), Matchers.is(66.67));
-		Assert.assertThat(percentual.getAtrasada(), Matchers.is(33.33));
+		PrevencoesSeparadas prevencoesSeparadas = this.consntroiPrevencoesSeparadasMock(prevencoes);
 
-		Mockito.verify(prevencao1).isAtrasada();
-		Mockito.verify(prevencao2).isAtrasada();
-		Mockito.verify(prevencao3).isAtrasada();
-	}
+		Percentual percentual = new PercentualPrevencao(prevencoesSeparadas);
 
-	@Test
-	public void TestCalcular$todasPorcentagensAtrasadas() {
-		Prevencao prevencao3 = Mockito.mock(Prevencao.class);
-		Mockito.when(prevencao3.isAtrasada()).thenReturn(true);
-		
-		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
-				Arrays.asList(prevencao2, prevencao3));
-		Percentual percentual = new PercentualPrevencao(
-				prevencoesSeparadasPorMes);
-		
-		Assert.assertThat(percentual.getEmDia(), Matchers.is(0.0));
+		Mockito.verify(prevencoesSeparadas, Mockito.atLeastOnce()).getLista();
+
+		Assert.assertThat(percentual.tamanho(), Matchers.is(2));
 		Assert.assertThat(percentual.getAtrasada(), Matchers.is(100.0));
-		
-		Mockito.verify(prevencao2).isAtrasada();
-		Mockito.verify(prevencao3).isAtrasada();
+		Assert.assertThat(percentual.getEmDia(), Matchers.is(0.0));
 	}
-	
-	@Test
-	public void testCalcular$todasPorcentagensEmDia() {
-		Prevencao prevencao3 = Mockito.mock(Prevencao.class);
-		Mockito.when(prevencao3.isAtrasada()).thenReturn(false);
-		
-		PrevencoesSeparadas prevencoesSeparadasPorMes = new PrevencoesSeparadasPorMes(1, 
-				Arrays.asList(prevencao1, prevencao3));
-		Percentual percentual = new PercentualPrevencao(
-				prevencoesSeparadasPorMes);
-		
-		Assert.assertThat(percentual.getEmDia(), Matchers.is(100.0));
-		Assert.assertThat(percentual.getAtrasada(), Matchers.is(0.0));
-		
-		Mockito.verify(prevencao1).isAtrasada();
-		Mockito.verify(prevencao3).isAtrasada();
+
+	@Test(expected = IllegalStateException.class)
+	public void testConverterPercentual$prevencoesNull() {
+		PrevencoesSeparadas prevencoesSeparadas = this.consntroiPrevencoesSeparadasMock(null);
+
+		new PercentualPrevencao(prevencoesSeparadas);
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void testConverterPercentual$prevencoesIsEmpty() {
+		PrevencoesSeparadas prevencoesSeparadas = this.consntroiPrevencoesSeparadasMock(new ArrayList<Prevencao>());
+
+		new PercentualPrevencao(prevencoesSeparadas);
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void testConverterPercentual$prevencoesSeparadasNull() {
+		new PercentualPrevencao(null);
+	}
+
+	private PrevencoesSeparadas consntroiPrevencoesSeparadasMock(List<Prevencao> prevencoes) {
+		PrevencoesSeparadas prevencoesSeparadas = Mockito.mock(PrevencoesSeparadas.class);
+		Mockito.when(prevencoesSeparadas.getLista()).thenReturn(prevencoes);
+		return prevencoesSeparadas;
 	}
 }

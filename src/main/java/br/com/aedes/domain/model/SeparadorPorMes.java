@@ -24,8 +24,11 @@ public class SeparadorPorMes implements SeparadorTemplate {
 	public Map<Integer, PrevencoesSeparadas> separar(List<Prevencao> prevencoes) {
 		Map<Integer, PrevencoesSeparadas> prevencoesPorMes = new TreeMap<>();
 		
+		if (prevencoes == null)
+			throw new IllegalArgumentException("Prevenções não deve ser null");
+		
 		PrevencoesSeparadas  prevencoesSeparadasPorMes = null;
-
+		
 		for (Prevencao prevencao : prevencoes) {
 			Integer key = prevencao.getMesDataPrazo();
 					

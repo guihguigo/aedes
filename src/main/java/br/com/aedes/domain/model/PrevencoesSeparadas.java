@@ -33,8 +33,10 @@ public abstract class PrevencoesSeparadas {
 	
 	/**
 	 * Adiciona prevenção a lista
+	 * 
 	 * @param prevencao
-	 * @throws Lança exceção caso a exceção não seja do mesmo mês correto
+	 * @throws Lança
+	 *             exceção caso a exceção não seja do mesmo mês correto
 	 */
 	public void add(Prevencao prevencao) {
 		this.prevencoes.add(prevencao);

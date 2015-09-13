@@ -2,39 +2,42 @@ package br.com.aedes.domain.model;
 
 import java.util.List;
 
+import lombok.Getter;
+
 import org.springframework.util.Assert;
 
 public class PrevencoesSeparadasPorFoco extends PrevencoesSeparadas implements
 		Comparable<PrevencoesSeparadasPorFoco> {
-	private String nome;
+	@Getter
+	private Integer codigo;
 
-	public PrevencoesSeparadasPorFoco(String nome) {
-		this.validaNome(nome);
-		this.nome = nome;
+	public PrevencoesSeparadasPorFoco(Integer codigo) {
+		this.validaNome(codigo);
+		this.codigo = codigo;
 	}
 
-	public PrevencoesSeparadasPorFoco(String nome, List<Prevencao> prevencoes) {
-		this.validaNome(nome);
+	public PrevencoesSeparadasPorFoco(Integer codigo, List<Prevencao> prevencoes) {
+		this.validaNome(codigo);
 		Assert.isTrue(prevencoes != null && prevencoes.isEmpty());
 
-		this.nome = nome;
+		this.codigo = codigo;
 	}
 
-	public void validaNome(String nome) {
+	public void validaNome(Integer nome) {
 		Assert.notNull(nome);
 	}
 
 	@Override
 	public void add(Prevencao prevencao) {
 		Assert.isTrue((prevencao != null)
-				&& this.nome.equals(prevencao.getId().getFoco().getNome()));
+				&& this.codigo.equals(prevencao.getId().getFoco().getCodigo()));
 		
 		super.add(prevencao);
 	}
 
 	@Override
 	public int compareTo(PrevencoesSeparadasPorFoco o) {
-		return this.nome.compareTo(o.nome);
+		return this.codigo.compareTo(o.codigo);
 	}
 
 }

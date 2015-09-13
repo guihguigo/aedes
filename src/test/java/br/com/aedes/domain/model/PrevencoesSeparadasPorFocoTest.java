@@ -25,7 +25,7 @@ public class PrevencoesSeparadasPorFocoTest {
 	@Before
 	public void before() {
 		Foco foco = Mockito.mock(Foco.class);
-		Mockito.when(foco.getNome()).thenReturn("ralos");
+		Mockito.when(foco.getCodigo()).thenReturn(1);
 		
 		PrevencaoId prevencaoId = Mockito.mock(PrevencaoId.class);
 		Mockito.when(prevencaoId.getFoco()).thenReturn(foco);
@@ -36,7 +36,7 @@ public class PrevencoesSeparadasPorFocoTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testAdicionarPrevencao$esperandoException() {
-		PrevencoesSeparadas prevencoesSeparadasPorFoco = new PrevencoesSeparadasPorFoco("Bebedouro de animais.");
+		PrevencoesSeparadas prevencoesSeparadasPorFoco = new PrevencoesSeparadasPorFoco(2);
 		prevencoesSeparadasPorFoco.add(prevencao);
 		
 		Assert.assertThat(prevencoesSeparadasPorFoco.estaVazio(), Matchers.is(true));
@@ -44,7 +44,7 @@ public class PrevencoesSeparadasPorFocoTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCriarPrevencao$esperandoException() {
-		PrevencoesSeparadasPorFoco prevencoesSeparadasPorFoco = new PrevencoesSeparadasPorFoco("ralos", null);
+		PrevencoesSeparadasPorFoco prevencoesSeparadasPorFoco = new PrevencoesSeparadasPorFoco(2, null);
 		
 		Assert.assertNull(prevencoesSeparadasPorFoco);
 	}

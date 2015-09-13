@@ -19,6 +19,7 @@ import lombok.ToString;
 public class PrevencaoId implements Serializable{
 	private static final long serialVersionUID = 3667910347363573384L;
 	
+	@Setter
 	private Long codigoCelular;
     
 	@OneToOne
