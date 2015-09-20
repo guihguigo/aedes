@@ -43,7 +43,7 @@ public abstract class PrevencoesSeparadas {
 	}
 	
 	public List<Prevencao> getLista() {
-		return this.prevencoes;
+		return new ArrayList<>(this.prevencoes);
 	}
 	
 }

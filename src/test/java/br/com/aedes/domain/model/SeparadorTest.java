@@ -10,6 +10,7 @@ import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,23 +18,34 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
 import br.com.aedes.builder.PrevencaoBuilder;
-import br.com.aedes.domain.model.filtros.ComoSepararTemplate;
+import br.com.aedes.domain.model.filtros.ComoSepararStrategy;
 import br.com.aedes.domain.model.filtros.impl.ComoSepararPorFoco;
 import br.com.aedes.domain.model.filtros.impl.ComoSepararPorMes;
-import br.com.aedes.domain.model.filtros.impl.Separador;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = Application.class)
 public class SeparadorTest {
-
+	private ComoSepararStrategy<Integer> comoSeparar;
+	
 	@Autowired
 	private Separador separador;
-
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testSeparar() {
+		Prevencao prevencao1 = new PrevencaoBuilder().constroiPadrao(true);
+		Prevencao prevencao2 = new PrevencaoBuilder().constroiPadrao(true);
+		Prevencao prevencao3 = new PrevencaoBuilder().constroiPadrao(true);
+		
+		ComoSepararStrategy<Integer> comoSeparar = Mockito.mock(ComoSepararStrategy.class);
+		
+	}
+	
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testSeparar$porFoco() {
-		ComoSepararTemplate<Integer> comoSeparar = new ComoSepararPorFoco();
+		ComoSepararStrategy<Integer> comoSeparar = new ComoSepararPorFoco();
 
 		Map<Integer, PrevencoesSeparadas> prevencoesSeparadas = (Map<Integer, PrevencoesSeparadas>) separador.separar(this.constuirPrevencoes(), comoSeparar, TipoSepararPor.FOCO);
 
@@ -49,7 +61,7 @@ public class SeparadorTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void separar$prevencoesEmTodosOsMeses() {
-		ComoSepararTemplate<Integer> comoSeparar = new ComoSepararPorMes();
+		ComoSepararStrategy<Integer> comoSeparar = new ComoSepararPorMes();
 
 		Map<Integer, PrevencoesSeparadas> prevencoesSeparadas = (Map<Integer, PrevencoesSeparadas>) separador.separar(this.constuirPrevencoesPorMes(),
 				comoSeparar, TipoSepararPor.MES);

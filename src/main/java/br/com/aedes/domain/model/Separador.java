@@ -1,4 +1,4 @@
-package br.com.aedes.domain.model.filtros.impl;
+package br.com.aedes.domain.model;
 
 import java.util.List;
 import java.util.Map;
@@ -7,11 +7,7 @@ import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.aedes.domain.model.Prevencao;
-import br.com.aedes.domain.model.PrevencoesSeparadas;
-import br.com.aedes.domain.model.PrevencoesSeparadasFactory;
-import br.com.aedes.domain.model.TipoSepararPor;
-import br.com.aedes.domain.model.filtros.ComoSepararTemplate;
+import br.com.aedes.domain.model.filtros.ComoSepararStrategy;
 
 @Component
 public class Separador {
@@ -19,16 +15,16 @@ public class Separador {
 	@Autowired
 	private PrevencoesSeparadasFactory factory;
 	
-	public Map<?, PrevencoesSeparadas> separar(List<Prevencao> prevencoes, ComoSepararTemplate<?> comoSepararTemplate, TipoSepararPor tipo) {
+	public Map<?, PrevencoesSeparadas> separar(List<Prevencao> prevencoes, ComoSepararStrategy<?> comoSeparar, TipoSepararPor tipo) {
 		Map<Object, PrevencoesSeparadas> prevencoesPorFoco = new TreeMap<>();
 		
-		if (prevencoes == null || prevencoes.isEmpty() || comoSepararTemplate == null || tipo == null)
+		if (prevencoes == null || prevencoes.isEmpty() || comoSeparar == null || tipo == null)
 			throw new IllegalArgumentException("Prevencoes não pode ser null");
 		
 		PrevencoesSeparadas prevencoesSeparadas = null;
 		
 		for (Prevencao prevencao : prevencoes) {
-			Object key = comoSepararTemplate.comoSeparar(prevencao);
+			Object key = comoSeparar.comoSeparar(prevencao);
 			
 			if (prevencoesPorFoco.containsKey(key)) {
 				prevencoesSeparadas = prevencoesPorFoco.get(key);

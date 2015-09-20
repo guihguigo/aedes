@@ -3,13 +3,11 @@ package br.com.aedes.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.aedes.domain.model.filtros.ComoSepararTemplate;
-import br.com.aedes.domain.model.filtros.impl.Separador;
+import br.com.aedes.domain.model.filtros.ComoSepararStrategy;
 
 /**
  * Calcula o percentual de prevenções
@@ -25,7 +23,7 @@ public class ConversorPercentual {
 	@Autowired
 	private PrevencoesSeparadasFactory factory;
 	
-	public List<Percentual> converterPercentual(List<Prevencao> prevencoes, ComoSepararTemplate<?> comoSepararTemplate, TipoSepararPor tipo) {
+	public List<Percentual> converterPercentual(List<Prevencao> prevencoes, ComoSepararStrategy<?> comoSepararTemplate, TipoSepararPor tipo) {
 		if (prevencoes == null || prevencoes.isEmpty() || separador == null)
 			return null;
 		
