@@ -7,28 +7,25 @@ import java.util.Locale;
 import lombok.Getter;
 
 public class PercentualPrevencao implements Percentual {
-	private List<Prevencao> prevencoes;
-	
 	@Getter
 	private double emDia;
 
 	@Getter
 	private double atrasada;
 
-	public PercentualPrevencao(PrevencoesSeparadas prevencoes) {
-		if (prevencoes == null || prevencoes.getLista() == null
-				|| prevencoes.getLista().isEmpty())
-			throw new IllegalStateException(PrevencoesSeparadas.class
+	public PercentualPrevencao(PrevencoesAgrupadas agrupadas) {
+		if (agrupadas == null)
+			throw new IllegalStateException(PrevencoesAgrupadas.class
 					+ " em estado inválido");
-
-		this.prevencoes = prevencoes.getLista();
-		this.calcular();
+		
+		this.calcular(agrupadas.getGrupo());
 	}
 
 	/**
 	 * Calcula o percentual da lista de prevenções
+	 * @param prevencoes 
 	 */
-	private void calcular() {
+	private void calcular(List<Prevencao> prevencoes) {
 		double emDia = 0;
 		double atrasada = 0;
 		
@@ -53,19 +50,6 @@ public class PercentualPrevencao implements Percentual {
 		format.setMaximumFractionDigits(2);
 		
 		return Double.parseDouble(format.format(percentual));
-	}
-	
-	/**
-	 * Retorna o tamanho
-	 */
-	@Override
-	public int tamanho() {
-		return this.prevencoes.size();
-	}
-	
-	@Override
-	public Prevencao getPrevencao(int indice) {
-		return this.prevencoes.get(indice);
 	}
  
 }

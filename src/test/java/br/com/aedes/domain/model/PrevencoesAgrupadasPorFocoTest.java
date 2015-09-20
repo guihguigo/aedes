@@ -1,5 +1,7 @@
 package br.com.aedes.domain.model;
 
+import java.util.Arrays;
+
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,7 +19,7 @@ import br.com.aedes.repository.PrevencaoRepository;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = Application.class)
-public class PrevencoesSeparadasPorFocoTest {
+public class PrevencoesAgrupadasPorFocoTest {
 	@Autowired
 	private PrevencaoRepository repository;
 	private Prevencao prevencao;
@@ -35,17 +37,18 @@ public class PrevencoesSeparadasPorFocoTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testAdicionarPrevencao$esperandoException() {
-		PrevencoesSeparadas prevencoesSeparadasPorFoco = new PrevencoesSeparadasPorFoco(2);
-		prevencoesSeparadasPorFoco.add(prevencao);
-		
-		Assert.assertThat(prevencoesSeparadasPorFoco.estaVazio(), Matchers.is(true));
+	public void testAdicionarPrevencao$prevencaoNaoPertenceAoGrupo() {
+		PrevencoesAgrupadas agrupadas = new PrevencoesAgrupadasPorFoco(2);
+		agrupadas.add(prevencao);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void testCriarPrevencao$esperandoException() {
-		PrevencoesSeparadasPorFoco prevencoesSeparadasPorFoco = new PrevencoesSeparadasPorFoco(2, null);
-		
-		Assert.assertNull(prevencoesSeparadasPorFoco);
+	@Test(expected = IllegalStateException.class)
+	public void testCriarPrevencao$prevencoesNull() {
+		new PrevencoesAgrupadasPorFoco(1, null);
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testCriarPrevencao$codigoFocoNull() {
+		new PrevencoesAgrupadasPorFoco(null, Arrays.asList(prevencao));
 	}
 }
