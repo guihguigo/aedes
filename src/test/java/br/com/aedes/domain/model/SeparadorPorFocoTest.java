@@ -17,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
 import br.com.aedes.builder.PrevencaoBuilder;
+import br.com.aedes.compose.Compose;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -50,7 +51,8 @@ public class SeparadorPorFocoTest {
 		List<Prevencao> prevencoes = new ArrayList<>();
 		
 		for (int i = 1; i <= 15; i++) {
-			Prevencao prevencao1 = new PrevencaoBuilder().comoCodigoFoco(i).constroi();
+			Foco foco = Compose.foco(i).build();
+			Prevencao prevencao1 = Compose.prevencao(true, foco).build();
 			Prevencao prevencao2 = new PrevencaoBuilder().comoCodigoFoco(i).constroi();
 			prevencoes.addAll(Arrays.asList(prevencao1, prevencao2));
 		}

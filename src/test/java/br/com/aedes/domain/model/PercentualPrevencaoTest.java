@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
-import br.com.aedes.builder.PrevencaoBuilder;
+import br.com.aedes.compose.Compose;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -23,9 +23,10 @@ public class PercentualPrevencaoTest {
 
 	@Test
 	public void testConverterPercentualPorMes$percentualQuebrado() {
-		Prevencao prevencaoAtrasada1 = new PrevencaoBuilder().constroiPadrao(false);
-		Prevencao prevencaoAtrasada2 = new PrevencaoBuilder().constroiPadrao(false);
-		Prevencao prevencaoEmDia = new PrevencaoBuilder().constroiPadrao(true);
+		Foco foco = Compose.foco(1).build();
+		Prevencao prevencaoAtrasada1 = Compose.prevencao(false, foco).build();
+		Prevencao prevencaoAtrasada2 = Compose.prevencao(false, foco).build();
+		Prevencao prevencaoEmDia =  Compose.prevencao(true, foco).build();
 		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2, prevencaoEmDia);
 
 		PrevencoesAgrupadas prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
@@ -41,10 +42,11 @@ public class PercentualPrevencaoTest {
 
 	@Test
 	public void testConverterPercentual$percentualRedondo() {
-		Prevencao prevencaoAtrasada1 = new PrevencaoBuilder().constroiPadrao(false);
-		Prevencao prevencaoAtrasada2 = new PrevencaoBuilder().constroiPadrao(false);
-		Prevencao prevencaoEmDia1 = new PrevencaoBuilder().constroiPadrao(true);
-		Prevencao prevencaoEmDia2 = new PrevencaoBuilder().constroiPadrao(true);
+		Foco foco = Compose.foco(1).build();
+		Prevencao prevencaoAtrasada1 = Compose.prevencao(false, foco).build();
+		Prevencao prevencaoAtrasada2 = Compose.prevencao(false, foco).build();
+		Prevencao prevencaoEmDia1 =  Compose.prevencao(true, foco).build();
+		Prevencao prevencaoEmDia2 =  Compose.prevencao(true, foco).build();
 		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2, prevencaoEmDia1, prevencaoEmDia2);
 
 		PrevencoesAgrupadas prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
@@ -59,8 +61,9 @@ public class PercentualPrevencaoTest {
 
 	@Test
 	public void testConverterPercentual$percentualNoMaximo() {
-		Prevencao prevencaoAtrasada1 = new PrevencaoBuilder().constroiPadrao(false);
-		Prevencao prevencaoAtrasada2 = new PrevencaoBuilder().constroiPadrao(false);
+		Foco foco = Compose.foco(1).build();
+		Prevencao prevencaoAtrasada1 = Compose.prevencao(false, foco).build();
+		Prevencao prevencaoAtrasada2 = Compose.prevencao(false, foco).build();
 		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2);
 
 		PrevencoesAgrupadas prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);

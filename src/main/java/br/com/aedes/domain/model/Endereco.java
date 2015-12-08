@@ -5,9 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Builder
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,17 +33,4 @@ public class Endereco {
 	@Setter
 	private String estado;
 
-	public Endereco(String bairro, String cidade, String estado) {
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.estado = estado;
-	}
-
-	public Endereco() {
-	}
-	
-	@Override
-    public String toString() {
-        return "Endereco{" + "bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + '}';
-    }
 }
