@@ -34,12 +34,9 @@ public class PrevencaoSpecifications {
 		return new Specification<Prevencao>() {
 			@Override
 			public Predicate toPredicate(Root<Prevencao> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				if (codigoFoco != null) {
-					Predicate equal = cb.equal(root.get("id").get("foco").get("codigo"), codigoFoco);
-					query.where(equal);
-				}
-			  
-
+				if (codigoFoco != null) 
+					query.where(cb.equal(root.get("id").get("foco").get("codigo"), codigoFoco));
+				
 				return query.getGroupRestriction();
 			}
 		};

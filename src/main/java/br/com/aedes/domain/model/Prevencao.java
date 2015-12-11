@@ -32,7 +32,7 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
 	@Getter @Setter
 	private PrevencaoId id;
     
-	@Setter
+	@Setter @Getter
 	private Date dataPrazo;
     
 	@Setter

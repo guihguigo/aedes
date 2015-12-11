@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PercentualMesDTO {
 	private String mes;
+	private String descricao;
 	private Double emDia;
 	private Double atrasada;
 }
