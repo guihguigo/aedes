@@ -8,15 +8,24 @@ import lombok.Getter;
 
 public class PercentualPrevencao implements Percentual {
 	@Getter
+	private String chave;
+	
+	@Getter
+	private String descricao;
+	
+	@Getter
 	private double emDia;
 
 	@Getter
 	private double atrasada;
 
-	public PercentualPrevencao(PrevencoesAgrupadas agrupadas) {
+	public PercentualPrevencao(Grupo agrupadas) {
 		if (agrupadas == null)
-			throw new IllegalStateException(PrevencoesAgrupadas.class
+			throw new IllegalStateException(Grupo.class
 					+ " em estado inválido");
+		
+		this.chave = agrupadas.getChave();
+		this.descricao = agrupadas.getDescricao();
 		
 		this.calcular(agrupadas.getGrupo());
 	}
@@ -51,5 +60,4 @@ public class PercentualPrevencao implements Percentual {
 		
 		return Double.parseDouble(format.format(percentual));
 	}
- 
 }

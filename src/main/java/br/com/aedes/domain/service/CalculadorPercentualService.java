@@ -9,6 +9,4 @@ import br.com.aedes.domain.model.ConversorPercentual;
 public class CalculadorPercentualService {
 	@Autowired
 	private ConversorPercentual calculador;
-	
-	
 }

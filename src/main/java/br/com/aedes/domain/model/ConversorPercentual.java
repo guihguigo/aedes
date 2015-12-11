@@ -18,7 +18,7 @@ public class ConversorPercentual {
 		if (prevencoes == null || prevencoes.isEmpty())
 			return null;
 		
-		Map<?, PrevencoesAgrupadas> prevencoesSeparadas = agrupador.separar(prevencoes);
+		Map<?, Grupo> prevencoesSeparadas = agrupador.separar(prevencoes);
 		
 		List<Percentual> percentuais = new ArrayList<>();
 		
@@ -27,5 +27,4 @@ public class ConversorPercentual {
 
 		return percentuais;
 	}
-	
 }

@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
-import br.com.aedes.builder.PrevencaoBuilder;
 import br.com.aedes.compose.Compose;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,7 +31,7 @@ public class SeparadorPorFocoTest {
 	public void separar$todosOsFocos() {
 		List<Prevencao> prevencoes = this.constuirPrevencoesPorFoco();
 		
-		Map<Integer, PrevencoesAgrupadas> prevencoesAgrupadas = agrupador.separar(prevencoes);
+		Map<Integer, Grupo> prevencoesAgrupadas = agrupador.separar(prevencoes);
 		
 		this.testarPrevencoesAgrupadas(prevencoesAgrupadas);
 	}
@@ -53,18 +52,18 @@ public class SeparadorPorFocoTest {
 		for (int i = 1; i <= 15; i++) {
 			Foco foco = Compose.foco(i).build();
 			Prevencao prevencao1 = Compose.prevencao(true, foco).build();
-			Prevencao prevencao2 = new PrevencaoBuilder().comoCodigoFoco(i).constroi();
+			Prevencao prevencao2 = Compose.prevencao(true, foco).build();
 			prevencoes.addAll(Arrays.asList(prevencao1, prevencao2));
 		}
 			
 		return prevencoes;
 	}
 	
-	private void testarPrevencoesAgrupadas(Map<Integer, PrevencoesAgrupadas> prevencoesAgrupadas) {
+	private void testarPrevencoesAgrupadas(Map<Integer, Grupo> prevencoesAgrupadas) {
 		Assert.assertThat(15, Matchers.is(prevencoesAgrupadas.size()));
 		
 		for (Integer key : prevencoesAgrupadas.keySet()) {
-			PrevencoesAgrupadasPorFoco grupo = (PrevencoesAgrupadasPorFoco) prevencoesAgrupadas.get(key);
+			PrevencoesAgrupadas grupo = (PrevencoesAgrupadas) prevencoesAgrupadas.get(key);
 			
 			Assert.assertThat(grupo.getGrupo(), Matchers.hasSize(2));
 			Assert.assertThat(key, Matchers.is(grupo.getGrupo().get(0).getId().getFoco().getCodigo()));

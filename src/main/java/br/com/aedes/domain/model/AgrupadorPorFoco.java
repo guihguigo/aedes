@@ -11,8 +11,7 @@ public class AgrupadorPorFoco extends AgrupadorTemplate<Integer>{
 	}
 
 	@Override
-	public PrevencoesAgrupadas criarPrevencoesSeparadas(Integer codigo) {
-		return new PrevencoesAgrupadasPorFoco(codigo);
+	public Grupo comoAgrupar() {
+		return new PrevencaoAgrupadaPorFoco();
 	}
-
 }

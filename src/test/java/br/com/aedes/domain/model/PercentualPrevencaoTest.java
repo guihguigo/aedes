@@ -29,7 +29,7 @@ public class PercentualPrevencaoTest {
 		Prevencao prevencaoEmDia =  Compose.prevencao(true, foco).build();
 		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2, prevencaoEmDia);
 
-		PrevencoesAgrupadas prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
+		Grupo prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
 
 		Percentual percentual = new PercentualPrevencao(prevencoesSeparadas);
 
@@ -37,7 +37,6 @@ public class PercentualPrevencaoTest {
 
 		Assert.assertThat(percentual.getAtrasada(), Matchers.is(66.67));
 		Assert.assertThat(percentual.getEmDia(), Matchers.is(33.33));
-
 	}
 
 	@Test
@@ -49,7 +48,7 @@ public class PercentualPrevencaoTest {
 		Prevencao prevencaoEmDia2 =  Compose.prevencao(true, foco).build();
 		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2, prevencaoEmDia1, prevencaoEmDia2);
 
-		PrevencoesAgrupadas prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
+		Grupo prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
 
 		Percentual percentual = new PercentualPrevencao(prevencoesSeparadas);
 
@@ -66,7 +65,7 @@ public class PercentualPrevencaoTest {
 		Prevencao prevencaoAtrasada2 = Compose.prevencao(false, foco).build();
 		List<Prevencao> prevencoes = Arrays.asList(prevencaoAtrasada1, prevencaoAtrasada2);
 
-		PrevencoesAgrupadas prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
+		Grupo prevencoesSeparadas = this.consntroiPrevencoesAgrupadasMock(prevencoes);
 
 		Percentual percentual = new PercentualPrevencao(prevencoesSeparadas);
 
@@ -78,7 +77,7 @@ public class PercentualPrevencaoTest {
 
 	@Test
 	public void testConverterPercentual$PercentuaisZerados() {
-		PrevencoesAgrupadas prevencoesAgrupadas = this.consntroiPrevencoesAgrupadasMock(new ArrayList<Prevencao>());
+		Grupo prevencoesAgrupadas = this.consntroiPrevencoesAgrupadasMock(new ArrayList<Prevencao>());
 		
 		PercentualPrevencao percentual = new PercentualPrevencao(prevencoesAgrupadas);
 		
@@ -93,8 +92,8 @@ public class PercentualPrevencaoTest {
 		new PercentualPrevencao(null);
 	}
 
-	private PrevencoesAgrupadas consntroiPrevencoesAgrupadasMock(List<Prevencao> prevencoes) {
-		PrevencoesAgrupadas prevencoesSeparadas = Mockito.mock(PrevencoesAgrupadas.class);
+	private Grupo consntroiPrevencoesAgrupadasMock(List<Prevencao> prevencoes) {
+		Grupo prevencoesSeparadas = Mockito.mock(Grupo.class);
 		Mockito.when(prevencoesSeparadas.getGrupo()).thenReturn(prevencoes);
 		return prevencoesSeparadas;
 	}

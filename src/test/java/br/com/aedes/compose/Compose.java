@@ -18,8 +18,7 @@ public class Compose {
 		
 		return Prevencao.builder().id(123L, foco, criacao)
 			.dataPrazo(prazo)
-			.dataEfetuada(isEmDia ? new Date() : null)
-			.endereco(endereco);
+			.dataEfetuada(isEmDia ? new Date() : null);
 	}
 	
 	public static Foco.FocoBuilder foco(int codigo) {
@@ -32,7 +31,6 @@ public class Compose {
 	
 	public static Endereco.EnderecoBuilder endereco() {
 		return Endereco.builder()
-			.id(1L)
 			.bairro("Jardim Quietude")
 			.cidade("Praia Grande")
 			.estado("São Paulo");

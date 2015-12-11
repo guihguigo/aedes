@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
-import br.com.aedes.builder.PrevencaoBuilder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -32,7 +31,7 @@ public class SeparadorPorMesTest {
 	public void separar$prevencoesEmTodosOsMeses() {
 		List<Prevencao> prevencoes = this.constuirPrevencoesPorMes();
 		
-		Map<Integer, PrevencoesAgrupadas> prevencoesSeparadas = agrupador.separar(prevencoes);
+		Map<Integer, Grupo> prevencoesSeparadas = agrupador.separar(prevencoes);
 		
 		this.testarPrevencoesAgrupadasPorMes(prevencoesSeparadas);
 	}
@@ -47,9 +46,9 @@ public class SeparadorPorMesTest {
 		agrupador.separar(new ArrayList<Prevencao>());
 	}
 
-	private void testarPrevencoesAgrupadasPorMes(Map<Integer, PrevencoesAgrupadas> prevencoesAgrupadas) {
+	private void testarPrevencoesAgrupadasPorMes(Map<Integer, Grupo> prevencoesAgrupadas) {
 		for (Integer key : prevencoesAgrupadas.keySet()) {
-			PrevencoesAgrupadasPorMes grupo = (PrevencoesAgrupadasPorMes) prevencoesAgrupadas.get(key);
+			Grupo grupo =  prevencoesAgrupadas.get(key);
 				
 			Assert.assertThat(grupo.getGrupo(), Matchers.hasSize(2));
 			Assert.assertThat(key, Matchers.is(grupo.getGrupo().get(0).getMesDataPrazo()));
@@ -64,8 +63,8 @@ public class SeparadorPorMesTest {
 		
 		for (int i = 0; i < 12; i++) {
 			calendar.set(Calendar.MONTH, i);
-			Prevencao prevencao1 = new PrevencaoBuilder().comDataPrazo(calendar.getTime()).constroi();
-			Prevencao prevencao2 = new PrevencaoBuilder().comDataPrazo(calendar.getTime()).constroi();
+			Prevencao prevencao1 = Prevencao.builder().dataPrazo(calendar.getTime()).build();
+			Prevencao prevencao2 = Prevencao.builder().dataPrazo(calendar.getTime()).build();
 			prevencoes.addAll(Arrays.asList(prevencao1, prevencao2));
 		}
 			

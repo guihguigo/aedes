@@ -11,8 +11,9 @@ public class AgrupadorPorMes extends AgrupadorTemplate<Integer>{
 	}
 
 	@Override
-	public PrevencoesAgrupadas criarPrevencoesSeparadas(Integer codigo) {
-		return new PrevencoesAgrupadasPorMes(codigo);
+	public Grupo comoAgrupar() {
+		return new PrevencaoAgrupadaPorMes();
 	}
+
 
 }
