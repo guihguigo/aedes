@@ -4,6 +4,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import br.com.aedes.domain.entity.Prevencao;
 import lombok.Getter;
 
 public class PercentualPrevencao implements Percentual {

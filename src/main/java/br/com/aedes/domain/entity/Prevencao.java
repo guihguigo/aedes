@@ -1,4 +1,4 @@
-package br.com.aedes.domain.model;
+package br.com.aedes.domain.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -40,7 +40,7 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
-    @Setter
+    @Setter @Getter
     private Endereco endereco;
  
     @Override
@@ -69,7 +69,7 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
 	}
 	
   public static class PrevencaoBuilder {
-    public PrevencaoBuilder id(Long codigoCelular, Foco foco, Date dataCriacao) {
+    public PrevencaoBuilder id(String codigoCelular, Foco foco, Date dataCriacao) {
       this.id = new PrevencaoId(codigoCelular, foco, dataCriacao);
       return this;
     }

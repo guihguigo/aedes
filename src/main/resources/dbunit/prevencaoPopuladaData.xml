@@ -48,11 +48,30 @@
 	consequentemente acúmulo de água." />
 	
 	<endereco id="1" bairro="Jardim Quietude" cidade="Praia Grande"
-		estado="São Paulo" />
+	estado="São Paulo" />
+	
+	<endereco id="2" bairro="Jardim Quietude" cidade="Rio de Janeiro"
+		estado="Rio de Janeiro" />
+		
+	<endereco id="3" bairro="Jardim Quietude" cidade="Salvador"
+		estado="Bahia" />
+		
+	<endereco id="4" bairro="Jardim Quietude" cidade="Belo Horizonte"
+		estado="Minas Gerais" />
+		
+	<endereco id="5" bairro="Jardim Quietude" cidade="Recife"
+		estado="Pernambuco" />
+		
+	<endereco id="6" bairro="Jardim Quietude" cidade="Goiania"
+		estado="Goias" />
+		
+	<endereco id="7" bairro="Jardim Quietude" cidade="Fortaleza"
+		estado="Ceará" />
+			
+		
 	
 	<prevencao codigo_celular="1234" foco_codigo="1"
-		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" endereco_id="1">
-	</prevencao>
+		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" endereco_id="1"/>
 	<prevencao codigo_celular="12345" foco_codigo="1"
 		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" endereco_id="1"/>
 	<prevencao codigo_celular="123456" foco_codigo="1"
@@ -66,72 +85,72 @@
 		data_criacao="2015-02-15" data_prazo="2015-02-15" data_efetuada="2015-01-13" endereco_id="1"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="3"
-		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" endereco_id="2"/>
 	<prevencao codigo_celular="12345" foco_codigo="3"
-		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" endereco_id="2"/>
 	<prevencao codigo_celular="123456" foco_codigo="3"
-		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-03-15" data_prazo="2015-03-15" data_efetuada="2015-01-13" endereco_id="2"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="4"
-		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" endereco_id="2"/>
 	<prevencao codigo_celular="12345" foco_codigo="2"
-		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" endereco_id="2"/>
 	<prevencao codigo_celular="123456" foco_codigo="2"
-		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" endereco_id="2"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="4"
-		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="3"/>
 	<prevencao codigo_celular="12345" foco_codigo="2"
-		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="3"/>
 	<prevencao codigo_celular="123456" foco_codigo="2"
-		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="3"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="5"
-		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" endereco_id="3"/>
 	<prevencao codigo_celular="12345" foco_codigo="5"
-		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" endereco_id="3"/>
 	<prevencao codigo_celular="123456" foco_codigo="5"
-		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-06-15" data_prazo="2015-06-15" data_efetuada="2015-01-13" endereco_id="3"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="6"
-		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" endereco_id="4" />
 	<prevencao codigo_celular="12345" foco_codigo="6"
-		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" endereco_id="4"/>
 	<prevencao codigo_celular="123456" foco_codigo="6"
-		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-07-15" data_prazo="2015-07-15" data_efetuada="2015-01-13" endereco_id="4"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="7"
-		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" endereco_id="4"/>
 	<prevencao codigo_celular="12345" foco_codigo="7"
-		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" endereco_id="4"/>
 	<prevencao codigo_celular="123456" foco_codigo="7"
-		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-08-15" data_prazo="2015-08-15" data_efetuada="2015-01-13" endereco_id="4"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="8"
-		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" endereco_id="5"/>
 	<prevencao codigo_celular="12345" foco_codigo="8"
-		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" endereco_id="5"/>
 	<prevencao codigo_celular="123456" foco_codigo="8"
-		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-09-15" data_prazo="2015-09-15" data_efetuada="2015-01-13" endereco_id="5"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="9"
-		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" endereco_id="5"/>
 	<prevencao codigo_celular="12345" foco_codigo="9"
-		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" endereco_id="5"/>
 	<prevencao codigo_celular="123456" foco_codigo="9"
-		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-10-15" data_prazo="2015-10-15" data_efetuada="2015-01-13" endereco_id="5"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="10"
-		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" endereco_id="5"/>
 	<prevencao codigo_celular="12345" foco_codigo="10"
-		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" endereco_id="5"/>
 	<prevencao codigo_celular="123456" foco_codigo="10"
-		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-11-15" data_prazo="2015-11-15" data_efetuada="2015-01-13" endereco_id="5"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="11"
-		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" endereco_id="6"/>
 	<prevencao codigo_celular="12345" foco_codigo="11"
-		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" endereco_id="6"/>
 	<prevencao codigo_celular="123456" foco_codigo="11"
-		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" />
+		data_criacao="2015-12-15" data_prazo="2015-12-15" data_efetuada="2015-01-13" endereco_id="6"/>
 </dataset>

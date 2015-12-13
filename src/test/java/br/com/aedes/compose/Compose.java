@@ -3,9 +3,9 @@ package br.com.aedes.compose;
 import java.util.Calendar;
 import java.util.Date;
 
-import br.com.aedes.domain.model.Endereco;
-import br.com.aedes.domain.model.Foco;
-import br.com.aedes.domain.model.Prevencao;
+import br.com.aedes.domain.entity.Endereco;
+import br.com.aedes.domain.entity.Foco;
+import br.com.aedes.domain.entity.Prevencao;
 
 public class Compose {
 	public static Prevencao.PrevencaoBuilder prevencao(boolean isEmDia, Foco foco) {
@@ -16,7 +16,7 @@ public class Compose {
 		calendar.add(Calendar.DAY_OF_MONTH, 20);
 		Date prazo = calendar.getTime();
 		
-		return Prevencao.builder().id(123L, foco, criacao)
+		return Prevencao.builder().id("123", foco, criacao)
 			.dataPrazo(prazo)
 			.dataEfetuada(isEmDia ? new Date() : null);
 	}

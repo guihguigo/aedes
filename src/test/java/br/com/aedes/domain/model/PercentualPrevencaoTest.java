@@ -15,6 +15,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
 import br.com.aedes.compose.Compose;
+import br.com.aedes.domain.entity.Foco;
+import br.com.aedes.domain.entity.Prevencao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

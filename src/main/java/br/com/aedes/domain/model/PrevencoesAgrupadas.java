@@ -3,6 +3,9 @@ package br.com.aedes.domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.aedes.domain.entity.Foco;
+import br.com.aedes.domain.entity.Prevencao;
+
 /**
  * Esta classe representa um conjunto de prevenções separadas por código do {@link Foco} da {@link Prevencao}
  * @author guilherme

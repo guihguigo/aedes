@@ -1,5 +1,7 @@
 package br.com.aedes.dto;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -8,16 +10,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class EnderecoDTO {
+public class PrevencaoDTO {
 	@NotNull
-	private String bairro;
-	
-	@NotNull
-	private String cidade;
+	private String codigoCelular;
 
 	@NotNull
-	private String estado;
+	private FocoDTO foco;
+
+	@NotNull
+	private EnderecoDTO endereco;
+	
+	@NotNull
+	private Date dataCriacao;
+	
+	@NotNull
+	private Date dataPrazo;
+    
+	private Date dataEfetuada;
 }

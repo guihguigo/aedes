@@ -1,4 +1,4 @@
-package br.com.aedes.domain.model;
+package br.com.aedes.domain.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

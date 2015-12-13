@@ -3,8 +3,8 @@ package br.com.aedes.repository;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-import br.com.aedes.domain.model.Foco;
-import br.com.aedes.domain.model.PrevencaoId;
+import br.com.aedes.domain.entity.Foco;
+import br.com.aedes.domain.entity.PrevencaoId;
 
 @StaticMetamodel(value  = PrevencaoId.class)
 public class PrevencaoId_ {

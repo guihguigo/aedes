@@ -17,6 +17,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
 import br.com.aedes.compose.Compose;
+import br.com.aedes.domain.entity.Foco;
+import br.com.aedes.domain.entity.Prevencao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -31,19 +33,19 @@ public class SeparadorPorFocoTest {
 	public void separar$todosOsFocos() {
 		List<Prevencao> prevencoes = this.constuirPrevencoesPorFoco();
 		
-		Map<Integer, Grupo> prevencoesAgrupadas = agrupador.separar(prevencoes);
+		Map<Integer, Grupo> prevencoesAgrupadas = agrupador.agrupar(prevencoes);
 		
 		this.testarPrevencoesAgrupadas(prevencoesAgrupadas);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void separar$prevencoesNull() {
-		agrupador.separar(null);
+		agrupador.agrupar(null);
 	}
 
 	@Test(expected = IllegalStateException.class)
 	public void separar$prevencoesIsEmpty() {
-		agrupador.separar(new ArrayList<Prevencao>());
+		agrupador.agrupar(new ArrayList<Prevencao>());
 	}
 	
 	private List<Prevencao> constuirPrevencoesPorFoco() {

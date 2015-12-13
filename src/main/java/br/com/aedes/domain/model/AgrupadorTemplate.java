@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import br.com.aedes.domain.entity.Prevencao;
+
 public abstract class AgrupadorTemplate <T> {
 	
-	public Map<T, Grupo> separar(List<Prevencao> prevencoes) {
+	public Map<T, Grupo> agrupar(List<Prevencao> prevencoes) {
 		Map<T, Grupo> prevencoesPorFoco = new TreeMap<>();
 		
 		if (prevencoes == null || prevencoes.isEmpty())
@@ -33,5 +35,5 @@ public abstract class AgrupadorTemplate <T> {
 
 	public abstract T comoSeparar(Prevencao prevencao);
 	
-	public abstract Grupo comoAgrupar();
+	public abstract PrevencoesAgrupadas comoAgrupar();
 }

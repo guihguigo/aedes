@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PercentualMesDTO {
-	private String mes;
+public class PercentualDTO {
+	private String chave;
 	private String descricao;
 	private Double emDia;
 	private Double atrasada;

@@ -2,6 +2,8 @@ package br.com.aedes.domain.model;
 
 import java.util.List;
 
+import br.com.aedes.domain.entity.Prevencao;
+
 /**
  * Encapsula um conjunto de prevenções separadas por mês
  * @author guilherme

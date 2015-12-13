@@ -7,7 +7,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import br.com.aedes.domain.model.Prevencao;
+import br.com.aedes.domain.entity.Prevencao;
 import br.com.aedes.dto.EnderecoDTO;
 
 public class PrevencaoSpecifications {

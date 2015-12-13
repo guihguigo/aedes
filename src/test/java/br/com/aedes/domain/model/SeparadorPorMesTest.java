@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
+import br.com.aedes.domain.entity.Prevencao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -31,19 +32,19 @@ public class SeparadorPorMesTest {
 	public void separar$prevencoesEmTodosOsMeses() {
 		List<Prevencao> prevencoes = this.constuirPrevencoesPorMes();
 		
-		Map<Integer, Grupo> prevencoesSeparadas = agrupador.separar(prevencoes);
+		Map<Integer, Grupo> prevencoesSeparadas = agrupador.agrupar(prevencoes);
 		
 		this.testarPrevencoesAgrupadasPorMes(prevencoesSeparadas);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void separar$prevencoesNull() {
-		agrupador.separar(null);
+		agrupador.agrupar(null);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void separar$prevencoesIsEmpty() {
-		agrupador.separar(new ArrayList<Prevencao>());
+		agrupador.agrupar(new ArrayList<Prevencao>());
 	}
 
 	private void testarPrevencoesAgrupadasPorMes(Map<Integer, Grupo> prevencoesAgrupadas) {

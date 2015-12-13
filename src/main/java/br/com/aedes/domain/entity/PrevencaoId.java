@@ -1,4 +1,4 @@
-package br.com.aedes.domain.model;
+package br.com.aedes.domain.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -25,7 +25,7 @@ public class PrevencaoId implements Serializable {
 	private static final long serialVersionUID = 3667910347363573384L;
 
 	@Setter
-	private Long codigoCelular;
+	private String codigoCelular;
 
 	@OneToOne
 	@JoinColumn(name = "foco_codigo")
