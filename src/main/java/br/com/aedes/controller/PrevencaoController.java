@@ -1,6 +1,6 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.PrevencaoURL.URL_BASE;
+import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_ESTADO;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_MES;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_SINCRONIZAR;
@@ -17,6 +17,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +42,7 @@ import br.com.aedes.exception.WebException;
 import br.com.aedes.repository.PrevencaoRepository;
 
 @RestController
-@RequestMapping(URL_BASE)
+@RequestMapping(URL_PREVENCOES)
 public class PrevencaoController {
 	@Autowired
 	private PrevencaoRepository repository;
@@ -83,7 +84,7 @@ public class PrevencaoController {
 	}
 
 	@RequestMapping(value = URL_PREVENCOES_MES, method = RequestMethod.GET)
-	public List<PercentualDTO> listarPorMes(@RequestBody EnderecoDTO endereco,
+	public List<PercentualDTO> listarPorMes(@ModelAttribute EnderecoDTO endereco,
 	    @RequestParam(required = false) Long codigoFoco) {
 
 		List<Prevencao> prevencoes = repository.findAll(where(comFoco(codigoFoco)).and(estaNesteEntedereco(endereco)));

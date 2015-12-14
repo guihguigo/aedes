@@ -9,3 +9,25 @@ function getCidades() {
     }
   );
 }
+
+function getMes(codigoFoco, estado, cidade, bairro) {
+  dados = {codigoFoco: codigoFoco, estado: estado, cidade: cidade, bairro: "teste"};
+
+  var ajaxPromise, promise;
+  promise = $.Deferred();
+
+  ajaxPromise = $.ajax({
+    type       : 'GET',
+    url        : baseUrl + "/prevencoes/mes",
+    data       : dados
+  });
+
+  ajaxPromise
+    .done((function(_this) {
+      return function(json, status, ajaxObj) {
+        return promise.resolve.apply(_this, [json, ajaxObj]);
+    };
+  })(this));
+
+  return promise;
+}

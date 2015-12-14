@@ -1,6 +1,6 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.PrevencaoURL.URL_BASE;
+import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_ESTADO;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_MES;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_SINCRONIZAR;
@@ -79,11 +79,11 @@ public class PrevencaoControllerTest {
 		dto.setCidade("Praia Grande");
 		dto.setEstado("São Paulo");
 
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_BASE + URL_PREVENCOES_MES)
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES)
 				.param("codigoFoco", "1")
-		    .contentType(MediaType.APPLICATION_JSON)
-		    .content(new ObjectMapper()
-		    .writeValueAsBytes(dto));
+				.param("bairro", "Jardim Quietude")
+				.param("cidade", "Praia Grande")
+				.param("estado", "São Paulo");
 
 		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
@@ -99,10 +99,9 @@ public class PrevencaoControllerTest {
 		EnderecoDTO dto = new EnderecoDTO();
 		dto.setCidade("Praia Grande");
 
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_BASE + URL_PREVENCOES_MES)
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES)
 				.param("codigoFoco", "1")
-		    .contentType(MediaType.APPLICATION_JSON)
-		    .content(new ObjectMapper().writeValueAsBytes(dto));
+				.param("cidade", "Praia Grande");
 
 		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
@@ -115,10 +114,8 @@ public class PrevencaoControllerTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listaTodasPorMes() throws Exception {
-		EnderecoDTO dto = new EnderecoDTO();
 
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_BASE + URL_PREVENCOES_MES)
-		    .contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsBytes(dto));
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES);
 
 		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
@@ -129,10 +126,8 @@ public class PrevencaoControllerTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoVazioData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarTodasPrevencoesPorMes$Vazio() throws Exception {
-		EnderecoDTO dto = new EnderecoDTO();
 
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_BASE + URL_PREVENCOES_MES)
-		    .contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsBytes(dto));
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES);
 
 		MvcResult andReturn = this.mockMvc.perform(get)
 				.andExpect(MockMvcResultMatchers.status()
@@ -146,8 +141,7 @@ public class PrevencaoControllerTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarTodasPrevencoesPorRegiao() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_BASE + URL_PREVENCOES_ESTADO)
-		    .contentType(MediaType.APPLICATION_JSON);
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_ESTADO);
 		
 		MvcResult andReturn = this.mockMvc.perform(get)
 				.andExpect(MockMvcResultMatchers.status()
@@ -183,7 +177,7 @@ public class PrevencaoControllerTest {
 				.endereco(endereco)
 				.build();
 		
-		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post(URL_BASE + URL_PREVENCOES_SINCRONIZAR)
+		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post(URL_PREVENCOES + URL_PREVENCOES_SINCRONIZAR)
 		    .contentType(MediaType.APPLICATION_JSON)
 		    .content(new ObjectMapper().writeValueAsBytes(prevencao));
 		
