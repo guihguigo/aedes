@@ -22,9 +22,9 @@ public class PrevencaoId implements Serializable{
 	@Setter
 	private Long codigoCelular;
     
+	@Getter
 	@OneToOne
 	@JoinColumn(name = "foco_codigo")
-	@Getter
 	private Foco foco;
 
 	@Temporal(TemporalType.DATE)

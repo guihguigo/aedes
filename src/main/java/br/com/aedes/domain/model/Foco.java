@@ -3,11 +3,16 @@ package br.com.aedes.domain.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Foco implements Comparable<Foco> {
+	
 	@Id
 	@Setter @Getter
 	private Integer codigo;
@@ -18,13 +23,6 @@ public class Foco implements Comparable<Foco> {
 	@Setter
 	private String comoLimpar;
 
-	public Foco(Integer codigo, String nome, String comoLimpar) {
-		this.codigo = codigo;
-		this.nome = nome;
-		this.comoLimpar = comoLimpar;
-	}
-
-	public Foco() {}
 
 	@Override
 	public String toString() {
