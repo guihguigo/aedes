@@ -1,22 +1,30 @@
-package br.com.aedes.domain.model;
+package br.com.aedes.domain.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@EqualsAndHashCode
 @ToString
+@EqualsAndHashCode
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Prevencao implements Comparable<Prevencao>, Serializable{
 	private static final long serialVersionUID = 2294204926764998765L;
 
@@ -24,15 +32,15 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
 	@Getter @Setter
 	private PrevencaoId id;
     
-	@Setter
+	@Setter @Getter
 	private Date dataPrazo;
     
 	@Setter
 	private Date dataEfetuada;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
-    @Setter
+    @Setter @Getter
     private Endereco endereco;
  
     @Override
@@ -59,4 +67,16 @@ public class Prevencao implements Comparable<Prevencao>, Serializable{
 		
 		return calendar.get(Calendar.MONTH);
 	}
+	
+  public static class PrevencaoBuilder {
+    public PrevencaoBuilder id(String codigoCelular, Foco foco, Date dataCriacao) {
+      this.id = new PrevencaoId(codigoCelular, foco, dataCriacao);
+      return this;
+    }
+
+    public PrevencaoBuilder id(PrevencaoId id) {
+      this.id = id;
+      return this;
+    }
+  }
 }

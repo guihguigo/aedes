@@ -14,11 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConversorPercentual {
 	
-	public List<Percentual> converterPercentual(List<Prevencao> prevencoes, AgrupadorTemplate<?> agrupador) {
-		if (prevencoes == null || prevencoes.isEmpty())
+	public List<Percentual> converterPercentual(Map<?, Grupo> prevencoesSeparadas) {
+		if (prevencoesSeparadas == null)
 			return null;
-		
-		Map<?, PrevencoesAgrupadas> prevencoesSeparadas = agrupador.separar(prevencoes);
 		
 		List<Percentual> percentuais = new ArrayList<>();
 		
@@ -27,5 +25,4 @@ public class ConversorPercentual {
 
 		return percentuais;
 	}
-	
 }

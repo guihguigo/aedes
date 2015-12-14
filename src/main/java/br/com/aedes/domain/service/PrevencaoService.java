@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.aedes.domain.model.Prevencao;
+import br.com.aedes.domain.entity.Prevencao;
 import br.com.aedes.repository.PrevencaoRepository;
 
 @Service

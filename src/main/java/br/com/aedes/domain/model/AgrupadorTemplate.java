@@ -4,35 +4,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import br.com.aedes.domain.entity.Prevencao;
+
 public abstract class AgrupadorTemplate <T> {
 	
-	public Map<T, PrevencoesAgrupadas> separar(List<Prevencao> prevencoes) {
-		Map<T, PrevencoesAgrupadas> prevencoesPorFoco = new TreeMap<>();
+	public Map<T, Grupo> agrupar(List<Prevencao> prevencoes) {
+		Map<T, Grupo> prevencoesPorFoco = new TreeMap<>();
 		
 		if (prevencoes == null || prevencoes.isEmpty())
 			throw new IllegalStateException("Prevencoes não pode ser null ou vazia");
 		
-		PrevencoesAgrupadas prevencoesSeparadas = null;
+		Grupo prevencoesAgrupadas = null;
 		
 		for (Prevencao prevencao : prevencoes) {
 			T key = this.comoSeparar(prevencao);
 			
 			if (prevencoesPorFoco.containsKey(key)) {
-				prevencoesSeparadas = prevencoesPorFoco.get(key);
-				prevencoesSeparadas.add(prevencao);
+				prevencoesAgrupadas = prevencoesPorFoco.get(key);
+				prevencoesAgrupadas.add(prevencao);
 			} else {
-				prevencoesSeparadas = this.criarPrevencoesSeparadas(key);
-				prevencoesSeparadas.add(prevencao);
+				prevencoesAgrupadas = this.comoAgrupar();
+				prevencoesAgrupadas.add(prevencao);
 				
-				prevencoesPorFoco.put(key, prevencoesSeparadas);
+				prevencoesPorFoco.put(key, prevencoesAgrupadas);
 			}
 		}
 		
 		return prevencoesPorFoco;
 	}
 
-	public abstract T comoSeparar(Prevencao prevencao) ;
+	public abstract T comoSeparar(Prevencao prevencao);
 	
-	public abstract PrevencoesAgrupadas criarPrevencoesSeparadas(T t);
-	
+	public abstract PrevencoesAgrupadas comoAgrupar();
 }

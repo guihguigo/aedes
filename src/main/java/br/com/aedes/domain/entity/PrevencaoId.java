@@ -1,4 +1,4 @@
-package br.com.aedes.domain.model;
+package br.com.aedes.domain.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,24 +9,29 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Embeddable
-@Getter @Setter
+@Getter
+@Setter
 @ToString
-public class PrevencaoId implements Serializable{
+@AllArgsConstructor
+@NoArgsConstructor
+public class PrevencaoId implements Serializable {
 	private static final long serialVersionUID = 3667910347363573384L;
-	
+
 	@Setter
-	private Long codigoCelular;
-    
-	@Getter
+	private String codigoCelular;
+
 	@OneToOne
 	@JoinColumn(name = "foco_codigo")
+	@Getter
 	private Foco foco;
 
 	@Temporal(TemporalType.DATE)
-    private Date dataCriacao;
+	private Date dataCriacao;
 }
