@@ -23,7 +23,7 @@ import br.com.aedes.domain.entity.Prevencao;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = Application.class)
-public class SeparadorPorFocoTest {
+public class AgrupadorPorFocoTest {
 
 	@Autowired
 	@Qualifier("agrupadorPorFoco")

@@ -17,6 +17,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,7 @@ public class PrevencaoController {
 
 	@RequestMapping(value = URL_PREVENCOES_SINCRONIZAR, method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED, reason = "Prevenção foi sincronizada com sucesso")
+	@Transactional
 	public void sincronizar(@RequestBody @Valid PrevencaoDTO prevencao) {
 		Prevencao prevencaoPersistida = this.repository.findOneByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(
 		    prevencao.getCodigoCelular(), prevencao.getFoco().getCodigo(), prevencao.getDataCriacao());
@@ -64,26 +66,8 @@ public class PrevencaoController {
 		this.repository.save(this.toEntity(prevencao));
 	}
 
-	private Prevencao toEntity(PrevencaoDTO dto) {
-		Endereco endereco = Endereco.builder()
-				.estado(dto.getEndereco().getEstado())
-				.cidade(dto.getEndereco().getCidade())
-				.bairro(dto.getEndereco().getBairro())
-				.build();
-		
-		Foco foco = Foco.builder()
-				.codigo(dto.getFoco().getCodigo())
-				.build();
-		
-		return Prevencao.builder()
-				.id(dto.getCodigoCelular(), foco, dto.getDataCriacao())
-				.dataPrazo(dto.getDataPrazo())
-				.dataEfetuada(dto.getDataEfetuada())
-				.endereco(endereco)
-				.build();
-	}
-
 	@RequestMapping(value = URL_PREVENCOES_MES, method = RequestMethod.GET)
+	@Transactional(readOnly = true)
 	public List<PercentualDTO> listarPorMes(@ModelAttribute EnderecoDTO endereco,
 	    @RequestParam(required = false) Long codigoFoco) {
 
@@ -101,6 +85,7 @@ public class PrevencaoController {
 	}
 
 	@RequestMapping(value = URL_PREVENCOES_ESTADO, method = RequestMethod.GET)
+	@Transactional(readOnly = true)
 	public List<PercentualDTO> listarPorRegiao() {
 		List<Prevencao> prevencoes = this.repository.findAll();
 
@@ -118,5 +103,24 @@ public class PrevencaoController {
 	private PercentualDTO toDTO(Percentual p) {
 		return PercentualDTO.builder().chave(p.getChave()).descricao(p.getDescricao()).emDia(p.getEmDia())
 		    .atrasada(p.getAtrasada()).build();
+	}
+	
+	private Prevencao toEntity(PrevencaoDTO dto) {
+		Endereco endereco = Endereco.builder()
+				.estado(dto.getEndereco().getEstado())
+				.cidade(dto.getEndereco().getCidade())
+				.bairro(dto.getEndereco().getBairro())
+				.build();
+		
+		Foco foco = Foco.builder()
+				.codigo(dto.getFoco().getCodigo())
+				.build();
+		
+		return Prevencao.builder()
+				.id(dto.getCodigoCelular(), foco, dto.getDataCriacao())
+				.dataPrazo(dto.getDataPrazo())
+				.dataEfetuada(dto.getDataEfetuada())
+				.endereco(endereco)
+				.build();
 	}
 }

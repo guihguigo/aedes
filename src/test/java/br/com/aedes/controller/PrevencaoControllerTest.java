@@ -74,11 +74,6 @@ public class PrevencaoControllerTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoEFoco() throws Exception {
-		EnderecoDTO dto = new EnderecoDTO();
-		dto.setBairro("Jardim Quietude");
-		dto.setCidade("Praia Grande");
-		dto.setEstado("São Paulo");
-
 		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES)
 				.param("codigoFoco", "1")
 				.param("bairro", "Jardim Quietude")
@@ -96,9 +91,6 @@ public class PrevencaoControllerTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto() throws Exception {
-		EnderecoDTO dto = new EnderecoDTO();
-		dto.setCidade("Praia Grande");
-
 		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES)
 				.param("codigoFoco", "1")
 				.param("cidade", "Praia Grande");
