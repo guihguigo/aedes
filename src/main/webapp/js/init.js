@@ -36,30 +36,5 @@ function constroiLineChart() {
   chart.draw(data, options);
 }
 
-function constroiCityGeoChart() {
-  var data = new google.visualization.arrayToDataTable([
-    ['City', 'Em dia', 'Atrasada'],
-    ['Praia Grande', 100.00, 0],
-    ['Santos', 25.75, 74.25],
-    ['Cubatão', 10.00, 90.00],
-    ['Preuíbe', 0, 100.00],
-    ['São Vicente', 50.00, 50.00],
-    ['Guarujá', 80.25, 19.75],
-    ['Mongaguá', 95.00, 5.00],
-    ['Itagenhaem', 80.00, 20.00]
-  ]);
-
-  var options = {
-    sizeAxis: {minValue: 0, maxValue: 100},
-    region: 'BR',
-    displayMode: 'markers',
-    colorAxis: {colors: ['red', 'blue']},
-    'width': 500,
-    'height': 300
-  };
-
-  var chart = new google.visualization.GeoChart(document.getElementById('chart_regional'));
-  chart.draw(data, options);
-}
 
 

@@ -1,6 +1,8 @@
 
 function buildAtrasadasChart() {
-  var data = new google.visualization.DataTable();
+  var loader = $('#indiceAtrasadasLoader');
+
+  var data   = new google.visualization.DataTable();
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
   data.addRows([
@@ -14,5 +16,6 @@ function buildAtrasadasChart() {
   var options = {'title': 'As 5 prevenções com maior percentual atrasadas'};
   var chart = new google.visualization.PieChart(document.getElementById('chart_top_atrasadas'));
 
+  loader.hide();
   chart.draw(data, options);
 }

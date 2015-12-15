@@ -1,29 +1,19 @@
-/**
- *  Welcome to your gulpfile!
- *  The gulp tasks are splitted in several files in the gulp directory
- *  because putting all here was really too long
- */
-
 'use strict';
 
-var gulp = require('gulp');
-var wrench = require('wrench');
+// Basic options
+// =========================
+var options = {
+  mainAngularModule : 'aedes'
+};
 
-/**
- *  This will load all js or coffee files in the gulp directory
- *  in order to load all gulp tasks
- */
-wrench.readdirSyncRecursive('./gulp').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
-}).map(function(file) {
-  require('./gulp/' + file);
-});
+// Base build modules
+// ==========================
+options.modulesData = {
+  proxy: {
+    target: 'http://localhost:8080'
+  }
+}
 
-
-/**
- *  Default task clean temporaries directories and launch the
- *  main optimization build task
- */
-gulp.task('default', ['clean'], function () {
-  gulp.start('build');
-});
+// Init basebuild
+// ==========================
+require('basebuild-angular')(options);

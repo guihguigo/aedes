@@ -1,0 +1,6 @@
+(function() {
+  angular.module('aedes').constant('malarkey', malarkey).constant('moment', moment);
+
+}).call(this);
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNvbnN0YW50cy5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFBQSxPQUFPLENBQUMsTUFBUixDQUFlLE9BQWYsQ0FDRSxDQUFDLFFBREgsQ0FDWSxVQURaLEVBQ3dCLFFBRHhCLENBRUUsQ0FBQyxRQUZILENBRVksUUFGWixFQUVzQixNQUZ0QjtBQUFBIiwiZmlsZSI6ImluZGV4LmNvbnN0YW50cy5qcyIsInNvdXJjZVJvb3QiOiIvc291cmNlLyIsInNvdXJjZXNDb250ZW50IjpbImFuZ3VsYXIubW9kdWxlKCdhZWRlcycpXG4gIC5jb25zdGFudCAnbWFsYXJrZXknLCBtYWxhcmtleVxuICAuY29uc3RhbnQgJ21vbWVudCcsIG1vbWVudFxuIl19

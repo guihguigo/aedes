@@ -1,4 +1,6 @@
 function buildEmDiaChart() {
+  var loader = $('#indiceAtrasadasLoader');
+
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
@@ -14,5 +16,6 @@ function buildEmDiaChart() {
   var options = {'title': 'As 5 prevenções com maior percentual em dia'};
 
   var chart = new google.visualization.PieChart(document.getElementById('chart_top_em_dia'));
+  loader.hide();
   chart.draw(data, options);
 }

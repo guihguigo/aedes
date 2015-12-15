@@ -4,7 +4,7 @@ angular.module 'aedes'
     $stateProvider
       .state 'home',
         url: '/'
-        templateUrl: 'app/main/main.html'
+        templateUrl: 'app/features/main/main.html'
         controller: 'MainController'
         controllerAs: 'main'
 
