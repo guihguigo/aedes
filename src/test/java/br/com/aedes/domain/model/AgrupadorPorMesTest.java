@@ -18,11 +18,13 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.aedes.Application;
 import br.com.aedes.domain.entity.Prevencao;
+import br.com.aedes.domain.model.AgrupadorPorMes;
+import br.com.aedes.domain.model.Grupo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = Application.class)
-public class SeparadorPorMesTest {
+public class AgrupadorPorMesTest {
 	
 	@Autowired
 	@Qualifier("agrupadorPorMes")
