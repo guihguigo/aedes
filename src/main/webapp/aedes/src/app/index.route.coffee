@@ -2,10 +2,16 @@ angular.module 'aedes'
   .config ($stateProvider, $urlRouterProvider) ->
     'ngInject'
     $stateProvider
-      .state 'home',
+      .state 'app',
         url: '/'
-        templateUrl: 'app/features/main/main.html'
-        controller: 'MainController'
-        controllerAs: 'main'
+        views:
+          "header":
+            templateUrl: 'app/features/header/header.html'
+            controller: 'HeaderController'
+            controllerAs: 'header'
+          "":
+            templateUrl: 'app/features/main/main.html'
+            controller: 'MainController'
+            controllerAs: 'main'
 
     $urlRouterProvider.otherwise '/'

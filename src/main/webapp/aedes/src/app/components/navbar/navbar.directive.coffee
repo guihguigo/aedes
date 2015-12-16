@@ -4,14 +4,20 @@ angular.module 'aedes'
     NavbarController = (moment) ->
       'ngInject'
       vm = this
-      # "vm.creation" is avaible by directive option "bindToController: true"
-      vm.relativeDate = moment(vm.creationDate).fromNow()
+
+      vm.mobileFirst = true
+      vm.abas = [
+        sref: 'infograficos.exibicao', name: 'Consultar infográficos?'
+      ]
+
       return
 
     directive =
       restrict: 'E'
       templateUrl: 'app/components/navbar/navbar.html'
-      scope: creationDate: '='
+      scope:
+        creationDate: '='
+        appName: '='
       controller: NavbarController
       controllerAs: 'vm'
       bindToController: true

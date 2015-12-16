@@ -1,0 +1,68 @@
+<h5>Índice mensal por região e por foco</h5>
+<div class="row">
+  <div class="col s12 m12">
+    <div class="card-panel white ">
+      <div class="row">
+        <div class="input-field col s6 right-align">
+          <select size="3" id="estadoMensal">
+            <option value="1" selected>São Paulo</option>
+          </select>
+          <label for="estadoMensal">Estado</label>
+        </div>
+        <div class="input-field col s6 right-align">
+          <select size="3" id="cidadeMensal">
+            <option value="1" selected>São Paulo</option>
+          </select>
+          <label for="cidadeMensal">Cidade</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6 right-align">
+          <input id="bairroMensal" type="text" class="validate">
+          <label for="bairroMensal">Bairro</label>
+        </div>
+
+        <div class="input-field col s6 right-align">
+          <select size="3" id="menuFocosMensal">
+            <option value="1" selected>Bebedouros de Animais</option>
+            <option value="2">Bromélias (Planta)</option>
+            <option value="3">Caixa de Ar Condicionado</option>
+            <option value="4">Caixa dágua</option>
+            <option value="5">Calhas</option>
+            <option value="6">Depressões de Terrenos</option>
+            <option value="7">Garagens e Subsolos</option>
+            <option value="8">Geladeiras</option>
+            <option value="9">Piscinas</option>
+            <option value="10">Pneus Velhos</option>
+            <option value="11">Ralos</option>
+            <option value="12">Recipientes de Água</option>
+            <option value="13">Recipientes Descartáveis</option>
+            <option value="14">Sacos de Lixo</option>
+            <option value="15">Vasos (Flores e Plantas)</option>
+          </select>
+          <label for="menuFocosMensal">Focos</label>
+        </div>
+      </div>
+
+
+      <div id="chart_percentuais_mensais"></div>
+      <div class="row" id="indiceMensalLoader">
+        <div class="col s6 offset-s5 ">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,12 +1,17 @@
-<div class="mdl-layout__header-row">
-  <!-- Title -->
-  <span class="mdl-layout-title mdl-badge">Aedes</span>
-  <!-- Add spacer, to align navigation to the right -->
-  <nav class="mdl-navigation mdl-layout--large-screen-only">
+  <nav style="box-shadow: none !important">
+    <div class="nav-wrapper blue darken-1">
 
+      <a href="#" class="brand-logo" ng-bind="vm.appName"></a>
+      <a ng-if="vm.mobileFirst" href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+
+      <ul class="right hide-on-med-and-down">
+        <li ng-repeat="aba in vm.abas" ><a ui-sref="{{aba.sref}}" ng-bind="aba.name"></a></li>
+      </ul>
+
+      <ul ng-if="vm.mobileFirst" class="side-nav" id="mobile-demo">
+        <li ng-repeat="aba in vm.abas" ><a ui-sref="{{aba.sref}}" ng-bind="aba.name"></a></li>
+      </ul>
+    </div>
   </nav>
-  <!-- Add spacer, to align navigation to the right -->
-  <div class="mdl-layout-spacer"></div>
-  <!-- Navigation. We hide it in small screens. -->
-  <a class="mdl-navigation__link" ui-sref="chartMensal" >Consultar infográficos</a>
-</div>
