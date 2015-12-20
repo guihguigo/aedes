@@ -32,6 +32,6 @@ public class PrevencaoId implements Serializable {
 	@Getter
 	private Foco foco;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCriacao;
 }
