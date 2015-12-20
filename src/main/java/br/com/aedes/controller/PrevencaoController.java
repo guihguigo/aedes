@@ -55,23 +55,28 @@ public class PrevencaoController {
 	@ResponseStatus(value = HttpStatus.CREATED, reason = "Prevenção foi sincronizada com sucesso")
 	@Transactional
 	public void sincronizar(@RequestBody @Valid PrevencaoDTO prevencao) {
-		Prevencao prevencaoPersistida = this.repository.findOneByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(
-		    prevencao.getCodigoCelular(), prevencao.getFoco().getCodigo(), prevencao.getDataCriacao());
-		
+
+		Prevencao prevencaoPersistida = this.repository
+				.findOneByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacaoAndDataPrazoAndDataEfetuada(
+						prevencao.getCodigoCelular(), prevencao.getFoco()
+								.getCodigo(), prevencao.getDataCriacao(), prevencao.getDataPrazo(), prevencao.getDataEfetuada());
+
 		if (prevencaoPersistida != null)
-      throw new WebException(HttpStatus.PRECONDITION_FAILED,
-          "Não é possível sincronizar prevenção duplicada.",
-          ExceptionCode.PREVENCAO_DUPLICADA);
-		
+			throw new WebException(HttpStatus.PRECONDITION_FAILED,
+					"Não é possível sincronizar prevenção duplicada.",
+					ExceptionCode.PREVENCAO_DUPLICADA);
+
 		this.repository.save(this.toEntity(prevencao));
 	}
 
 	@RequestMapping(value = URL_PREVENCOES_MES, method = RequestMethod.GET)
 	@Transactional(readOnly = true)
-	public List<PercentualDTO> listarPorMes(@ModelAttribute EnderecoDTO endereco,
-	    @RequestParam(required = false) Long codigoFoco) {
+	public List<PercentualDTO> listarPorMes(
+			@ModelAttribute EnderecoDTO endereco,
+			@RequestParam(required = false) Long codigoFoco) {
 
-		List<Prevencao> prevencoes = repository.findAll(where(comFoco(codigoFoco)).and(estaNesteEntedereco(endereco)));
+		List<Prevencao> prevencoes = repository.findAll(where(
+				comFoco(codigoFoco)).and(estaNesteEntedereco(endereco)));
 
 		if (prevencoes.isEmpty())
 			return new ArrayList<>();
@@ -79,9 +84,11 @@ public class PrevencaoController {
 		AgrupadorTemplate<Integer> agrupadorPorMes = new AgrupadorPorMes();
 		Map<?, Grupo> prevencoesSeparadas = agrupadorPorMes.agrupar(prevencoes);
 
-		List<Percentual> percentuais = this.conversor.converterPercentual(prevencoesSeparadas);
+		List<Percentual> percentuais = this.conversor
+				.converterPercentual(prevencoesSeparadas);
 
-		return percentuais.stream().map(p -> this.toDTO(p)).collect(Collectors.toList());
+		return percentuais.stream().map(p -> this.toDTO(p))
+				.collect(Collectors.toList());
 	}
 
 	@RequestMapping(value = URL_PREVENCOES_ESTADO, method = RequestMethod.GET)
@@ -93,34 +100,33 @@ public class PrevencaoController {
 			return new ArrayList<>();
 
 		AgrupadorTemplate<String> agrupadorPorRegiao = new AgrupadorPorRegiao();
-		Map<String, Grupo> prevencoesAgrupadas = agrupadorPorRegiao.agrupar(prevencoes);
+		Map<String, Grupo> prevencoesAgrupadas = agrupadorPorRegiao
+				.agrupar(prevencoes);
 
-		List<Percentual> percentuais = this.conversor.converterPercentual(prevencoesAgrupadas);
+		List<Percentual> percentuais = this.conversor
+				.converterPercentual(prevencoesAgrupadas);
 
-		return percentuais.stream().map(p -> this.toDTO(p)).collect(Collectors.toList());
+		return percentuais.stream().map(p -> this.toDTO(p))
+				.collect(Collectors.toList());
 	}
 
 	private PercentualDTO toDTO(Percentual p) {
-		return PercentualDTO.builder().chave(p.getChave()).descricao(p.getDescricao()).emDia(p.getEmDia())
-		    .atrasada(p.getAtrasada()).build();
+		return PercentualDTO.builder().chave(p.getChave())
+				.descricao(p.getDescricao()).emDia(p.getEmDia())
+				.atrasada(p.getAtrasada()).build();
 	}
-	
+
 	private Prevencao toEntity(PrevencaoDTO dto) {
 		Endereco endereco = Endereco.builder()
 				.estado(dto.getEndereco().getEstado())
 				.cidade(dto.getEndereco().getCidade())
-				.bairro(dto.getEndereco().getBairro())
-				.build();
-		
-		Foco foco = Foco.builder()
-				.codigo(dto.getFoco().getCodigo())
-				.build();
-		
+				.bairro(dto.getEndereco().getBairro()).build();
+
+		Foco foco = Foco.builder().codigo(dto.getFoco().getCodigo()).build();
+
 		return Prevencao.builder()
 				.id(dto.getCodigoCelular(), foco, dto.getDataCriacao())
 				.dataPrazo(dto.getDataPrazo())
-				.dataEfetuada(dto.getDataEfetuada())
-				.endereco(endereco)
-				.build();
+				.dataEfetuada(dto.getDataEfetuada()).endereco(endereco).build();
 	}
 }

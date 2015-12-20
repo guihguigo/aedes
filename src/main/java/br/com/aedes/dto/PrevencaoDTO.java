@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -23,11 +25,12 @@ public class PrevencaoDTO {
 	@NotNull
 	private EnderecoDTO endereco;
 	
-	@NotNull
+	@NotNull @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "UTC")
 	private Date dataCriacao;
 	
-	@NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "UTC")
 	private Date dataPrazo;
-    
+	
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "UTC")
 	private Date dataEfetuada;
 }
