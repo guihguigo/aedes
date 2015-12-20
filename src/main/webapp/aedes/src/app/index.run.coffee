@@ -1,7 +1,7 @@
 'use strict';
 
 google.load('visualization', '1', {
-  packages: ['corechart']
+  packages: ["bar", "corechart", "line", "geochart"]
 })
 
 angular.module 'aedes'

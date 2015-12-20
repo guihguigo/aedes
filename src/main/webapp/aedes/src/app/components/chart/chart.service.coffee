@@ -5,12 +5,7 @@ angular.module 'aedes'
     loadGoogleVisualization: () ->
 
       try
-        google.load('visualization', '1', {
-          'callback':'console.log(\'success\');',
-          'packages':['corechart']
-        })
-
-        return true
+        google.load("visualization", "1.1", {packages: ["bar", "corechart"]})
       catch e
         console.log 'Could not load Google lib', e
         return false

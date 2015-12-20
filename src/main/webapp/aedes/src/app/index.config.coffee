@@ -3,6 +3,7 @@ angular.module 'aedes'
     'ngInject'
     # Enable log
     $logProvider.debugEnabled true
+
     # Set options third-party lib
     toastrConfig.allowHtml = true
     toastrConfig.timeOut = 3000

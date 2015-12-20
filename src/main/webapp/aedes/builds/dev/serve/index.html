@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -50,31 +51,29 @@
     <script src="../bower_components/Chart.js/Chart.js"></script>
     <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
     <script src="../bower_components/promise-polyfill/Promise.js"></script>
+    <script src="../bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.module.js"></script>
-    <script src="app/features/charts/regional/chart.service.js"></script>
     <script src="app/features/charts/regional/chart.controller.js"></script>
-    <script src="app/features/charts/mensal/chart.service.js"></script>
     <script src="app/features/charts/mensal/chart.controller.js"></script>
-    <script src="app/features/charts/emDia/chart.service.js"></script>
     <script src="app/features/charts/emDia/chart.controller.js"></script>
-    <script src="app/features/charts/atrasadas/chart.service.js"></script>
     <script src="app/features/charts/atrasadas/chart.controller.js"></script>
+    <script src="app/features/main/main.controller.js"></script>
+    <script src="app/features/header/header.controller.js"></script>
+    <script src="app/features/charts/charts.service.js"></script>
+    <script src="app/features/charts/charts.route.js"></script>
+    <script src="app/features/charts/charts.constants.js"></script>
     <script src="app/components/webDevTec/webDevTec.service.js"></script>
     <script src="app/components/navbar/navbar.directive.js"></script>
     <script src="app/components/malarkey/malarkey.directive.js"></script>
     <script src="app/components/githubContributor/githubContributor.service.js"></script>
     <script src="app/components/chart/chart.service.js"></script>
     <script src="app/components/chart/chart.directive.js"></script>
-    <script src="app/features/main/main.controller.js"></script>
-    <script src="app/features/header/header.controller.js"></script>
-    <script src="app/features/charts/charts.route.js"></script>
-    <script src="app/features/chartMensal/chart.route.js"></script>
-    <script src="app/features/chartMensal/chart.controller.js"></script>
+    <script src="app/components/chart/chart-loader.directive.js"></script>
     <script src="app/index.run.js"></script>
     <script src="app/index.route.js"></script>
     <script src="app/index.constants.js"></script>

@@ -2,12 +2,11 @@ $(function () {
     $.material.init();
     construirGrafico();
 });
-var host = 'http://localhost:8083/central/webresources/prevencao/';
 
 function construirGrafico(estado, cidade, bairro) {
     var focoSelecionado;
-    var tipo; 
-    
+    var tipo;
+
     if ($('.level2').find('.active').length > 0) {
         focoSelecionado = $('.sidebar-nav .active').parent().attr('value');
         tipo = $('.level1').attr('value');
@@ -15,7 +14,7 @@ function construirGrafico(estado, cidade, bairro) {
         focoSelecionado = '0';
         tipo = $('.sidebar-nav .active').parent().attr('value');
     }
-    
+
     if (tipo === 'PercentualPrevencoesPorMes') {
         if (focoSelecionado === '0') {
             construirBarChart();
@@ -41,7 +40,7 @@ function popularPercentualTopEmDia(estado, cidade, bairro) {
     var randomColorFactor = function () {
         return Math.round(Math.random() * 255);
     };
-    
+
     var color = ['rgb(0,0,128)', 'rgb(0,0,255)', 'rgb(100,149,237)', 'rgb(30,144,255)', 'rgb(135,206,235)'];
     var data = {estado: estado, cidade: cidade, bairro: bairro};
 
@@ -58,7 +57,7 @@ function popularPercentualTopEmDia(estado, cidade, bairro) {
                             value: obj.percentualEmDia.toFixed(2),
                             color: 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)',
 //                            highlight: 'rgba(224,255,255, 0.5)',
-                            
+
                             label: obj.nomeFoco
 
                         });
@@ -97,7 +96,7 @@ function popularPercentualTopAtrasadas(estado, cidade, bairro) {
                     }
 
                 });
-                
+
                 var legend = window.grafico.generateLegend();
                 $('#legend').html(legend);
 
@@ -233,7 +232,7 @@ function construirPieChart() {
 
     var ctx = getContext();
     window.grafico = new Chart(ctx).Pie(data, opcoes);
-    
+
 
 }
 

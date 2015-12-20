@@ -5,13 +5,10 @@ angular.module 'aedes'
     directive =
         restrict : "A",
         link: ($scope, $elem, $attr) ->
-          @$el = $elem[0]
-
-          initLoader = ->
-            @$el.html('HAUIDHUSADHUASHUIDAUDSHAID')
 
           #Function to run when the trigger is activated
           initChart = ->
+            @$el = $elem[0]
 
             # Run $eval on the $scope model passed
             # as an HTML attribute
@@ -25,16 +22,15 @@ angular.module 'aedes'
               dt = model.data
               options = model.options
               chartType = $attr.googleChart
+              chartPackage = $attr.googlePackage
 
-              googleChart = new google.visualization[chartType] @$el
+              googleChart = new google[chartPackage][chartType] @$el
               googleChart.draw dt,options
+
 
           # Watch the scope value placed on the trigger attribute
           # if it ever flips to true, activate the chart
-          $scope.$watch($attr.trigger, (val) ->
-            if val is true
+          $scope.$watch 'dataModel.data', (val) ->
+            if val?
               do initChart
-            else
-              do initLoader
-          )
 

@@ -13,8 +13,24 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s6">
-          <div google-chart="GeoChart" ng-model="dataModel" trigger="activateChart"></div>
+        <div ng-if="loader" class="col s8 offset-s5">
+          <div id="loader">
+            <!-- MDL Spinner Component -->
+            <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="!loader" class="col s8">
+          <div google-chart="GeoChart" google-package="visualization" ng-model="dataModel"></div>
         </div>
         <div ng-if="!regionalCtrl.attrs.showLoader" class="col s4 right">
           <table id="cidadesAfetadasContainer" class="responsive-table bordered">
@@ -50,23 +66,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-
-      <!-- MDL Spinner Component -->
-      <div class="row" ng-if="regionalCtrl.attrs.showLoader">
-        <div class="col s6 offset-s5 ">
-          <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-blue-only">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

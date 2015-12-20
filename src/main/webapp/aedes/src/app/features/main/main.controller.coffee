@@ -6,7 +6,7 @@ angular.module 'aedes'
     init = ->
       setTimeout(()->
         $('.slider').slider({full_width: false})
-      , 1)
+      , 100)
 
       $(".button-collapse").sideNav()
 

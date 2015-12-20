@@ -46,8 +46,13 @@
       </div>
 
 
-      <div id="chart_percentuais_mensais"></div>
-      <div class="row" id="indiceMensalLoader">
+      <div class="row">
+        <div ng-if="!loader" class="col s8">
+          <div google-chart="Bar" google-package="charts" ng-model="dataModel"></div>
+        </div>
+      </div>
+
+      <div ng-if="loader" class="row" id="indiceMensalLoader">
         <div class="col s6 offset-s5 ">
           <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue-only">

@@ -1,35 +1,52 @@
 (function() {
-  angular.module('aedes').controller('ChartRegionalController', function($timeout, $scope, ChartService) {
+  angular.module('aedes').controller('ChartRegionalController', function($scope, ChartService, ChartsService) {
     'ngInject';
-    var loadGoogle, showChart, vm;
+    var hideChart, showChart, vm;
     vm = this;
-    this.attrs = $scope.attrs = {};
     this.methods = $scope.methods = {};
-    $scope.activateChart = false;
     $scope.dataModel = {
       visual: {},
       metaData: {},
       data: {},
       options: {}
     };
+    showChart = function() {
+      return $scope.loader = false;
+    };
+    hideChart = function() {
+      return $scope.loader = true;
+    };
     $scope.methods.showRegiaoChart = function() {
-      $scope.activateChart = false;
-      $scope.dataModel.data = new google.visualization.arrayToDataTable([['States', 'Popularity'], ['São Paulo', 200], ['Rio de Janeiro', 300]]);
-      $scope.dataModel.options = {
-        'width': 500,
-        'height': 300,
-        region: 'BR',
-        resolution: 'provinces',
-        displayMode: 'regions',
-        colorAxis: {
-          colors: ['red', 'blue']
-        }
-      };
-      return showChart();
+      hideChart();
+      return ChartsService.getPrevencoesRegionais().then(function(response) {
+        var DataTable, mappedRows;
+        mappedRows = ChartsService.objectToArray(response.data);
+        DataTable = new google.visualization.DataTable();
+        DataTable.addColumn('string', 'States');
+        DataTable.addColumn('number', 'Em dias');
+        DataTable.addColumn('number', 'Atrasadas');
+        DataTable.addRows(mappedRows);
+        $scope.dataModel.data = DataTable;
+        $scope.dataModel.options = {
+          'width': 500,
+          'height': 300,
+          region: 'BR',
+          resolution: 'provinces',
+          displayMode: 'regions',
+          colorAxis: {
+            colors: ['red', 'blue']
+          }
+        };
+        return showChart();
+      }, (function(_this) {
+        return function(error) {
+          return console.log('FAIO');
+        };
+      })(this));
     };
     $scope.methods.showCityChart = function() {
-      $scope.activateChart = false;
-      $scope.dataModel.data = new google.visualization.arrayToDataTable([['States', 'Popularity'], ['São Paulo', 200], ['Rio de Janeiro', 300]]);
+      hideChart();
+      $scope.dataModel.data = new google.visualization.arrayToDataTable([['City', 'Em dia', 'Atrasada'], ['Praia Grande', 100.00, 0], ['Santos', 25.75, 74.25], ['Cubatão', 10.00, 90.00], ['Preuíbe', 0, 100.00], ['São Vicente', 50.00, 50.00], ['Guarujá', 80.25, 19.75], ['Mongaguá', 95.00, 5.00], ['Itagenhaem', 80.00, 20.00]]);
       $scope.dataModel.options = {
         sizeAxis: {
           minValue: 0,
@@ -45,16 +62,7 @@
       };
       return showChart();
     };
-    showChart = function() {
-      return $scope.activateChart = true;
-    };
-    loadGoogle = ChartService.loadGoogleVisualization();
-    if (loadGoogle) {
-      $scope.methods.showRegiaoChart();
-      showChart();
-    }
+    $scope.methods.showRegiaoChart();
   });
 
 }).call(this);
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNoYXJ0LmNvbnRyb2xsZXIuY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQUEsT0FBTyxDQUFDLE1BQVIsQ0FBZSxPQUFmLENBQ0UsQ0FBQyxVQURILENBQ2MseUJBRGQsRUFDeUMsU0FBQyxRQUFELEVBQVcsTUFBWCxFQUFtQixZQUFuQjtJQUNyQztBQUFBLFFBQUE7SUFFQSxFQUFBLEdBQUs7SUFDTCxJQUFDLENBQUEsS0FBRCxHQUFTLE1BQU0sQ0FBQyxLQUFQLEdBQWU7SUFDeEIsSUFBQyxDQUFBLE9BQUQsR0FBVyxNQUFNLENBQUMsT0FBUCxHQUFpQjtJQUk1QixNQUFNLENBQUMsYUFBUCxHQUF1QjtJQUl2QixNQUFNLENBQUMsU0FBUCxHQUFtQjtNQUNqQixNQUFBLEVBQVEsRUFEUztNQUVqQixRQUFBLEVBQVUsRUFGTztNQUdqQixJQUFBLEVBQU0sRUFIVztNQUlqQixPQUFBLEVBQVMsRUFKUTs7SUFPbkIsTUFBTSxDQUFDLE9BQU8sQ0FBQyxlQUFmLEdBQWlDLFNBQUE7TUFLL0IsTUFBTSxDQUFDLGFBQVAsR0FBdUI7TUFFdkIsTUFBTSxDQUFDLFNBQVMsQ0FBQyxJQUFqQixHQUE0QixJQUFBLE1BQU0sQ0FBQyxhQUFhLENBQUMsZ0JBQXJCLENBQXNDLENBQ2hFLENBQUMsUUFBRCxFQUFXLFlBQVgsQ0FEZ0UsRUFFaEUsQ0FBQyxXQUFELEVBQWMsR0FBZCxDQUZnRSxFQUdoRSxDQUFDLGdCQUFELEVBQW1CLEdBQW5CLENBSGdFLENBQXRDO01BTTVCLE1BQU0sQ0FBQyxTQUFTLENBQUMsT0FBakIsR0FDRTtRQUFBLE9BQUEsRUFBUyxHQUFUO1FBQ0EsUUFBQSxFQUFVLEdBRFY7UUFFQSxNQUFBLEVBQVEsSUFGUjtRQUdBLFVBQUEsRUFBWSxXQUhaO1FBSUEsV0FBQSxFQUFhLFNBSmI7UUFLQSxTQUFBLEVBQVc7VUFBQyxNQUFBLEVBQVEsQ0FBQyxLQUFELEVBQVEsTUFBUixDQUFUO1NBTFg7O2FBT0MsU0FBSCxDQUFBO0lBckIrQjtJQXVCakMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxhQUFmLEdBQWlDLFNBQUE7TUFLL0IsTUFBTSxDQUFDLGFBQVAsR0FBdUI7TUFFdkIsTUFBTSxDQUFDLFNBQVMsQ0FBQyxJQUFqQixHQUE0QixJQUFBLE1BQU0sQ0FBQyxhQUFhLENBQUMsZ0JBQXJCLENBQXNDLENBQ2hFLENBQUMsUUFBRCxFQUFXLFlBQVgsQ0FEZ0UsRUFFaEUsQ0FBQyxXQUFELEVBQWMsR0FBZCxDQUZnRSxFQUdoRSxDQUFDLGdCQUFELEVBQW1CLEdBQW5CLENBSGdFLENBQXRDO01BTTVCLE1BQU0sQ0FBQyxTQUFTLENBQUMsT0FBakIsR0FDRTtRQUFBLFFBQUEsRUFBVTtVQUFDLFFBQUEsRUFBVSxDQUFYO1VBQWMsUUFBQSxFQUFVLEdBQXhCO1NBQVY7UUFDQSxNQUFBLEVBQVEsSUFEUjtRQUVBLFdBQUEsRUFBYSxTQUZiO1FBR0EsU0FBQSxFQUFXO1VBQUMsTUFBQSxFQUFRLENBQUMsS0FBRCxFQUFRLE1BQVIsQ0FBVDtTQUhYO1FBSUEsT0FBQSxFQUFTLEdBSlQ7UUFLQSxRQUFBLEVBQVUsR0FMVjs7YUFPQyxTQUFILENBQUE7SUFyQitCO0lBdUJqQyxTQUFBLEdBQVksU0FBQTthQUNWLE1BQU0sQ0FBQyxhQUFQLEdBQXVCO0lBRGI7SUFLWixVQUFBLEdBQWEsWUFBWSxDQUFDLHVCQUFiLENBQUE7SUFLYixJQUFHLFVBQUg7TUFDSyxNQUFNLENBQUMsT0FBTyxDQUFDLGVBQWxCLENBQUE7TUFDRyxTQUFILENBQUEsRUFGRjs7RUE1RXFDLENBRHpDO0FBQUEiLCJmaWxlIjoiY2hhcnQuY29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIvc291cmNlLyIsInNvdXJjZXNDb250ZW50IjpbImFuZ3VsYXIubW9kdWxlICdhZWRlcydcbiAgLmNvbnRyb2xsZXIgJ0NoYXJ0UmVnaW9uYWxDb250cm9sbGVyJywgKCR0aW1lb3V0LCAkc2NvcGUsIENoYXJ0U2VydmljZSkgLT5cbiAgICAnbmdJbmplY3QnXG5cbiAgICB2bSA9IHRoaXNcbiAgICBAYXR0cnMgPSAkc2NvcGUuYXR0cnMgPSB7fVxuICAgIEBtZXRob2RzID0gJHNjb3BlLm1ldGhvZHMgPSB7fVxuXG4gICAgI2FjdGl2YXRlQ2hhcnQgZmxpcHMgdG8gdHJ1ZSBvbmNlIHRoZSBHb29nbGVcbiAgICAjTG9hZGVyIGNhbGxiYWNrIGZpcmVzXG4gICAgJHNjb3BlLmFjdGl2YXRlQ2hhcnQgPSBmYWxzZVxuXG4gICAgI1RoaXMgaXMgd2hlcmUgbXkgZGF0YSBtb2RlbCB3aWxsIGJlIHN0b3JlZC5cbiAgICAjXCJ2aXN1YWxcIiB3aWxsIGNvbnRhaW4gdGhlIGNoYXJ0J3MgZGF0YXRhYmxlXG4gICAgJHNjb3BlLmRhdGFNb2RlbCA9IHtcbiAgICAgIHZpc3VhbDoge31cbiAgICAgIG1ldGFEYXRhOiB7fVxuICAgICAgZGF0YToge31cbiAgICAgIG9wdGlvbnM6IHt9XG4gICAgfVxuXG4gICAgJHNjb3BlLm1ldGhvZHMuc2hvd1JlZ2lhb0NoYXJ0ID0gLT5cbiAgICAgICNVcGRhdGUgdGhlIG1vZGVsIHRvIGFjdGl2YXRlIHRoZSBjaGFydCBvbiB0aGUgRE9NXG4gICAgICAjTm90ZSB0aGUgdXNlIG9mICRzY29wZS4kYXBwbHkgc2luY2Ugd2UncmUgaW4gdGhlXG4gICAgICAjR29vZ2xlIExvYWRlciBjYWxsYmFjay5cblxuICAgICAgJHNjb3BlLmFjdGl2YXRlQ2hhcnQgPSBmYWxzZVxuXG4gICAgICAkc2NvcGUuZGF0YU1vZGVsLmRhdGEgPSBuZXcgZ29vZ2xlLnZpc3VhbGl6YXRpb24uYXJyYXlUb0RhdGFUYWJsZShbXG4gICAgICAgIFsnU3RhdGVzJywgJ1BvcHVsYXJpdHknXVxuICAgICAgICBbJ1PDo28gUGF1bG8nLCAyMDBdXG4gICAgICAgIFsnUmlvIGRlIEphbmVpcm8nLCAzMDBdXG4gICAgICBdKVxuXG4gICAgICAkc2NvcGUuZGF0YU1vZGVsLm9wdGlvbnMgPVxuICAgICAgICAnd2lkdGgnOiA1MDBcbiAgICAgICAgJ2hlaWdodCc6IDMwMFxuICAgICAgICByZWdpb246ICdCUidcbiAgICAgICAgcmVzb2x1dGlvbjogJ3Byb3ZpbmNlcydcbiAgICAgICAgZGlzcGxheU1vZGU6ICdyZWdpb25zJ1xuICAgICAgICBjb2xvckF4aXM6IHtjb2xvcnM6IFsncmVkJywgJ2JsdWUnXX1cblxuICAgICAgZG8gc2hvd0NoYXJ0XG5cbiAgICAkc2NvcGUubWV0aG9kcy5zaG93Q2l0eUNoYXJ0ICAgPSAtPlxuICAgICAgI1VwZGF0ZSB0aGUgbW9kZWwgdG8gYWN0aXZhdGUgdGhlIGNoYXJ0IG9uIHRoZSBET01cbiAgICAgICNOb3RlIHRoZSB1c2Ugb2YgJHNjb3BlLiRhcHBseSBzaW5jZSB3ZSdyZSBpbiB0aGVcbiAgICAgICNHb29nbGUgTG9hZGVyIGNhbGxiYWNrLlxuXG4gICAgICAkc2NvcGUuYWN0aXZhdGVDaGFydCA9IGZhbHNlXG5cbiAgICAgICRzY29wZS5kYXRhTW9kZWwuZGF0YSA9IG5ldyBnb29nbGUudmlzdWFsaXphdGlvbi5hcnJheVRvRGF0YVRhYmxlKFtcbiAgICAgICAgWydTdGF0ZXMnLCAnUG9wdWxhcml0eSddXG4gICAgICAgIFsnU8OjbyBQYXVsbycsIDIwMF1cbiAgICAgICAgWydSaW8gZGUgSmFuZWlybycsIDMwMF1cbiAgICAgIF0pXG5cbiAgICAgICRzY29wZS5kYXRhTW9kZWwub3B0aW9ucyA9XG4gICAgICAgIHNpemVBeGlzOiB7bWluVmFsdWU6IDAsIG1heFZhbHVlOiAxMDB9XG4gICAgICAgIHJlZ2lvbjogJ0JSJ1xuICAgICAgICBkaXNwbGF5TW9kZTogJ21hcmtlcnMnXG4gICAgICAgIGNvbG9yQXhpczoge2NvbG9yczogWydyZWQnLCAnYmx1ZSddfVxuICAgICAgICAnd2lkdGgnOiA1MDBcbiAgICAgICAgJ2hlaWdodCc6IDMwMFxuXG4gICAgICBkbyBzaG93Q2hhcnRcblxuICAgIHNob3dDaGFydCA9IC0+XG4gICAgICAkc2NvcGUuYWN0aXZhdGVDaGFydCA9IHRydWVcblxuXG4gICAgI0ZpcnN0LCB3ZSBhdHRlbXB0IHRvIGxvYWQgdGhlIFZpc3VhbGl6YXRpb24gbW9kdWxlXG4gICAgbG9hZEdvb2dsZSA9IENoYXJ0U2VydmljZS5sb2FkR29vZ2xlVmlzdWFsaXphdGlvbigpXG5cbiAgICAjSWYgdGhlIEdvb2dsZSBMb2FkZXIgcmVxdWVzdCB3YXMgbWFkZSB3aXRoIG5vIGVycm9ycyxcbiAgICAjcmVnaXN0ZXIgYSBjYWxsYmFjaywgYW5kIGNvbnN0cnVjdCB0aGUgY2hhcnQgZGF0YVxuICAgICNtb2RlbCB3aXRoaW4gdGhlIGNhbGxiYWNrIGZ1bmN0aW9uXG4gICAgaWYgbG9hZEdvb2dsZVxuICAgICAgZG8gJHNjb3BlLm1ldGhvZHMuc2hvd1JlZ2lhb0NoYXJ0XG4gICAgICBkbyBzaG93Q2hhcnRcblxuICAgIHJldHVyblxuIl19
