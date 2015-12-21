@@ -12,6 +12,10 @@ angular.module 'aedes'
             controllerAs: 'header'
           "":
             templateUrl: 'app/features/charts/charts.html'
+            controller : 'ChartsController'
+            resolve:
+              estados: (EnderecoService) ->
+                EnderecoService.findAllEstados()
 
       .state 'infograficos.exibicao',
         url: '/exibicao'

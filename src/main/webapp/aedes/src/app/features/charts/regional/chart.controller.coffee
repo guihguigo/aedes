@@ -1,5 +1,5 @@
 angular.module 'aedes'
-  .controller 'ChartRegionalController', ($scope, ChartService, ChartsService) ->
+  .controller 'ChartRegionalController', ($scope, ChartService, ChartsService, UtilsService) ->
     'ngInject'
 
     vm = this
@@ -29,7 +29,7 @@ angular.module 'aedes'
 
       ChartsService.getPrevencoesRegionais().then(
         (response) ->
-          mappedRows = ChartsService.objectToArray response.data
+          mappedRows = UtilsService.objectToArray response.data
 
           DataTable = new google.visualization.DataTable()
           DataTable.addColumn 'string', 'States'

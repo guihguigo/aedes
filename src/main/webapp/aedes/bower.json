@@ -18,7 +18,8 @@
     "Materialize": "materialize#~0.97.3",
     "Chart.js": "~1.0.2",
     "google-chart": "~1.0.4",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-materialize": "~0.1.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

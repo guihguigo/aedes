@@ -1,9 +1,35 @@
 angular.module 'aedes'
-  .controller 'ChartMensalController', ($scope, moment, ChartService, ChartsService) ->
+  .controller 'ChartMensalController', ($scope, $timeout, moment, ChartService, ChartsService, UtilsService) ->
     'ngInject'
 
     vm = this
     @methods = $scope.methods = {}
+
+    @attrs   = $scope.attrs   = {}
+    @attrs.estados = $scope.$parent.estados
+    @attrs.fields =
+      estado : 'São paulo'
+      cidade : 'São paulo'
+      bairro : ''
+      focoId : '1'
+
+    @attrs.focos = [
+      {id: "1",  nome: "Bebedouros de Animais"   ,  descricao: "desc"}
+      {id: "2",  nome: "Bromélias (Planta)"      ,  descricao: "desc"}
+      {id: "3",  nome: "Caixa de Ar Condicionado",  descricao: "desc"}
+      {id: "4",  nome: "Caixa dágua" ,              descricao: "desc"}
+      {id: "5",  nome: "Calhas"      ,              descricao: "desc"}
+      {id: "6",  nome: "Depressões de Terrenos"  ,  descricao: "desc"}
+      {id: "7",  nome: "Garagens e Subsolos"     ,  descricao: "desc"}
+      {id: "8",  nome: "Geladeiras"  ,              descricao: "desc"}
+      {id: "9",  nome: "Piscinas"    ,              descricao: "desc"}
+      {id: "10", nome: "Pneus Velhos"      ,        descricao: "desc"}
+      {id: "11", nome: "Ralos" ,                    descricao: "desc"}
+      {id: "12", nome: "Recipientes de Água"     ,  descricao: "desc"}
+      {id: "13", nome: "Recipientes Descartáveis" , descricao: "desc"}
+      {id: "14", nome: "Sacos de Lixo"     ,        descricao: "desc"}
+      {id: "15", nome: "Vasos (Flores e Plantas)" , descricao: "desc"}
+    ]
 
     #This is where my data model will be stored.
     #"visual" will contain the chart's datatable,
@@ -22,17 +48,19 @@ angular.module 'aedes'
       $scope.loader = true
 
     initMaterialSelect = ->
-      $('select').material_select()
+      $timeout () ->
+          do $('select').material_select
+        , 100
 
-    $scope.methods.showMensalChart = ->
+    $scope.methods.showMensalChart = =>
       #Update the model to activate the chart on the DOM
       #Note the use of $scope.$apply since we're in the
       #Google Loader callback.
       do hideChart
 
-      ChartsService.getPrevencoesMensais().then(
+      ChartsService.getPrevencoesMensais(@attrs.fields).then(
         (response) ->
-          mappedRows = ChartsService.objectToArray response.data
+          mappedRows = UtilsService.objectToArray response.data
 
           dataTable = new google.visualization.DataTable()
           dataTable.addColumn 'string', 'Mês'

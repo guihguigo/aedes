@@ -1,5 +1,5 @@
 (function() {
-  angular.module('aedes').controller('ChartRegionalController', function($scope, ChartService, ChartsService) {
+  angular.module('aedes').controller('ChartRegionalController', function($scope, ChartService, ChartsService, UtilsService) {
     'ngInject';
     var hideChart, showChart, vm;
     vm = this;
@@ -20,7 +20,7 @@
       hideChart();
       return ChartsService.getPrevencoesRegionais().then(function(response) {
         var DataTable, mappedRows;
-        mappedRows = ChartsService.objectToArray(response.data);
+        mappedRows = UtilsService.objectToArray(response.data);
         DataTable = new google.visualization.DataTable();
         DataTable.addColumn('string', 'States');
         DataTable.addColumn('number', 'Em dias');

@@ -2,26 +2,17 @@ angular.module 'aedes'
   .service 'ChartsService', ($http, appConfig, prevencoesUrl) ->
     'ngInject'
 
-    objectToArray: (obj) ->
-      mappedRows = []
-      _.each obj, (month) ->
-        map = []
-
-        _.map month, (m, key) ->
-          if key != 'descricao'
-            map.push m
-
-        mappedRows.push map
-
-      return mappedRows
-
     getPrevencoesRegionais: ->
       $http
         method: 'GET'
         url:    "#{appConfig.BASE_URL}/#{prevencoesUrl.BASE_URL}/#{prevencoesUrl.ESTADO}"
 
-    getPrevencoesMensais: ->
+    getPrevencoesMensais: (fields) ->
+      focoId = fields.focoId
+      delete fields.focoId
+
       $http
         method: 'GET'
-        url:    "#{appConfig.BASE_URL}/#{prevencoesUrl.BASE_URL}/#{prevencoesUrl.ESTADO}"
+        url:    "#{appConfig.BASE_URL}/#{prevencoesUrl.BASE_URL}/#{prevencoesUrl.ESTADO}?codigoFoco=#{focoId}"
+        data  : fields
 

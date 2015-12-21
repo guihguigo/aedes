@@ -1,6 +1,15 @@
 <div class="graficos container">
   <div ui-view="regional"></div>
   <div ui-view="mensal"></div>
-  <div ui-view="emDia"></div>
-  <div ui-view="atrasadas"></div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="col s6">
+        <div ui-view="emDia"></div>
+      </div>
+      <div class="col s6">
+        <div ui-view="atrasadas"></div>
+      </div>
+    </div>
+  </div>
 </div>

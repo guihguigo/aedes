@@ -4,14 +4,18 @@
     <div class="card-panel white ">
       <div class="row">
         <div class="input-field col s6 right-align">
-          <select size="3" id="estadoMensal">
-            <option value="1" selected>São Paulo</option>
+          <select size="3" id="estadoMensal"
+            ng-options="estado for estado in attrs.estados track by estado"
+            ng-model="attrs.fields.estado" ng-change="methods.showMensalChart()">
           </select>
           <label for="estadoMensal">Estado</label>
         </div>
+
         <div class="input-field col s6 right-align">
-          <select size="3" id="cidadeMensal">
+          <select size="3" id="cidadeMensal" ng-model="attrs.fields.cidade" ng-change="methods.showMensalChart()">
             <option value="1" selected>São Paulo</option>
+            <option value="1">Rio de janeiro</option>
+            <option value="1">Brasilia</option>
           </select>
           <label for="cidadeMensal">Cidade</label>
         </div>
@@ -19,27 +23,14 @@
 
       <div class="row">
         <div class="input-field col s6 right-align">
-          <input id="bairroMensal" type="text" class="validate">
+          <input id="bairroMensal" type="text" class="validate" ng-model="attrs.fields.bairro" ng-blur="methods.showMensalChart()">
           <label for="bairroMensal">Bairro</label>
         </div>
 
         <div class="input-field col s6 right-align">
-          <select size="3" id="menuFocosMensal">
-            <option value="1" selected>Bebedouros de Animais</option>
-            <option value="2">Bromélias (Planta)</option>
-            <option value="3">Caixa de Ar Condicionado</option>
-            <option value="4">Caixa dágua</option>
-            <option value="5">Calhas</option>
-            <option value="6">Depressões de Terrenos</option>
-            <option value="7">Garagens e Subsolos</option>
-            <option value="8">Geladeiras</option>
-            <option value="9">Piscinas</option>
-            <option value="10">Pneus Velhos</option>
-            <option value="11">Ralos</option>
-            <option value="12">Recipientes de Água</option>
-            <option value="13">Recipientes Descartáveis</option>
-            <option value="14">Sacos de Lixo</option>
-            <option value="15">Vasos (Flores e Plantas)</option>
+          <select size="3" id="menuFocosMensal"
+            ng-options="foco.nome for foco in attrs.focos track by foco.id"
+            ng-model="attrs.fields.focoId" ng-change="methods.showMensalChart()">
           </select>
           <label for="menuFocosMensal">Focos</label>
         </div>

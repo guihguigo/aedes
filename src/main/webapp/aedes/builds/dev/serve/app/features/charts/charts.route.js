@@ -11,7 +11,13 @@
           controllerAs: 'header'
         },
         "": {
-          templateUrl: 'app/features/charts/charts.html'
+          templateUrl: 'app/features/charts/charts.html',
+          controller: 'ChartsController',
+          resolve: {
+            estados: function(EnderecoService) {
+              return EnderecoService.findAllEstados();
+            }
+          }
         }
       }
     }).state('infograficos.exibicao', {
