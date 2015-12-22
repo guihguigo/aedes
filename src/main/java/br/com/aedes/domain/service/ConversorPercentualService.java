@@ -1,5 +1,6 @@
 package br.com.aedes.domain.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,12 +20,12 @@ public class ConversorPercentualService {
 	@Autowired
 	private ConversorPercentual conversor;
 	
-	public List<PercentualDTO> converterPercentual(List<Prevencao> prevencoes,
-	    AgrupadorTemplate<?> agrupadorPorMes) {
+	public List<PercentualDTO> converterPercentual(List<Prevencao> prevencoes, AgrupadorTemplate<?> agrupadorPorMes) {
+		if (prevencoes.isEmpty())
+			return new ArrayList<>();
+		
 		Map<?, Grupo> prevencoesSeparadas = agrupadorPorMes.agrupar(prevencoes);
-
-		List<Percentual> percentuais = this.conversor
-				.converterPercentual(prevencoesSeparadas);
+		List<Percentual> percentuais = this.conversor.converterPercentual(prevencoesSeparadas);
 
 		return percentuais.stream().map(p -> this.toDTO(p))
 				.collect(Collectors.toList());

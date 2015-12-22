@@ -11,7 +11,7 @@ import br.com.aedes.domain.entity.Prevencao;
 import br.com.aedes.dto.EnderecoDTO;
 
 public class PrevencaoSpecifications {
-	public static Specification<Prevencao> estaNesteEntedereco(EnderecoDTO endereco) {
+	public static Specification<Prevencao> comEndereco(EnderecoDTO endereco) {
 		return new Specification<Prevencao>() {
 
 			@Override

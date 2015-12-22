@@ -3,11 +3,10 @@ package br.com.aedes.controller;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_ESTADO;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_MES;
+import static br.com.aedes.repository.specifications.PrevencaoSpecifications.comEndereco;
 import static br.com.aedes.repository.specifications.PrevencaoSpecifications.comFoco;
-import static br.com.aedes.repository.specifications.PrevencaoSpecifications.estaNesteEntedereco;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +37,9 @@ public class PrevencaoController {
 
 	@RequestMapping(value = URL_PREVENCOES_MES, method = RequestMethod.GET)
 	@Transactional(readOnly = true)
-	public List<PercentualDTO> listarPorMes(
-			@ModelAttribute EnderecoDTO endereco,
-			@RequestParam(required = false) Long codigoFoco) {
-
+	public List<PercentualDTO> listarPorMes(@ModelAttribute EnderecoDTO endereco, @RequestParam(required = false) Long codigoFoco) {
 		List<Prevencao> prevencoes = repository.findAll(where(
-				comFoco(codigoFoco)).and(estaNesteEntedereco(endereco)));
-
-		if (prevencoes.isEmpty())
-			return new ArrayList<>();
+				comFoco(codigoFoco)).and(comEndereco(endereco)));
 
 		AgrupadorTemplate<Integer> agrupadorPorMes = new AgrupadorPorMes();
 		
@@ -58,12 +51,8 @@ public class PrevencaoController {
 	public List<PercentualDTO> listarPorRegiao() {
 		List<Prevencao> prevencoes = this.repository.findAll();
 
-		if (prevencoes.isEmpty())
-			return new ArrayList<>();
-
 		AgrupadorTemplate<String> agrupadorPorRegiao = new AgrupadorPorRegiao();
 
 		return this.conversor.converterPercentual(prevencoes, agrupadorPorRegiao);
 	}
-
 }
