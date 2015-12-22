@@ -14,8 +14,8 @@ public interface PrevencaoRepository extends
 
 	Prevencao findOneByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(
 			String codigoCelular, Integer integer, Date dataCriacao);
+	
+	void deleteByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(
+			String codigoCelular, Integer integer, Date dataCriacao);
 
-	Prevencao findOneByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacaoAndDataPrazoAndDataEfetuada(
-			String codigoCelular, Integer codigo, Date dataCriacao,
-			Date dataPrazo, Date dataEfetuada);
 }

@@ -11,7 +11,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long>{
 	@Query("select distinct e.estado from endereco e order by e.estado")
 	List<String> listarEstados();
 
-	@Query("select distinct e.cidade from endereco e where e.estado = ?1 order by e.estado")
+	@Query("select distinct e.cidade from endereco e where e.estado = ?1 order by e.cidade")
 	List<String> listarCidadesPorEstado(String estado);
 
 	@Query("select distinct e.bairro from endereco e where UPPER(e.bairro) like UPPER(?1) and e.cidade = ?2 and e.estado = ?3 order by e.bairro")
