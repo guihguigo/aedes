@@ -30,7 +30,6 @@ import com.jayway.jsonassert.JsonAsserter;
 
 import br.com.aedes.Application;
 import br.com.aedes.ApplicationTest;
-import br.com.aedes.constante.PrevencaoURL;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.aedes.constante.PrevencaoURL;
 import br.com.aedes.domain.entity.Prevencao;
 import br.com.aedes.domain.model.AgrupadorPorCidade;
 import br.com.aedes.domain.model.AgrupadorPorMes;

@@ -14,4 +14,7 @@ import lombok.NoArgsConstructor;
 public class FocoDTO {
 	@NotNull
 	private Integer codigo;
+	
+	@NotNull
+	private String nome;
 }
