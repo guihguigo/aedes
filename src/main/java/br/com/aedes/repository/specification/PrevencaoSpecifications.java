@@ -1,4 +1,4 @@
-package br.com.aedes.repository.specifications;
+package br.com.aedes.repository.specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

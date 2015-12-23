@@ -4,8 +4,8 @@ import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_CIDADE;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_ESTADO;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_MES;
-import static br.com.aedes.repository.specifications.PrevencaoSpecifications.comEndereco;
-import static br.com.aedes.repository.specifications.PrevencaoSpecifications.comFoco;
+import static br.com.aedes.repository.specification.PrevencaoSpecifications.comEndereco;
+import static br.com.aedes.repository.specification.PrevencaoSpecifications.comFoco;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 import java.util.List;
