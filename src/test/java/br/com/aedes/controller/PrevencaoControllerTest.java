@@ -1,16 +1,15 @@
 package br.com.aedes.controller;
 
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES;
+import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_CIDADE;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_ESTADO;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_MES;
 
 import java.io.UnsupportedEncodingException;
 
 import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -18,13 +17,10 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -33,22 +29,15 @@ import com.jayway.jsonassert.JsonAssert;
 import com.jayway.jsonassert.JsonAsserter;
 
 import br.com.aedes.Application;
+import br.com.aedes.ApplicationTest;
+import br.com.aedes.constante.PrevencaoURL;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = Application.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
     TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class })
-public class PrevencaoControllerTest {
-	private MockMvc mockMvc;
-	
-	@Autowired
-	private WebApplicationContext wac;
-	
-	@Before
-	public void setUp() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+public class PrevencaoControllerTest extends ApplicationTest{
 
 	@Test
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
@@ -123,6 +112,22 @@ public class PrevencaoControllerTest {
 		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(7));
 		jsonAserter(andReturn).assertThat("$.[*].chave", 
 				Matchers.containsInAnyOrder("Ceará", "São Paulo", "Rio de Janeiro", "Bahia", "Minas Gerais", "Pernambuco", "Goias"));
+	}
+	
+	@Test
+	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
+	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
+	public void listarTodasPrevencoesPorCidade() throws Exception {
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_CIDADE);
+
+		MvcResult andReturn = this.mockMvc.perform(get)
+				.andExpect(MockMvcResultMatchers.status()
+				.isOk())
+				.andReturn();
+		
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(7));
+		jsonAserter(andReturn).assertThat("$.[*].chave", 
+				Matchers.containsInAnyOrder("Fortaleza", "Praia Grande", "Rio de Janeiro", "Salvador", "Belo Horizonte", "Recife", "Goiania"));
 	}
 	
 	public JsonAsserter jsonAserter(MvcResult result) throws UnsupportedEncodingException {
