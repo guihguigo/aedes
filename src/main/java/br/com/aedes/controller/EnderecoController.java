@@ -40,6 +40,6 @@ public class EnderecoController {
 	@RequestMapping(value = EnderecoURL.URL_ENDERECOS_BAIRROS, method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public List<String> listarBairros(@ModelAttribute EnderecoDTO endereco) {
-		return this.repository.listarBairrosPorCidadeEEstado(SQLLikeUtils.like(endereco.getBairro()), endereco.getCidade(), endereco.getEstado());
+		return this.repository.listarBairrosPorCidadeEEstado(endereco.getCidade(), endereco.getEstado());
 	}
 }
