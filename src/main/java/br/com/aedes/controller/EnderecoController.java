@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.aedes.constante.EnderecoURL;
 import br.com.aedes.dto.EnderecoDTO;
 import br.com.aedes.repository.EnderecoRepository;
 

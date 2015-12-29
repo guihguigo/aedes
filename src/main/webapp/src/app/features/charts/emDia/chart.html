@@ -7,34 +7,18 @@
       </tr>
     </thead>
 
-    <tbody>
-      <tr>
-        <td><span class="index">1</span>Caixa D'água</td>
-        <td><div class="center-align">%0.87</div>
+    <tbody ng-if="!loader" >
+      <tr ng-repeat="(key, prevencao) in prevencoes">
+        <td><span class="index" ng-bind="key + 1"></span> {{prevencao.prevencao}}</td>
+        <td><div class="center-align">% {{prevencao.emDia}}</div>
           <div class="progress center-align">
-            <div class="determinate " style="width: 70%"></div>
+            <div class="determinate " style="width: {{prevencao.emDia}}%"></div>
           </div></td>
-      </tr>
-      <tr>
-        <td><span class="index">2</span>Calhas</td>
-        <td>%3.76</td>
-      </tr>
-      <tr>
-        <td><span class="index">3</span>Ralos</td>
-        <td>%3.76</td>
-      </tr>
-      <tr>
-        <td><span class="index">4</span>Recipientes Descartáveis</td>
-        <td>%0.87</td>
-      </tr>
-      <tr>
-        <td><span class="index">5</span>Lixos</td>
-        <td>%3.76</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="row" id="indiceEmDiaLoader">
+  <div ng-if="loader" class="row" id="indiceEmDiaLoader">
     <div class="col s6 offset-s5 ">
       <div class="preloader-wrapper big active">
         <div class="spinner-layer spinner-blue-only">

@@ -7,6 +7,11 @@ angular.module 'aedes'
         method: 'GET'
         url:    "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.ESTADO}"
 
+    getPrevencoesEmCidades: ->
+      $http
+        method: 'GET'
+        url:    "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.CIDADE}"
+
     getPrevencoesMensais: (fields) ->
       focoId = fields.focoId
       delete fields.focoId

@@ -1,8 +1,11 @@
 (function() {
-  angular.module('aedes').constant('prevencoesURL', {
+  angular.module('aedes').constant('focoURL', {
+    BASE_URL: 'focos'
+  }).constant('prevencoesURL', {
     BASE_URL: 'prevencoes',
     ESTADO: 'estado',
-    MENSAL: 'mensal'
+    MENSAL: 'mensal',
+    CIDADE: 'cidade'
   }).constant('enderecoURL', {
     BASE_URL: 'enderecos',
     ESTADOS: 'estados',

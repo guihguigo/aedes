@@ -1,8 +1,12 @@
 angular.module('aedes')
+  .constant('focoURL', {
+    BASE_URL :  'focos'
+  })
   .constant('prevencoesURL', {
     BASE_URL :  'prevencoes'
     ESTADO   :  'estado'
     MENSAL   :  'mensal'
+    CIDADE   :  'cidade'
   })
   .constant('enderecoURL', {
     BASE_URL :  'enderecos'

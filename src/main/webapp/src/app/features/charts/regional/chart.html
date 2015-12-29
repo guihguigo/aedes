@@ -36,33 +36,17 @@
           <table id="cidadesAfetadasContainer" class="responsive-table bordered">
             <thead>
               <tr>
-                <th data-field="id">Cidades mais afestas</th>
+                <th data-field="id" ng-bind="percentChartHeader"></th>
               </tr>
             </thead>
 
             <tbody>
-              <tr>
-                <td><span class="index">1</span>Santos</td>
-                <td><div>%0.87</div>
-                  <div class="progress">
-                    <div class="determinate" style="width: 70%"></div>
+              <tr ng-repeat="(key, data) in localidades | orderBy:'-emDia'">
+                <td><span class="index" ng-bind="key + 1"></span> {{data.chave}}</td>
+                <td><div class="center-align">% {{data.emDia}}</div>
+                  <div class="progress center-align">
+                    <div class="determinate " style="width: {{data.emDia}}%"></div>
                   </div></td>
-              </tr>
-              <tr>
-                <td><span class="index">2</span>São Vicente</td>
-                <td>%3.76</td>
-              </tr>
-              <tr>
-                <td><span class="index">3</span>Mongaguá</td>
-                <td>%3.76</td>
-              </tr>
-              <tr>
-                <td><span class="index">4</span>Cubatão</td>
-                <td>%0.87</td>
-              </tr>
-              <tr>
-                <td><span class="index">5</span>Peruíbe</td>
-                <td>%3.76</td>
               </tr>
             </tbody>
           </table>

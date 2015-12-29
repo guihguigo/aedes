@@ -8,6 +8,12 @@
           url: appConfig.BASE_URL + "/" + prevencoesURL.BASE_URL + "/" + prevencoesURL.ESTADO
         });
       },
+      getPrevencoesEmCidades: function() {
+        return $http({
+          method: 'GET',
+          url: appConfig.BASE_URL + "/" + prevencoesURL.BASE_URL + "/" + prevencoesURL.CIDADE
+        });
+      },
       getPrevencoesMensais: function(fields) {
         var focoId;
         focoId = fields.focoId;

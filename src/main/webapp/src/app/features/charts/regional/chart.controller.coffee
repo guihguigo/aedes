@@ -21,6 +21,15 @@ angular.module 'aedes'
     hideChart = ->
       $scope.loader = true
 
+    populatePercentChart = =>
+      $scope.percentData = [
+        {chave: "Santos"            , emDia: 20.4, atrasadas: 10.4}
+        {chave: "Praia Grande"      , emDia: 30.4, atrasadas: 10.4}
+        {chave: "São Paulo"         , emDia: 10.4, atrasadas: 10.4}
+        {chave: "São Vicente"       , emDia: 60.4, atrasadas: 10.4}
+        {chave: "Mongaguá"          , emDia: 50.4, atrasadas: 10.4}
+      ]
+
     $scope.methods.showRegiaoChart = ->
       #Update the model to activate the chart on the DOM
       #Note the use of $scope.$apply since we're in the
@@ -30,6 +39,8 @@ angular.module 'aedes'
       ChartsService.getPrevencoesRegionais().then(
         (response) ->
           mappedRows = UtilsService.objectToArray response.data
+
+          $scope.localidades = response.data
 
           DataTable = new google.visualization.DataTable()
           DataTable.addColumn 'string', 'States'
@@ -48,6 +59,8 @@ angular.module 'aedes'
             colorAxis:
               colors: ['red', 'blue']
 
+          $scope.percentChartHeader = "Estados mais afestos"
+
           do showChart
 
         (error) =>
@@ -60,27 +73,30 @@ angular.module 'aedes'
       #Google Loader callback.
       do hideChart
 
-      $scope.dataModel.data = new google.visualization.arrayToDataTable([
-        ['City', 'Em dia', 'Atrasada'],
-        ['Praia Grande', 100.00, 0],
-        ['Santos', 25.75, 74.25],
-        ['Cubatão', 10.00, 90.00],
-        ['Preuíbe', 0, 100.00],
-        ['São Vicente', 50.00, 50.00],
-        ['Guarujá', 80.25, 19.75],
-        ['Mongaguá', 95.00, 5.00],
-        ['Itagenhaem', 80.00, 20.00]
-      ])
+      ChartsService.getPrevencoesEmCidades().then(
+        (response) =>
+          header     = new Array(['City', 'Em dia', 'Atrasada'])
+          mappedRows = UtilsService.objectToArray response.data
+          mappedRows = _.union header, mappedRows
 
-      $scope.dataModel.options =
-        sizeAxis: {minValue: 0, maxValue: 100}
-        region: 'BR'
-        displayMode: 'markers'
-        colorAxis: {colors: ['red', 'blue']}
-        'width': 500
-        'height': 300
+          $scope.localidades = response.data
+          $scope.dataModel.data = new google.visualization.arrayToDataTable(mappedRows)
 
-      do showChart
+          $scope.dataModel.options =
+            sizeAxis: {minValue: 0, maxValue: 100}
+            region: 'BR'
+            displayMode: 'markers'
+            colorAxis: {colors: ['red', 'blue']}
+            'width': 500
+            'height': 300
+
+          $scope.percentChartHeader = "Cidades mais afestas"
+
+          do showChart
+
+        (error) =>
+          throw error
+      )
 
     do $scope.methods.showRegiaoChart
 
