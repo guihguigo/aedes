@@ -1,5 +1,5 @@
 (function() {
-  angular.module('aedes').controller('ChartMensalController', function($scope, $timeout, moment, ChartService, ChartsService, UtilsService) {
+  angular.module('aedes').controller('ChartMensalController', function($scope, $timeout, moment, ChartsService, UtilsService, EnderecoService) {
     'ngInject';
     var hideChart, initMaterialSelect, showChart, vm;
     vm = this;
@@ -8,6 +8,10 @@
     this.attrs.estados = $scope.$parent.estados;
     this.attrs.fields = {
       focoId: '1'
+    };
+    $scope.localidade = '';
+    $scope.options = {
+      country: 'br'
     };
     this.attrs.focos = [
       {
@@ -115,12 +119,10 @@
         });
       };
     })(this);
-    $scope.$on('render:chart', (function(_this) {
-      return function(event, fields) {
-        _this.attrs.fields = fields;
-        return _this.methods.showMensalChart();
-      };
-    })(this));
+    $scope.$on('result:locale', function(event, data) {
+      this.attrs.fields = _.pick(EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado');
+      return this.methods.showMensalChart();
+    });
     $scope.methods.showMensalChart();
     initMaterialSelect();
   });

@@ -5,7 +5,8 @@
     BASE_URL: 'prevencoes',
     ESTADO: 'estado',
     MENSAL: 'mensal',
-    CIDADE: 'cidade'
+    CIDADE: 'cidade',
+    FOCO: 'foco'
   }).constant('enderecoURL', {
     BASE_URL: 'enderecos',
     ESTADOS: 'estados',

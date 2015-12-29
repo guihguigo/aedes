@@ -7,6 +7,11 @@ angular.module 'aedes'
         method: 'GET'
         url:    "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.ESTADO}"
 
+    getPrevencoesByFoco: ->
+      $http
+        method: 'GET'
+        url:    "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.FOCO}"
+
     getPrevencoesEmCidades: ->
       $http
         method: 'GET'
@@ -20,4 +25,9 @@ angular.module 'aedes'
         method: 'GET'
         url:    "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.ESTADO}?codigoFoco=#{focoId}"
         data  : fields
+
+    getFocos: ->
+      $http
+        method: 'GET'
+        url   : "#{appConfig.BASE_URL}/#{focoURL.BASE_URL}"
 

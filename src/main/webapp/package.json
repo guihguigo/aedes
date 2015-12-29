@@ -6,7 +6,7 @@
     "test": "gulp test"
   },
   "devDependencies": {
-    "basebuild-angular": "^0.9.4",
+    "basebuild-angular": "^0.11.5",
     "gulp": "~3.8.10",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.15",

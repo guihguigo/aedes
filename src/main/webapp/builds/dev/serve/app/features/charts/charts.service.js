@@ -8,6 +8,12 @@
           url: appConfig.BASE_URL + "/" + prevencoesURL.BASE_URL + "/" + prevencoesURL.ESTADO
         });
       },
+      getPrevencoesByFoco: function() {
+        return $http({
+          method: 'GET',
+          url: appConfig.BASE_URL + "/" + prevencoesURL.BASE_URL + "/" + prevencoesURL.FOCO
+        });
+      },
       getPrevencoesEmCidades: function() {
         return $http({
           method: 'GET',
@@ -22,6 +28,12 @@
           method: 'GET',
           url: appConfig.BASE_URL + "/" + prevencoesURL.BASE_URL + "/" + prevencoesURL.ESTADO + "?codigoFoco=" + focoId,
           data: fields
+        });
+      },
+      getFocos: function() {
+        return $http({
+          method: 'GET',
+          url: appConfig.BASE_URL + "/" + focoURL.BASE_URL
         });
       }
     };

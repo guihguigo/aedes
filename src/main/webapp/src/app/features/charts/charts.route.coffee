@@ -14,6 +14,11 @@ angular.module 'aedes'
           "":
             templateUrl: 'app/features/charts/charts.html'
             controller : 'ChartsController'
+            resolve:
+              focos: (ChartsService) ->
+                # return ChartsService.getFocos()
+                return "lala"
+
 
       .state 'infograficos.exibicao',
         url: '/exibicao'

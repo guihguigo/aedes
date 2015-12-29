@@ -12,7 +12,12 @@
         },
         "": {
           templateUrl: 'app/features/charts/charts.html',
-          controller: 'ChartsController'
+          controller: 'ChartsController',
+          resolve: {
+            focos: function(ChartsService) {
+              return "lala";
+            }
+          }
         }
       }
     }).state('infograficos.exibicao', {

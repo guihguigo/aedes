@@ -7,11 +7,9 @@
       templateUrl: 'app/components/chart/chart.html',
       link: function($scope, $elem, $attr) {
         var initChart, initLoader;
-        initLoader = (function(_this) {
-          return function() {
-            return $scope.loader = true;
-          };
-        })(this);
+        initLoader = function() {
+          return $scope.loader = true;
+        };
         initChart = function() {
           $scope.loader = false;
           return setTimeout(function() {

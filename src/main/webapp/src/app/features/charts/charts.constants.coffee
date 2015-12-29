@@ -7,6 +7,7 @@ angular.module('aedes')
     ESTADO   :  'estado'
     MENSAL   :  'mensal'
     CIDADE   :  'cidade'
+    FOCO     :  'foco'
   })
   .constant('enderecoURL', {
     BASE_URL :  'enderecos'

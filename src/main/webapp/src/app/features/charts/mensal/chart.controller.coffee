@@ -1,5 +1,5 @@
 angular.module 'aedes'
-  .controller 'ChartMensalController', ($scope, $timeout, moment, ChartService, ChartsService, UtilsService) ->
+  .controller 'ChartMensalController', ($scope, $timeout, moment, ChartsService, UtilsService, EnderecoService) ->
     'ngInject'
 
     vm = this
@@ -9,6 +9,11 @@ angular.module 'aedes'
     @attrs.estados = $scope.$parent.estados
     @attrs.fields =
       focoId: '1'
+
+    $scope.localidade = ''
+    $scope.options =
+      country: 'br'
+
 
     @attrs.focos = [
       {id: "1",  nome: "Bebedouros de Animais"   ,  descricao: "desc"}
@@ -46,8 +51,8 @@ angular.module 'aedes'
 
     initMaterialSelect = ->
       $timeout () ->
-          do $('[ui-view="mensal"] select').material_select
-        , 100
+        do $('[ui-view="mensal"] select').material_select
+      , 100
 
     $scope.methods.showMensalChart = =>
       #Update the model to activate the chart on the DOM
@@ -76,13 +81,14 @@ angular.module 'aedes'
 
           do showChart
 
-        (error) =>
+        (error) ->
           console.log 'FAIO'
       )
 
-    $scope.$on 'render:chart', (event, fields) =>
-      @attrs.fields = fields
+    $scope.$on 'result:locale', (event, data) ->
+      @attrs.fields = _.pick EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado'
       do @methods.showMensalChart
+
 
     do $scope.methods.showMensalChart
     do initMaterialSelect

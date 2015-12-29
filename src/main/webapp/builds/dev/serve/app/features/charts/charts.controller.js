@@ -1,24 +1,9 @@
 (function() {
-  angular.module('aedes').controller('ChartsController', function($scope, $timeout, $log, EnderecoService) {
+  angular.module('aedes').controller('ChartsController', function($scope, $timeout, $log, focos) {
     'ngInject';
-    var renderChart, vm;
+    var vm;
     vm = this;
-    $scope.options = {
-      country: 'br'
-    };
-    $scope.localidade = '';
-    $scope.$on('result:locale', (function(_this) {
-      return function(emit, data) {
-        var endereco;
-        endereco = _.pick(EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado');
-        return renderChart(endereco);
-      };
-    })(this));
-    return renderChart = (function(_this) {
-      return function(fields) {
-        return $scope.$broadcast('render:chart', fields);
-      };
-    })(this);
+    return $log.debug(focos);
   });
 
 }).call(this);

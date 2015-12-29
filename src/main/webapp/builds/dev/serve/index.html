@@ -5,13 +5,11 @@
     <title>aedes</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
-    <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- build:css({builds/dev/serve,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="app/vendor.css">
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="../bower_components/animate.css/animate.css" />
@@ -20,7 +18,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- build:css({builds/dev/serve,src}) styles/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="app/index.css">
     <!-- endinject -->
@@ -58,9 +56,12 @@
     <script src="../bower_components/angular-materialize/src/angular-materialize.js"></script>
     <script src="../bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
     <!-- endbower -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
     <!-- endbuild -->
 
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- build:js({builds/dev/serve,dev/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.module.js"></script>
     <script src="app/features/charts/regional/chart.filter.js"></script>
@@ -68,11 +69,6 @@
     <script src="app/features/charts/mensal/chart.controller.js"></script>
     <script src="app/features/charts/emDia/chart.controller.js"></script>
     <script src="app/features/charts/atrasadas/chart.controller.js"></script>
-    <script src="app/components/navbar/navbar.directive.js"></script>
-    <script src="app/components/chart/chart.service.js"></script>
-    <script src="app/components/chart/chart.directive.js"></script>
-    <script src="app/components/chart/chart-loader.directive.js"></script>
-    <script src="app/components/githubContributor/githubContributor.service.js"></script>
     <script src="app/features/main/main.controller.js"></script>
     <script src="app/features/header/header.controller.js"></script>
     <script src="app/features/charts/utils.service.js"></script>
@@ -81,8 +77,13 @@
     <script src="app/features/charts/charts.route.js"></script>
     <script src="app/features/charts/charts.controller.js"></script>
     <script src="app/features/charts/charts.constants.js"></script>
+    <script src="app/components/navbar/navbar.directive.js"></script>
     <script src="app/components/webDevTec/webDevTec.service.js"></script>
+    <script src="app/components/githubContributor/githubContributor.service.js"></script>
     <script src="app/components/malarkey/malarkey.directive.js"></script>
+    <script src="app/components/chart/chart.service.js"></script>
+    <script src="app/components/chart/chart.directive.js"></script>
+    <script src="app/components/chart/chart-loader.directive.js"></script>
     <script src="app/index.run.js"></script>
     <script src="app/index.route.js"></script>
     <script src="app/index.constants.js"></script>

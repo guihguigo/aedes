@@ -7,4 +7,4 @@ google.load('visualization', '1', {
 angular.module 'aedes'
   .run ($log) ->
     'ngInject'
-    $log.debug 'runBlock ended'
+    $log.debug 'application started'

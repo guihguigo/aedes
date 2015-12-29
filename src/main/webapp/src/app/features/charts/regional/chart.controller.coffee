@@ -21,15 +21,6 @@ angular.module 'aedes'
     hideChart = ->
       $scope.loader = true
 
-    populatePercentChart = =>
-      $scope.percentData = [
-        {chave: "Santos"            , emDia: 20.4, atrasadas: 10.4}
-        {chave: "Praia Grande"      , emDia: 30.4, atrasadas: 10.4}
-        {chave: "São Paulo"         , emDia: 10.4, atrasadas: 10.4}
-        {chave: "São Vicente"       , emDia: 60.4, atrasadas: 10.4}
-        {chave: "Mongaguá"          , emDia: 50.4, atrasadas: 10.4}
-      ]
-
     $scope.methods.showRegiaoChart = ->
       #Update the model to activate the chart on the DOM
       #Note the use of $scope.$apply since we're in the
@@ -63,7 +54,7 @@ angular.module 'aedes'
 
           do showChart
 
-        (error) =>
+        (error) ->
           console.log 'FAIO'
       )
 
@@ -74,7 +65,7 @@ angular.module 'aedes'
       do hideChart
 
       ChartsService.getPrevencoesEmCidades().then(
-        (response) =>
+        (response) ->
           header     = new Array(['City', 'Em dia', 'Atrasada'])
           mappedRows = UtilsService.objectToArray response.data
           mappedRows = _.union header, mappedRows
@@ -94,7 +85,7 @@ angular.module 'aedes'
 
           do showChart
 
-        (error) =>
+        (error) ->
           throw error
       )
 

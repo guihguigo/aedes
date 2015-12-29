@@ -6,7 +6,7 @@
 
   angular.module('aedes').run(function($log) {
     'ngInject';
-    return $log.debug('runBlock ended');
+    return $log.debug('application started');
   });
 
 }).call(this);
