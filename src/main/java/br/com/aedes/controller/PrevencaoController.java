@@ -29,6 +29,7 @@ import br.com.aedes.repository.PrevencaoRepository;
 @RestController
 @RequestMapping(URL_PREVENCOES)
 public class PrevencaoController {
+	
 	@Autowired
 	private PrevencaoRepository repository;
 
