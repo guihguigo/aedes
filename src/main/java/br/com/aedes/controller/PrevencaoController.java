@@ -1,10 +1,11 @@
 package br.com.aedes.controller;
 
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES;
+import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_CIDADE;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_ESTADO;
 import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_MES;
-import static br.com.aedes.repository.specifications.PrevencaoSpecifications.comEndereco;
-import static br.com.aedes.repository.specifications.PrevencaoSpecifications.comFoco;
+import static br.com.aedes.repository.specification.PrevencaoSpecifications.comEndereco;
+import static br.com.aedes.repository.specification.PrevencaoSpecifications.comFoco;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.aedes.domain.entity.Prevencao;
+import br.com.aedes.domain.model.AgrupadorPorCidade;
 import br.com.aedes.domain.model.AgrupadorPorMes;
 import br.com.aedes.domain.model.AgrupadorPorRegiao;
 import br.com.aedes.domain.model.AgrupadorTemplate;
@@ -53,6 +55,16 @@ public class PrevencaoController {
 		List<Prevencao> prevencoes = this.repository.findAll();
 
 		AgrupadorTemplate<String> agrupadorPorRegiao = new AgrupadorPorRegiao();
+
+		return this.conversor.converterPercentual(prevencoes, agrupadorPorRegiao);
+	}
+	
+	@RequestMapping(value = URL_PREVENCOES_CIDADE, method = RequestMethod.GET)
+	@Transactional(readOnly = true)
+	public List<PercentualDTO> listarPorCidade() {
+		List<Prevencao> prevencoes = this.repository.findAll();
+
+		AgrupadorTemplate<String> agrupadorPorRegiao = new AgrupadorPorCidade();
 
 		return this.conversor.converterPercentual(prevencoes, agrupadorPorRegiao);
 	}
