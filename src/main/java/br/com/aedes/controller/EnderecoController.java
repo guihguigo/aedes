@@ -1,9 +1,9 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS;
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS_BAIRROS;
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS_CIDADES;
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS_ESTADOS;
+import static br.com.aedes.constante.EnderecoURL.ENDERECOS;
+import static br.com.aedes.constante.EnderecoURL.BAIRROS;
+import static br.com.aedes.constante.EnderecoURL.CIDADES;
+import static br.com.aedes.constante.EnderecoURL.ESTADOS;
 
 import java.util.List;
 
@@ -14,30 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.aedes.constante.EnderecoURL;
 import br.com.aedes.dto.EnderecoDTO;
 import br.com.aedes.repository.EnderecoRepository;
 
 @RestController
-@RequestMapping(URL_ENDERECOS)
+@RequestMapping(ENDERECOS)
 public class EnderecoController {
 	
 	@Autowired
 	private EnderecoRepository repository;
 
-	@RequestMapping(value = URL_ENDERECOS_ESTADOS, method = RequestMethod.GET)
+	@RequestMapping(value = ESTADOS, method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public List<String> listarEstados() {
 		return this.repository.listarEstados();
 	}
 	
-	@RequestMapping(value = URL_ENDERECOS_CIDADES, method = RequestMethod.GET)
+	@RequestMapping(value = CIDADES, method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public List<String> listarCidades(@ModelAttribute EnderecoDTO endereco) {
 		return this.repository.listarCidadesPorEstado(endereco.getEstado());
 	}
 	
-	@RequestMapping(value = URL_ENDERECOS_BAIRROS, method = RequestMethod.GET)
+	@RequestMapping(value = BAIRROS, method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public List<String> listarBairros(@ModelAttribute EnderecoDTO endereco) {
 		return this.repository.listarBairrosPorCidadeEEstado(endereco.getCidade(), endereco.getEstado());

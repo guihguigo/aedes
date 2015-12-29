@@ -1,5 +1,5 @@
 package br.com.aedes.constante;
 
 public class FocoURL {
-	public static final String URL_FOCOS = "/focos";
+	public static final String FOCOS = "/focos";
 }

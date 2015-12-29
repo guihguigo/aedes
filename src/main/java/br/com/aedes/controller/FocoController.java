@@ -1,6 +1,6 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.FocoURL.URL_FOCOS;
+import static br.com.aedes.constante.FocoURL.FOCOS;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ import br.com.aedes.dto.FocoDTO;
 import br.com.aedes.repository.FocoRepository;
 
 @RestController
-@RequestMapping(URL_FOCOS)
+@RequestMapping(FOCOS)
 public class FocoController {
 	@Autowired
 	private FocoRepository repository;

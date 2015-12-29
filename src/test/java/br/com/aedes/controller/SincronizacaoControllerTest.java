@@ -1,7 +1,7 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.SincronizacaoURL.URL_SINCRONIZACAO;
-import static br.com.aedes.constante.SincronizacaoURL.URL_SINCRONIZACAO_DELETAR;
+import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
+import static br.com.aedes.constante.SincronizacaoURL.DELETAR;
 
 import java.util.Date;
 import java.util.List;
@@ -70,7 +70,7 @@ public class SincronizacaoControllerTest extends ApplicationTest{
 				.endereco(endereco)
 				.build();
 		
-		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post(SincronizacaoURL.URL_SINCRONIZACAO)
+		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post(SincronizacaoURL.SINCRONIZACAO)
 		    .contentType(MediaType.APPLICATION_JSON)
 		    .content(new ObjectMapper().writeValueAsBytes(prevencao));
 		
@@ -94,7 +94,7 @@ public class SincronizacaoControllerTest extends ApplicationTest{
 		List<Prevencao> prevencoes = this.prevencaoRepository.findAll();
 		Prevencao prevencao = prevencoes.get(0);
 		
-		MockHttpServletRequestBuilder delete = MockMvcRequestBuilders.delete(URL_SINCRONIZACAO + URL_SINCRONIZACAO_DELETAR, 
+		MockHttpServletRequestBuilder delete = MockMvcRequestBuilders.delete(SINCRONIZACAO + DELETAR, 
 				prevencao.getId().getCodigoCelular(),
 				prevencao.getId().getFoco().getCodigo(), 
 				prevencao.getId().getDataCriacao());

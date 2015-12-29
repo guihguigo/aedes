@@ -1,9 +1,10 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES;
-import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_CIDADE;
-import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_ESTADO;
-import static br.com.aedes.constante.PrevencaoURL.URL_PREVENCOES_MES;
+import static br.com.aedes.constante.PrevencaoURL.POR_CIDADE;
+import static br.com.aedes.constante.PrevencaoURL.POR_ESTADO;
+import static br.com.aedes.constante.PrevencaoURL.POR_FOCO;
+import static br.com.aedes.constante.PrevencaoURL.POR_MES;
+import static br.com.aedes.constante.PrevencaoURL.PREVENCOES;
 
 import java.io.UnsupportedEncodingException;
 
@@ -30,6 +31,7 @@ import com.jayway.jsonassert.JsonAsserter;
 
 import br.com.aedes.Application;
 import br.com.aedes.ApplicationTest;
+import br.com.aedes.constante.PrevencaoURL;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -42,7 +44,7 @@ public class PrevencaoControllerTest extends ApplicationTest{
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoEFoco() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES)
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
 				.param("codigoFoco", "1")
 				.param("bairro", "Jardim Quietude")
 				.param("cidade", "Praia Grande")
@@ -59,7 +61,7 @@ public class PrevencaoControllerTest extends ApplicationTest{
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES)
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
 				.param("codigoFoco", "1")
 				.param("cidade", "Praia Grande");
 
@@ -75,7 +77,7 @@ public class PrevencaoControllerTest extends ApplicationTest{
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listaTodasPorMes() throws Exception {
 
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES);
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES);
 
 		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
@@ -87,7 +89,7 @@ public class PrevencaoControllerTest extends ApplicationTest{
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarTodasPrevencoesPorMes$Vazio() throws Exception {
 
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_MES);
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES);
 
 		MvcResult andReturn = this.mockMvc.perform(get)
 				.andExpect(MockMvcResultMatchers.status()
@@ -101,7 +103,7 @@ public class PrevencaoControllerTest extends ApplicationTest{
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarTodasPrevencoesPorRegiao() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_ESTADO);
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_ESTADO);
 		
 		MvcResult andReturn = this.mockMvc.perform(get)
 				.andExpect(MockMvcResultMatchers.status()
@@ -117,7 +119,7 @@ public class PrevencaoControllerTest extends ApplicationTest{
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarTodasPrevencoesPorCidade() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_PREVENCOES + URL_PREVENCOES_CIDADE);
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_CIDADE);
 
 		MvcResult andReturn = this.mockMvc.perform(get)
 				.andExpect(MockMvcResultMatchers.status()
@@ -127,6 +129,20 @@ public class PrevencaoControllerTest extends ApplicationTest{
 		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(7));
 		jsonAserter(andReturn).assertThat("$.[*].chave", 
 				Matchers.containsInAnyOrder("Fortaleza", "Praia Grande", "Rio de Janeiro", "Salvador", "Belo Horizonte", "Recife", "Goiania"));
+	}
+	
+	@Test
+	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
+	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
+	public void listarTodasPrevencoesPorFoco() throws Exception {
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_FOCO);
+
+		MvcResult andReturn = this.mockMvc.perform(get)
+				.andExpect(MockMvcResultMatchers.status()
+				.isOk())
+				.andReturn();
+		
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(11));
 	}
 	
 	public JsonAsserter jsonAserter(MvcResult result) throws UnsupportedEncodingException {

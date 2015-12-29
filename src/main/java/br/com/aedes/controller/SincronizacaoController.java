@@ -1,7 +1,7 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.SincronizacaoURL.URL_SINCRONIZACAO;
-import static br.com.aedes.constante.SincronizacaoURL.URL_SINCRONIZACAO_DELETAR;
+import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
+import static br.com.aedes.constante.SincronizacaoURL.DELETAR;
 
 import java.util.Date;
 
@@ -26,7 +26,7 @@ import br.com.aedes.dto.PrevencaoDTO;
 import br.com.aedes.repository.PrevencaoRepository;
 
 @RestController
-@RequestMapping(URL_SINCRONIZACAO)
+@RequestMapping(SINCRONIZACAO)
 public class SincronizacaoController {
 	@Autowired
 	private PrevencaoRepository repository;
@@ -39,7 +39,7 @@ public class SincronizacaoController {
 	}
 
 	@Transactional
-	@RequestMapping(value = URL_SINCRONIZACAO_DELETAR, method = RequestMethod.DELETE)
+	@RequestMapping(value = DELETAR, method = RequestMethod.DELETE)
 	public void deletar(@PathVariable String codigoCelular, @PathVariable Integer codigoFoco,
 	    @PathVariable  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date dataCriacao) {
 		this.repository.deleteByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(codigoCelular, codigoFoco, dataCriacao);
