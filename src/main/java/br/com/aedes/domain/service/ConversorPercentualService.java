@@ -20,12 +20,12 @@ public class ConversorPercentualService {
 	@Autowired
 	private ConversorPercentual conversor;
 	
-	public List<PercentualDTO> converterPercentual(List<Prevencao> prevencoes, AgrupadorTemplate<?> agrupadorPorMes) {
+	public List<PercentualDTO> converterPercentual(List<Prevencao> prevencoes, AgrupadorTemplate<?> agrupador) {
 		if (prevencoes.isEmpty())
 			return new ArrayList<>();
 		
-		Map<?, Grupo> prevencoesSeparadas = agrupadorPorMes.agrupar(prevencoes);
-		List<Percentual> percentuais = this.conversor.converterPercentual(prevencoesSeparadas);
+		Map<?, Grupo> prevencoesAgrupadas = agrupador.agrupar(prevencoes);
+		List<Percentual> percentuais = this.conversor.converterPercentual(prevencoesAgrupadas);
 
 		return percentuais.stream().map(p -> this.toDTO(p))
 				.collect(Collectors.toList());

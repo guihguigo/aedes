@@ -1,6 +1,6 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.FocoURL.URL_FOCOS;
+import static br.com.aedes.constante.FocoURL.FOCOS;
 
 import java.io.UnsupportedEncodingException;
 
@@ -30,7 +30,7 @@ public class FocoControllerTest extends ApplicationTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarTodosFocos() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_FOCOS);		 
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(FOCOS);		 
 
 		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 

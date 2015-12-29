@@ -1,9 +1,9 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS;
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS_BAIRROS;
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS_CIDADES;
-import static br.com.aedes.constante.EnderecoURL.URL_ENDERECOS_ESTADOS;
+import static br.com.aedes.constante.EnderecoURL.ENDERECOS;
+import static br.com.aedes.constante.EnderecoURL.BAIRROS;
+import static br.com.aedes.constante.EnderecoURL.CIDADES;
+import static br.com.aedes.constante.EnderecoURL.ESTADOS;
 
 import java.io.UnsupportedEncodingException;
 
@@ -33,7 +33,7 @@ public class EnderecoControllerTest extends ApplicationTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarTodosEstadosTest() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_ENDERECOS + URL_ENDERECOS_ESTADOS);
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(ENDERECOS + ESTADOS);
 		
 		MvcResult andReturn = this.mockMvc.perform(get)
 				.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
@@ -45,7 +45,7 @@ public class EnderecoControllerTest extends ApplicationTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarCidadesTest() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_ENDERECOS + URL_ENDERECOS_CIDADES)
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(ENDERECOS + CIDADES)
 				.param("estado", "São Paulo");
 		
 		MvcResult andReturn = this.mockMvc.perform(get)
@@ -58,7 +58,7 @@ public class EnderecoControllerTest extends ApplicationTest {
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
 	public void listarBairros() throws Exception {
-		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(URL_ENDERECOS + URL_ENDERECOS_BAIRROS)
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(ENDERECOS + BAIRROS)
 				.param("estado", "São Paulo")
 				.param("cidade", "Praia Grande")
 				.param("bairro", "jardim");

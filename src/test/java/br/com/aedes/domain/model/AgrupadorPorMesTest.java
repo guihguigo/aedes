@@ -51,7 +51,6 @@ public class AgrupadorPorMesTest {
 		for (Integer key : prevencoesAgrupadas.keySet()) {
 			Grupo grupo =  prevencoesAgrupadas.get(key);
 				
-			Assert.assertThat(grupo.getGrupo(), Matchers.hasSize(2));
 			Assert.assertThat(key, Matchers.is(grupo.getGrupo().get(0).getMesDataPrazo()));
 			Assert.assertThat(key, Matchers.is(grupo.getGrupo().get(1).getMesDataPrazo()));
 		}
