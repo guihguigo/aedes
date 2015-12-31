@@ -8,11 +8,11 @@
     </thead>
 
     <tbody ng-if="!loader" >
-      <tr ng-repeat="(key, prevencao) in prevencoes">
-        <td><span class="index" ng-bind="key + 1"></span> {{prevencao.prevencao}}</td>
-        <td><div class="center-align">% {{prevencao.atrasadas}}</div>
+      <tr ng-repeat="(key, prevencao) in prevencoes | orderBy:'-atrasada'">
+        <td><span class="index" ng-bind="key + 1"></span> {{prevencao.descricao}}</td>
+        <td><div class="center-align">% {{prevencao.atrasada}}</div>
           <div class="progress center-align">
-            <div class="determinate " style="width: {{prevencao.atrasadas}}%"></div>
+            <div class="determinate " style="width: {{prevencao.atrasada}}%"></div>
           </div></td>
       </tr>
     </tbody>

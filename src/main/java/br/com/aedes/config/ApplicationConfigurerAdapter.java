@@ -15,8 +15,7 @@ public class ApplicationConfigurerAdapter extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-		registry.addResourceHandler("/").addResourceLocations("builds/release/index.html");
-		registry.addResourceHandler("index.html").addResourceLocations("builds/release/index.html");
+		registry.addResourceHandler("index.html").addResourceLocations("builds/release/");
 		registry.addResourceHandler("styles/**").addResourceLocations("builds/release/styles/");
 		registry.addResourceHandler("scripts/**").addResourceLocations("builds/release/scripts/");
 		registry.addResourceHandler("assets/**").addResourceLocations("builds/release/assets/");

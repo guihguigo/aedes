@@ -1,9 +1,10 @@
 (function() {
-  angular.module('aedes').controller('ChartsController', function($scope, $timeout, $log, focos) {
+  angular.module('aedes').controller('ChartsController', function($scope, $timeout, $log, focos, prevencoesByFoco) {
     'ngInject';
     var vm;
     vm = this;
-    return $log.debug(focos);
+    $scope.focos = focos.data;
+    return $scope.prevencoesByFoco = prevencoesByFoco.data;
   });
 
 }).call(this);

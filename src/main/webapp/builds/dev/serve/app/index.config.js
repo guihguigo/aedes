@@ -1,5 +1,5 @@
 (function() {
-  angular.module('aedes').config(function($logProvider, toastrConfig) {
+  angular.module('aedes').config(function($logProvider, $provide, toastrConfig) {
     'ngInject';
     $logProvider.debugEnabled(true);
     toastrConfig.allowHtml = true;

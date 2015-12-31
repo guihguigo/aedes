@@ -15,7 +15,10 @@
           controller: 'ChartsController',
           resolve: {
             focos: function(ChartsService) {
-              return "lala";
+              return ChartsService.getFocos();
+            },
+            prevencoesByFoco: function(ChartsService) {
+              return ChartsService.getPrevencoesByFoco();
             }
           }
         }

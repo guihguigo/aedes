@@ -54,11 +54,10 @@
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/materialize/bin/materialize.js"></script>
     <script src="../bower_components/angular-materialize/src/angular-materialize.js"></script>
-    <script src="../bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
     <!-- endbower -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi" type="text/javascript"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+    <script type="text/javascript" src="app/library/jsapi.js" type="text/javascript"></script>
+    <script type="text/javascript" src="app/library/ngAutocomplete.js" type="text/javascript"></script>
     <!-- endbuild -->
 
     <!-- build:js({builds/dev/serve,dev/partials,src}) scripts/app.js -->
@@ -77,13 +76,16 @@
     <script src="app/features/charts/charts.route.js"></script>
     <script src="app/features/charts/charts.controller.js"></script>
     <script src="app/features/charts/charts.constants.js"></script>
-    <script src="app/components/navbar/navbar.directive.js"></script>
     <script src="app/components/webDevTec/webDevTec.service.js"></script>
-    <script src="app/components/githubContributor/githubContributor.service.js"></script>
+    <script src="app/components/navbar/navbar.directive.js"></script>
     <script src="app/components/malarkey/malarkey.directive.js"></script>
+    <script src="app/components/githubContributor/githubContributor.service.js"></script>
     <script src="app/components/chart/chart.service.js"></script>
     <script src="app/components/chart/chart.directive.js"></script>
     <script src="app/components/chart/chart-loader.directive.js"></script>
+    <script src="app/library/ngAutocomplete.js"></script>
+    <script src="app/library/loader.js"></script>
+    <script src="app/library/jsapi.js"></script>
     <script src="app/index.run.js"></script>
     <script src="app/index.route.js"></script>
     <script src="app/index.constants.js"></script>

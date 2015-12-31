@@ -1,5 +1,5 @@
 angular.module 'aedes'
-  .service 'ChartsService', ($http, appConfig, prevencoesURL) ->
+  .service 'ChartsService', ($http, appConfig, prevencoesURL, focoURL) ->
     'ngInject'
 
     getPrevencoesRegionais: ->
@@ -18,13 +18,17 @@ angular.module 'aedes'
         url:    "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.CIDADE}"
 
     getPrevencoesMensais: (fields) ->
-      focoId = fields.focoId
-      delete fields.focoId
+      params = {}
+      params.codigoFoco = fields.focoId
+      params.bairro = fields.endereco?.bairro
+      params.cidade = fields.endereco?.cidade
+      params.estado = fields.endereco?.estado
 
       $http
         method: 'GET'
-        url:    "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.ESTADO}?codigoFoco=#{focoId}"
-        data  : fields
+        url   : "#{appConfig.BASE_URL}/#{prevencoesURL.BASE_URL}/#{prevencoesURL.MENSAL}"
+        params  :
+          params
 
     getFocos: ->
       $http

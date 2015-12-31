@@ -3,45 +3,33 @@ angular.module 'aedes'
     'ngInject'
 
     vm = this
-    @methods = $scope.methods = {}
 
+    @methods = $scope.methods = {}
     @attrs   = $scope.attrs   = {}
-    @attrs.estados = $scope.$parent.estados
+
+    @attrs.focos   = $scope.$parent.focos
     @attrs.fields =
       focoId: '1'
 
-    $scope.localidade = ''
-    $scope.options =
-      country: 'br'
+    ngAutocompleteConfig = ->
+      $scope.localidade = ''
+      $scope.options =
+        country: 'br'
 
+    do ngAutocompleteConfig
 
-    @attrs.focos = [
-      {id: "1",  nome: "Bebedouros de Animais"   ,  descricao: "desc"}
-      {id: "2",  nome: "Bromélias (Planta)"      ,  descricao: "desc"}
-      {id: "3",  nome: "Caixa de Ar Condicionado",  descricao: "desc"}
-      {id: "4",  nome: "Caixa dágua" ,              descricao: "desc"}
-      {id: "5",  nome: "Calhas"      ,              descricao: "desc"}
-      {id: "6",  nome: "Depressões de Terrenos"  ,  descricao: "desc"}
-      {id: "7",  nome: "Garagens e Subsolos"     ,  descricao: "desc"}
-      {id: "8",  nome: "Geladeiras"  ,              descricao: "desc"}
-      {id: "9",  nome: "Piscinas"    ,              descricao: "desc"}
-      {id: "10", nome: "Pneus Velhos"      ,        descricao: "desc"}
-      {id: "11", nome: "Ralos" ,                    descricao: "desc"}
-      {id: "12", nome: "Recipientes de Água"     ,  descricao: "desc"}
-      {id: "13", nome: "Recipientes Descartáveis" , descricao: "desc"}
-      {id: "14", nome: "Sacos de Lixo"     ,        descricao: "desc"}
-      {id: "15", nome: "Vasos (Flores e Plantas)" , descricao: "desc"}
-    ]
+    chartConfig = ->
+      #This is where my data model will be stored.
+      #"visual" will contain the chart's datatable,
+      #"activateChart" flips to true once the data from server is ready
+      $scope.dataModel = {
+        visual: {}
+        metaData: {}
+        data: {}
+        options: {}
+      }
 
-    #This is where my data model will be stored.
-    #"visual" will contain the chart's datatable,
-    #"activateChart" flips to true once the data from server is ready
-    $scope.dataModel = {
-      visual: {}
-      metaData: {}
-      data: {}
-      options: {}
-    }
+    do chartConfig
 
     showChart = ->
       $scope.loader = false
@@ -54,11 +42,12 @@ angular.module 'aedes'
         do $('[ui-view="mensal"] select').material_select
       , 100
 
-    $scope.methods.showMensalChart = =>
+    $scope.methods.showMensalChart = (foco) =>
       #Update the model to activate the chart on the DOM
       #Note the use of $scope.$apply since we're in the
       #Google Loader callback.
       do hideChart
+      @attrs.focoId = foco
 
       ChartsService.getPrevencoesMensais(@attrs.fields).then(
         (response) ->
@@ -85,11 +74,12 @@ angular.module 'aedes'
           console.log 'FAIO'
       )
 
-    $scope.$on 'result:locale', (event, data) ->
-      @attrs.fields = _.pick EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado'
-      do @methods.showMensalChart
+    setEvents = =>
+      $scope.$on 'result:locale', (event, data) =>
+        @attrs.fields.endereco = _.pick EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado'
+        do @methods.showMensalChart
 
-
+    do setEvents
     do $scope.methods.showMensalChart
     do initMaterialSelect
 

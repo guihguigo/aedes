@@ -1,8 +1,8 @@
 angular.module 'aedes'
-  .controller 'ChartsController', ($scope, $timeout, $log, focos) ->
+  .controller 'ChartsController', ($scope, $timeout, $log, focos, prevencoesByFoco) ->
     'ngInject'
 
     vm = this
-
-    $log.debug focos
+    $scope.focos = focos.data
+    $scope.prevencoesByFoco = prevencoesByFoco.data
 

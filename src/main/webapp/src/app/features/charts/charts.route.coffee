@@ -16,8 +16,9 @@ angular.module 'aedes'
             controller : 'ChartsController'
             resolve:
               focos: (ChartsService) ->
-                # return ChartsService.getFocos()
-                return "lala"
+                ChartsService.getFocos()
+              prevencoesByFoco: (ChartsService) ->
+                ChartsService.getPrevencoesByFoco()
 
 
       .state 'infograficos.exibicao',

@@ -1,87 +1,30 @@
 (function() {
   angular.module('aedes').controller('ChartMensalController', function($scope, $timeout, moment, ChartsService, UtilsService, EnderecoService) {
     'ngInject';
-    var hideChart, initMaterialSelect, showChart, vm;
+    var chartConfig, hideChart, initMaterialSelect, ngAutocompleteConfig, setEvents, showChart, vm;
     vm = this;
     this.methods = $scope.methods = {};
     this.attrs = $scope.attrs = {};
-    this.attrs.estados = $scope.$parent.estados;
+    this.attrs.focos = $scope.$parent.focos;
     this.attrs.fields = {
       focoId: '1'
     };
-    $scope.localidade = '';
-    $scope.options = {
-      country: 'br'
+    ngAutocompleteConfig = function() {
+      $scope.localidade = '';
+      return $scope.options = {
+        country: 'br'
+      };
     };
-    this.attrs.focos = [
-      {
-        id: "1",
-        nome: "Bebedouros de Animais",
-        descricao: "desc"
-      }, {
-        id: "2",
-        nome: "Bromélias (Planta)",
-        descricao: "desc"
-      }, {
-        id: "3",
-        nome: "Caixa de Ar Condicionado",
-        descricao: "desc"
-      }, {
-        id: "4",
-        nome: "Caixa dágua",
-        descricao: "desc"
-      }, {
-        id: "5",
-        nome: "Calhas",
-        descricao: "desc"
-      }, {
-        id: "6",
-        nome: "Depressões de Terrenos",
-        descricao: "desc"
-      }, {
-        id: "7",
-        nome: "Garagens e Subsolos",
-        descricao: "desc"
-      }, {
-        id: "8",
-        nome: "Geladeiras",
-        descricao: "desc"
-      }, {
-        id: "9",
-        nome: "Piscinas",
-        descricao: "desc"
-      }, {
-        id: "10",
-        nome: "Pneus Velhos",
-        descricao: "desc"
-      }, {
-        id: "11",
-        nome: "Ralos",
-        descricao: "desc"
-      }, {
-        id: "12",
-        nome: "Recipientes de Água",
-        descricao: "desc"
-      }, {
-        id: "13",
-        nome: "Recipientes Descartáveis",
-        descricao: "desc"
-      }, {
-        id: "14",
-        nome: "Sacos de Lixo",
-        descricao: "desc"
-      }, {
-        id: "15",
-        nome: "Vasos (Flores e Plantas)",
-        descricao: "desc"
-      }
-    ];
-    $scope.dataModel = {
-      visual: {},
-      metaData: {},
-      data: {},
-      options: {}
+    ngAutocompleteConfig();
+    chartConfig = function() {
+      return $scope.dataModel = {
+        visual: {},
+        metaData: {},
+        data: {},
+        options: {}
+      };
     };
+    chartConfig();
     showChart = function() {
       return $scope.loader = false;
     };
@@ -94,8 +37,9 @@
       }, 100);
     };
     $scope.methods.showMensalChart = (function(_this) {
-      return function() {
+      return function(foco) {
         hideChart();
+        _this.attrs.focoId = foco;
         return ChartsService.getPrevencoesMensais(_this.attrs.fields).then(function(response) {
           var dataTable, mappedRows;
           mappedRows = UtilsService.objectToArray(response.data);
@@ -119,10 +63,15 @@
         });
       };
     })(this);
-    $scope.$on('result:locale', function(event, data) {
-      this.attrs.fields = _.pick(EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado');
-      return this.methods.showMensalChart();
-    });
+    setEvents = (function(_this) {
+      return function() {
+        return $scope.$on('result:locale', function(event, data) {
+          _this.attrs.fields.endereco = _.pick(EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado');
+          return _this.methods.showMensalChart();
+        });
+      };
+    })(this);
+    setEvents();
     $scope.methods.showMensalChart();
     initMaterialSelect();
   });

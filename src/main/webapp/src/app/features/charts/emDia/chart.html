@@ -8,8 +8,8 @@
     </thead>
 
     <tbody ng-if="!loader" >
-      <tr ng-repeat="(key, prevencao) in prevencoes">
-        <td><span class="index" ng-bind="key + 1"></span> {{prevencao.prevencao}}</td>
+      <tr ng-repeat="(key, prevencao) in prevencoes | orderBy:'-emDia'">
+        <td><span class="index" ng-bind="key + 1"></span> {{prevencao.descricao}}</td>
         <td><div class="center-align">% {{prevencao.emDia}}</div>
           <div class="progress center-align">
             <div class="determinate " style="width: {{prevencao.emDia}}%"></div>
