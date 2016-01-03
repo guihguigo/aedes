@@ -4,9 +4,14 @@ angular.module 'aedes'
     vm = this
 
     init = ->
-      $(".button-collapse").sideNav()
+      $timeout () ->
+        $(".button-collapse").sideNav {
+          menuWidth: 300
+          edge: 'left'
+          closeOnClick: false
+        }
+      , 1000
 
-    vm.appName = "Aedes"
     init()
 
     return

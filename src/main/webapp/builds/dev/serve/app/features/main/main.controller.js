@@ -1,21 +1,45 @@
 (function() {
-  angular.module('aedes').controller('MainController', function($timeout, webDevTec, toastr) {
+  angular.module('aedes').controller('MainController', function($timeout, $scope, appConfig) {
     'ngInject';
-    var init, vm;
+    var checkBrowser, init, isMobile, vm;
     vm = this;
     init = function() {
-      setTimeout(function() {
+      $timeout(function() {
         return $('.slider').slider({
           full_width: false
         });
       }, 100);
-      return $(".button-collapse").sideNav();
+      return checkBrowser();
     };
-    vm.appName = "Aedes";
-    vm.creationDate = 328938129081;
+    checkBrowser = function() {
+      if (isMobile.iOS()) {
+        return $scope.storeLink = "https://itunes.apple.com/br/app/temple-run-2/id572395608?mt=8";
+      } else {
+        return $scope.storeLink = "https://play.google.com/store/apps/details?id=com.facebook.katana";
+      }
+    };
+    isMobile = {
+      Android: function() {
+        return navigator.userAgent.match(/Android/i);
+      },
+      BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+      },
+      iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+      },
+      Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+      },
+      Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+      },
+      any: function() {
+        return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+      }
+    };
+    $scope.appName = appConfig.NAME;
     init();
   });
 
 }).call(this);
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZlYXR1cmVzL21haW4vbWFpbi5jb250cm9sbGVyLmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUFBLE9BQU8sQ0FBQyxNQUFSLENBQWUsT0FBZixDQUNFLENBQUMsVUFESCxDQUNjLGdCQURkLEVBQ2dDLFNBQUMsUUFBRCxFQUFXLFNBQVgsRUFBc0IsTUFBdEI7SUFDNUI7QUFBQSxRQUFBO0lBQ0EsRUFBQSxHQUFLO0lBRUwsSUFBQSxHQUFPLFNBQUE7TUFDTCxVQUFBLENBQVcsU0FBQTtlQUNULENBQUEsQ0FBRSxTQUFGLENBQVksQ0FBQyxNQUFiLENBQW9CO1VBQUMsVUFBQSxFQUFZLEtBQWI7U0FBcEI7TUFEUyxDQUFYLEVBRUUsR0FGRjthQUlBLENBQUEsQ0FBRSxrQkFBRixDQUFxQixDQUFDLE9BQXRCLENBQUE7SUFMSztJQU9QLEVBQUUsQ0FBQyxPQUFILEdBQWE7SUFDYixFQUFFLENBQUMsWUFBSCxHQUFrQjtJQUNsQixJQUFBLENBQUE7RUFiNEIsQ0FEaEM7QUFBQSIsImZpbGUiOiJmZWF0dXJlcy9tYWluL21haW4uY29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIvc291cmNlLyIsInNvdXJjZXNDb250ZW50IjpbImFuZ3VsYXIubW9kdWxlICdhZWRlcydcbiAgLmNvbnRyb2xsZXIgJ01haW5Db250cm9sbGVyJywgKCR0aW1lb3V0LCB3ZWJEZXZUZWMsIHRvYXN0cikgLT5cbiAgICAnbmdJbmplY3QnXG4gICAgdm0gPSB0aGlzXG5cbiAgICBpbml0ID0gLT5cbiAgICAgIHNldFRpbWVvdXQoKCktPlxuICAgICAgICAkKCcuc2xpZGVyJykuc2xpZGVyKHtmdWxsX3dpZHRoOiBmYWxzZX0pXG4gICAgICAsIDEwMClcblxuICAgICAgJChcIi5idXR0b24tY29sbGFwc2VcIikuc2lkZU5hdigpXG5cbiAgICB2bS5hcHBOYW1lID0gXCJBZWRlc1wiXG4gICAgdm0uY3JlYXRpb25EYXRlID0gMzI4OTM4MTI5MDgxXG4gICAgaW5pdCgpXG5cbiAgICByZXR1cm5cbiJdfQ==

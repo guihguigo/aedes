@@ -30,7 +30,7 @@
     <![endif]-->
 
     <div ui-view="header"></div>
-    <div ui-view></div>
+    <div ui-view="main"></div>
 
 
     <!-- build:js(src) scripts/vendor.js -->
@@ -63,11 +63,11 @@
     <!-- build:js({builds/dev/serve,dev/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.module.js"></script>
+    <script src="app/features/charts/atrasadas/chart.controller.js"></script>
     <script src="app/features/charts/regional/chart.filter.js"></script>
     <script src="app/features/charts/regional/chart.controller.js"></script>
     <script src="app/features/charts/mensal/chart.controller.js"></script>
     <script src="app/features/charts/emDia/chart.controller.js"></script>
-    <script src="app/features/charts/atrasadas/chart.controller.js"></script>
     <script src="app/features/main/main.controller.js"></script>
     <script src="app/features/header/header.controller.js"></script>
     <script src="app/features/charts/utils.service.js"></script>

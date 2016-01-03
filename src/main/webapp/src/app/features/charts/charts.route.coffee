@@ -3,14 +3,10 @@ angular.module 'aedes'
     'ngInject'
     $stateProvider
 
-      .state 'infograficos',
+      .state 'app.infograficos',
         url: '/infograficos'
         templateUrl: 'app/features/charts/charts.html'
         views:
-          "header":
-            templateUrl: 'app/features/header/header.html'
-            controller: 'HeaderController'
-            controllerAs: 'header'
           "":
             templateUrl: 'app/features/charts/charts.html'
             controller : 'ChartsController'
@@ -21,7 +17,7 @@ angular.module 'aedes'
                 ChartsService.getPrevencoesByFoco()
 
 
-      .state 'infograficos.exibicao',
+      .state 'app.infograficos.exibicao',
         url: '/exibicao'
         templateUrl: 'app/features/charts/charts.html'
         views:
@@ -42,4 +38,4 @@ angular.module 'aedes'
             controller: 'ChartAtrasadasController'
             controllerAs: 'atrasadasCtrl'
 
-    $urlRouterProvider.otherwise '/'
+    $urlRouterProvider.otherwise '/inicio'

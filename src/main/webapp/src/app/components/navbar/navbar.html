@@ -1,19 +1,22 @@
-  <nav style="box-shadow: none !important">
-    <div class="nav-wrapper blue darken-1">
+<!-- <nav style="box-shadow: none !important"> -->
+<nav>
+  <div class="nav-wrapper blue darken-1">
 
-      <a href="#" class="brand-logo" ng-bind="vm.appName"></a>
-      <a ng-if="vm.mobileFirst && vm.abas.length > 1" href="#" data-activates="mobile-demo" class="button-collapse">
-        <i class="material-icons">menu</i>
-      </a>
+    <a href="#" class="brand-logo" ng-bind="vm.appName"></a>
+    <ul class="right hide-on-med-and-down">
+      <li ng-repeat="aba in vm.abas" ng-class="{'active' : vm.checkActiveState(aba)}"><a ui-sref="{{aba.sref}}" ng-bind="aba.name"></a></li>
+    </ul>
 
-      <ul class="right hide-on-med-and-down">
-        <li ng-repeat="aba in vm.abas" ><a ui-sref="{{aba.sref}}" ng-bind="aba.name" ng-if="aba.showIf"></a></li>
-      </ul>
+    <!-- MOBILE NAVBAR ICON -->
+    <a ng-if="vm.mobileFirst" href="#" data-activates="mobile-menu" class="button-collapse">
+      <i class="material-icons">menu</i>
+    </a>
 
-      <ul ng-if="vm.mobileFirst && vm.abas.length > 1" class="side-nav" id="mobile-demo">
-        <li ng-repeat="aba in vm.abas" ><a ui-sref="{{aba.sref}}" ng-bind="aba.name" ng-if="aba.showIf"></a></li>
-      </ul>
-    </div>
-  </nav>
+    <!-- MOBILE NAVBAR ITENS -->
+    <ul ng-if="vm.mobileFirst" class="side-nav" id="mobile-menu">
+      <li ng-repeat="aba in vm.abas" ng-class="{'active' : vm.checkActiveState(aba)}"><a ui-sref="{{aba.sref}}" ng-bind="aba.name"></a></li>
+    </ul>
+  </div>
+</nav>
 
 

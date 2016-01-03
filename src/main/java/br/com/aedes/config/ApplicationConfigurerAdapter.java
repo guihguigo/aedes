@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -15,11 +16,15 @@ public class ApplicationConfigurerAdapter extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-		registry.addResourceHandler("index.html").addResourceLocations("builds/release/");
 		registry.addResourceHandler("styles/**").addResourceLocations("builds/release/styles/");
 		registry.addResourceHandler("scripts/**").addResourceLocations("builds/release/scripts/");
 		registry.addResourceHandler("assets/**").addResourceLocations("builds/release/assets/");
 		registry.addResourceHandler("images/**").addResourceLocations("builds/release/images/");
+	}
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+	    registry.addViewController("/").setViewName("forward:builds/release/index.html");
 	}
 
 	@Override

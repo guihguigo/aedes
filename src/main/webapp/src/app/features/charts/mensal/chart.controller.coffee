@@ -42,12 +42,11 @@ angular.module 'aedes'
         do $('[ui-view="mensal"] select').material_select
       , 100
 
-    $scope.methods.showMensalChart = (foco) =>
+    $scope.methods.showMensalChart = =>
       #Update the model to activate the chart on the DOM
       #Note the use of $scope.$apply since we're in the
       #Google Loader callback.
       do hideChart
-      @attrs.focoId = foco
 
       ChartsService.getPrevencoesMensais(@attrs.fields).then(
         (response) ->
@@ -65,10 +64,11 @@ angular.module 'aedes'
             'width': 600
             'height': 300
             chart:
-              title: "Percentual dos últimos #{mappedRows.length} meses"
+              title: if mappedRows.length > 1 then "Percentual dos últimos #{mappedRows.length} meses" else "Percentual do último mes"
               subtitle: "Em dia e atrasadas: #{moment().get('year')}"
 
           do showChart
+          do initMaterialSelect
 
         (error) ->
           console.log 'FAIO'

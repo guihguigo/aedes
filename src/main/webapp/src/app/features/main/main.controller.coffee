@@ -1,17 +1,39 @@
 angular.module 'aedes'
-  .controller 'MainController', ($timeout, webDevTec, toastr) ->
+  .controller 'MainController', ($timeout, $scope, appConfig) ->
     'ngInject'
     vm = this
 
     init = ->
-      setTimeout(()->
-        $('.slider').slider({full_width: false})
-      , 100)
+      $timeout () ->
+        $('.slider').slider {full_width: false}
+      , 100
 
-      $(".button-collapse").sideNav()
+      do checkBrowser
 
-    vm.appName = "Aedes"
-    vm.creationDate = 328938129081
-    init()
+    checkBrowser = ->
+      if isMobile.iOS()
+        $scope.storeLink = "https://itunes.apple.com/br/app/temple-run-2/id572395608?mt=8"
+      else
+        $scope.storeLink = "https://play.google.com/store/apps/details?id=com.facebook.katana"
+
+
+    isMobile = {
+      Android: ->
+        navigator.userAgent.match(/Android/i)
+      BlackBerry: ->
+        navigator.userAgent.match(/BlackBerry/i)
+      iOS: ->
+        navigator.userAgent.match(/iPhone|iPad|iPod/i)
+      Opera: ->
+        navigator.userAgent.match(/Opera Mini/i)
+      Windows: ->
+        navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i)
+      any: ->
+        (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows())
+    }
+
+    $scope.appName = appConfig.NAME
+
+    do init
 
     return
