@@ -7,16 +7,9 @@
   });
 
   runApp = function(angular) {
-    console.log('google charts is loaded, initializing aedes app.');
     return angular.module('aedes').run(function($log, $state, $rootScope) {
       'ngInject';
-      $log.debug('application started');
-      $rootScope.$on("$stateChangeError", function(event, toState, toParams) {
-        return $log.info("stateChangeError");
-      });
-      $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
-        return $log.info("stateChangeStart");
-      });
+      $log.debug('Aedes started');
       return $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
         $rootScope.activeState = toState.name;
         if (toState.name === 'app') {

@@ -5,19 +5,11 @@ google.load('visualization', '1', {
 })
 
 runApp = (angular) ->
-  console.log 'google charts is loaded, initializing aedes app.'
-
   angular.module 'aedes'
     .run ($log, $state, $rootScope) ->
       'ngInject'
 
-      $log.debug 'application started'
-
-      $rootScope.$on "$stateChangeError", (event, toState, toParams) ->
-        $log.info "stateChangeError"
-
-      $rootScope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams) ->
-        $log.info "stateChangeStart"
+      $log.debug 'Aedes started'
 
       $rootScope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams) ->
         $rootScope.activeState = toState.name

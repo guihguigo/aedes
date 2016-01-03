@@ -13,8 +13,6 @@ angular.module 'aedes'
           "main":
             templateUrl: 'app/app.html'
 
-
-
       .state 'app.inicio',
         url: '/inicio'
         views:
