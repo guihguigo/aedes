@@ -3,6 +3,8 @@ angular.module 'aedes'
     'ngInject'
 
     vm = this
+    Chart = null
+
     @methods = $scope.methods = {}
 
     #This is where my data model will be stored.
@@ -20,6 +22,9 @@ angular.module 'aedes'
 
     hideChart = ->
       $scope.loader = true
+
+    setChart = (chart) ->
+      Chart = chart
 
     $scope.methods.showRegiaoChart = ->
       #Update the model to activate the chart on the DOM
@@ -40,6 +45,7 @@ angular.module 'aedes'
           DataTable.addRows mappedRows
 
           $scope.dataModel.data = DataTable
+          $scope.dataModel.setChart = setChart
 
           $scope.dataModel.options =
             'width': 500

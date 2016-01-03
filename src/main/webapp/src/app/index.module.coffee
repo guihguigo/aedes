@@ -9,3 +9,4 @@ angular.module 'aedes', [
   'toastr',
   'ui.materialize',
   'ngAutocomplete']
+  # 'googlechart'

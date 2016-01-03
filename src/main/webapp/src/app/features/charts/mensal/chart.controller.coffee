@@ -3,6 +3,7 @@ angular.module 'aedes'
     'ngInject'
 
     vm = this
+    Chart = null
 
     @methods = $scope.methods = {}
     @attrs   = $scope.attrs   = {}
@@ -17,19 +18,6 @@ angular.module 'aedes'
         country: 'br'
 
     do ngAutocompleteConfig
-
-    chartConfig = ->
-      #This is where my data model will be stored.
-      #"visual" will contain the chart's datatable,
-      #"activateChart" flips to true once the data from server is ready
-      $scope.dataModel = {
-        visual: {}
-        metaData: {}
-        data: {}
-        options: {}
-      }
-
-    do chartConfig
 
     showChart = ->
       $scope.loader = false
@@ -52,20 +40,24 @@ angular.module 'aedes'
         (response) ->
           mappedRows = UtilsService.objectToArray response.data
 
+          _.each mappedRows, (row) ->
+            row[0] = UtilsService.getMonthPTBR row[0]
+
           dataTable = new google.visualization.DataTable()
           dataTable.addColumn 'string', 'Mês'
           dataTable.addColumn 'number', 'Em dia'
           dataTable.addColumn 'number', 'Atrasadas'
           dataTable.addRows mappedRows
 
-          $scope.dataModel.data = dataTable
-
-          $scope.dataModel.options =
-            'width': 600
-            'height': 300
+          options =
+            width: 650
+            height: 300
             chart:
-              title: if mappedRows.length > 1 then "Percentual dos últimos #{mappedRows.length} meses" else "Percentual do último mes"
+              title: if mappedRows.length > 1 then "Percentual dos últimos #{mappedRows.length} meses" else "Percentual do último mês"
               subtitle: "Em dia e atrasadas: #{moment().get('year')}"
+
+          chart = new google.charts.Bar document.getElementById('chartid')
+          chart.draw dataTable, google.charts.Bar.convertOptions(options)
 
           do showChart
           do initMaterialSelect

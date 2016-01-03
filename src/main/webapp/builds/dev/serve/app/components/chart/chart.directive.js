@@ -16,7 +16,8 @@
             chartType = $attr.googleChart;
             chartPackage = $attr.googlePackage;
             googleChart = new google[chartPackage][chartType](this.$el);
-            return googleChart.draw(dt, options);
+            googleChart.draw(dt, options);
+            return typeof model.setChart === "function" ? model.setChart(googleChart) : void 0;
           }
         };
         return $scope.$watch('dataModel.data', function(val) {

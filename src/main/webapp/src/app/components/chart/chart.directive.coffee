@@ -25,8 +25,8 @@ angular.module 'aedes'
               chartPackage = $attr.googlePackage
 
               googleChart = new google[chartPackage][chartType] @$el
-              googleChart.draw dt,options
-
+              googleChart.draw dt, options
+              model.setChart? googleChart
 
           # Watch the scope value placed on the trigger attribute
           # if it ever flips to true, activate the chart

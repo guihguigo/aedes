@@ -1,8 +1,9 @@
 (function() {
   angular.module('aedes').controller('ChartRegionalController', function($scope, ChartService, ChartsService, UtilsService) {
     'ngInject';
-    var hideChart, showChart, vm;
+    var Chart, hideChart, setChart, showChart, vm;
     vm = this;
+    Chart = null;
     this.methods = $scope.methods = {};
     $scope.dataModel = {
       visual: {},
@@ -16,6 +17,9 @@
     hideChart = function() {
       return $scope.loader = true;
     };
+    setChart = function(chart) {
+      return Chart = chart;
+    };
     $scope.methods.showRegiaoChart = function() {
       hideChart();
       return ChartsService.getPrevencoesRegionais().then(function(response) {
@@ -28,6 +32,7 @@
         DataTable.addColumn('number', 'Atrasadas');
         DataTable.addRows(mappedRows);
         $scope.dataModel.data = DataTable;
+        $scope.dataModel.setChart = setChart;
         $scope.dataModel.options = {
           'width': 500,
           'height': 300,

@@ -19,12 +19,14 @@
 
 
       <div class="row">
-        <div ng-if="!loader" class="col s12 m12">
-          <div google-chart="Bar" google-package="charts" ng-model="dataModel"></div>
+        <div ng-show="!loader" class="col s12 m12">
+          <!-- MATERIAL CHART -->
+          <!-- <div google-chart="Bar" google-package="charts" ng-model="dataModel"></div> -->
+          <div id="chartid"></div>
         </div>
       </div>
 
-      <div ng-if="loader" class="row" id="indiceMensalLoader">
+      <div ng-show="loader" class="row" id="indiceMensalLoader">
         <div class="col s6 offset-s5 ">
           <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue-only">

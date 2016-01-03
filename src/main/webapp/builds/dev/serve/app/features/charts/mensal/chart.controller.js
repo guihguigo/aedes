@@ -1,8 +1,9 @@
 (function() {
   angular.module('aedes').controller('ChartMensalController', function($scope, $timeout, moment, ChartsService, UtilsService, EnderecoService) {
     'ngInject';
-    var chartConfig, hideChart, initMaterialSelect, ngAutocompleteConfig, setEvents, showChart, vm;
+    var Chart, hideChart, initMaterialSelect, ngAutocompleteConfig, setEvents, showChart, vm;
     vm = this;
+    Chart = null;
     this.methods = $scope.methods = {};
     this.attrs = $scope.attrs = {};
     this.attrs.focos = $scope.$parent.focos;
@@ -16,15 +17,6 @@
       };
     };
     ngAutocompleteConfig();
-    chartConfig = function() {
-      return $scope.dataModel = {
-        visual: {},
-        metaData: {},
-        data: {},
-        options: {}
-      };
-    };
-    chartConfig();
     showChart = function() {
       return $scope.loader = false;
     };
@@ -40,22 +32,26 @@
       return function() {
         hideChart();
         return ChartsService.getPrevencoesMensais(_this.attrs.fields).then(function(response) {
-          var dataTable, mappedRows;
+          var chart, dataTable, mappedRows, options;
           mappedRows = UtilsService.objectToArray(response.data);
+          _.each(mappedRows, function(row) {
+            return row[0] = UtilsService.getMonthPTBR(row[0]);
+          });
           dataTable = new google.visualization.DataTable();
           dataTable.addColumn('string', 'Mês');
           dataTable.addColumn('number', 'Em dia');
           dataTable.addColumn('number', 'Atrasadas');
           dataTable.addRows(mappedRows);
-          $scope.dataModel.data = dataTable;
-          $scope.dataModel.options = {
-            'width': 600,
-            'height': 300,
+          options = {
+            width: 650,
+            height: 300,
             chart: {
-              title: mappedRows.length > 1 ? "Percentual dos últimos " + mappedRows.length + " meses" : "Percentual do último mes",
+              title: mappedRows.length > 1 ? "Percentual dos últimos " + mappedRows.length + " meses" : "Percentual do último mês",
               subtitle: "Em dia e atrasadas: " + (moment().get('year'))
             }
           };
+          chart = new google.charts.Bar(document.getElementById('chartid'));
+          chart.draw(dataTable, google.charts.Bar.convertOptions(options));
           showChart();
           return initMaterialSelect();
         }, function(error) {
