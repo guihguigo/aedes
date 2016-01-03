@@ -1,5 +1,5 @@
 (function() {
-  angular.module('aedes').controller('ChartEmDiaController', function($timeout, $scope, webDevTec, toastr) {
+  angular.module('aedes').controller('ChartEmDiaController', function($timeout, $scope, toastr) {
     'ngInject';
     var hideLoader, init, showLoader, vm;
     vm = this;

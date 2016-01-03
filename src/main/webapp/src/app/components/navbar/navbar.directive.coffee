@@ -11,6 +11,7 @@ angular.module 'aedes'
       vm.abas = [
         {sref: 'app.inicio',                name: 'Início',                  showIf: $state.current.name != 'app.inicio'}
         {sref: 'app.infograficos.exibicao', name: 'Consultar infográficos?', showIf: $state.current.name != 'app.infograficos.exibicao'}
+        # {sref: 'app.contribuidores',        name: 'Contribuidores',          showIf: $state.current.name != 'app.contribuidores'}
       ]
 
       vm.checkActiveState = (aba) ->

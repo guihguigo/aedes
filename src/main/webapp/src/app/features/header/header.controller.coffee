@@ -1,5 +1,5 @@
 angular.module 'aedes'
-  .controller 'HeaderController', ($timeout, webDevTec, toastr) ->
+  .controller 'HeaderController', ($timeout, toastr) ->
     'ngInject'
     vm = this
 
@@ -8,7 +8,7 @@ angular.module 'aedes'
         $(".button-collapse").sideNav {
           menuWidth: 300
           edge: 'left'
-          closeOnClick: false
+          closeOnClick: true
         }
       , 1000
 

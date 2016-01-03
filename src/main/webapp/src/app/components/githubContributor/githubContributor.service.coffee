@@ -1,7 +1,8 @@
 angular.module 'aedes'
   .factory 'githubContributor', ($log, $http) ->
     'ngInject'
-    apiHost = 'https://api.github.com/repos/Swiip/generator-gulp-angular'
+
+    apiHost = 'https://api.github.com/repos/guihguigo/aedes'
 
     getContributors = (limit=30) ->
 

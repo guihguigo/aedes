@@ -1,5 +1,5 @@
 angular.module 'aedes'
-  .controller 'ChartEmDiaController', ($timeout, $scope, webDevTec, toastr) ->
+  .controller 'ChartEmDiaController', ($timeout, $scope, toastr) ->
     'ngInject'
     vm = this
 

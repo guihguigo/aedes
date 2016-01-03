@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="col s12 m4 offset-m2 l2 offset-l3" ng-repeat="ct in contribuitors">
+    <div class="card-panel grey lighten-5 z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col s2">
+          <img ng-src="{{ct.avatar_url}}" alt="{{ct.url}}" class="circle responsive-img"> <!-- notice the "circle" class -->
+        </div>
+        <div class="col s10">
+          <span class="black-text" ng-bind="ct.login">
+
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

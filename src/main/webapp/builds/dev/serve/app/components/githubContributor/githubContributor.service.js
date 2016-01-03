@@ -2,7 +2,7 @@
   angular.module('aedes').factory('githubContributor', function($log, $http) {
     'ngInject';
     var apiHost, getContributors, service;
-    apiHost = 'https://api.github.com/repos/Swiip/generator-gulp-angular';
+    apiHost = 'https://api.github.com/repos/guihguigo/aedes';
     getContributors = function(limit) {
       var getContributorsComplete, getContributorsFailed;
       if (limit == null) {
