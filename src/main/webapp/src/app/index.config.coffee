@@ -1,6 +1,7 @@
 angular.module 'aedes'
 .config ($logProvider, $provide, toastrConfig) ->
   'ngInject'
+
   # Enable log
   $logProvider.debugEnabled true
 

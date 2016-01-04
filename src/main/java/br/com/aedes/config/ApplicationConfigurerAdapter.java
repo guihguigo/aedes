@@ -20,6 +20,7 @@ public class ApplicationConfigurerAdapter extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("scripts/**").addResourceLocations("builds/release/scripts/");
 		registry.addResourceHandler("assets/**").addResourceLocations("builds/release/assets/");
 		registry.addResourceHandler("images/**").addResourceLocations("builds/release/images/");
+		registry.addResourceHandler("font/**").addResourceLocations("builds/release/font/");
 	}
 	
 	@Override
