@@ -1,0 +1,11 @@
+core:
+  image: java:8
+  ports:
+  - "8080:8080"
+  volumes:
+  - ./target/aedes.jar:/opt/aedes.jar
+
+  command: java -jar /opt/aedes.jar
+
+  environment:
+    AEDES_CONFIG_PATH: classpath:/application.properties
