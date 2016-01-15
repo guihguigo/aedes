@@ -12,12 +12,8 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
-/**
- * @author GSuaki
- *
- */
 @PropertySources({
-    @PropertySource("application.properties"),
+    @PropertySource("classpath:application.properties"),
     @PropertySource(value = "${AEDES_CONFIG_PATH}", ignoreResourceNotFound = true)
 })
 @SpringBootApplication

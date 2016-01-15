@@ -7,21 +7,14 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import br.com.aedes.Application;
+import br.com.aedes.ApplicationTest;
 import br.com.aedes.compose.Compose;
 import br.com.aedes.domain.entity.Foco;
 import br.com.aedes.domain.entity.Prevencao;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@SpringApplicationConfiguration(classes = Application.class)
-public class PercentualPrevencaoTest {
+public class PercentualPrevencaoTest extends ApplicationTest {
 
 	@Test
 	public void testConverterPercentualPorMes$percentualQuebrado() {

@@ -12,8 +12,13 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = ApplicationServlet.class)
 public abstract class ApplicationTest {
+	
+	static {
+        System.setProperty("AEDES_CONFIG_PATH", "classpath:application.properties");
+    }
+	
 	protected MockMvc mockMvc;
 	
 	@Autowired

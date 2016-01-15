@@ -9,20 +9,13 @@ import java.util.Map;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import br.com.aedes.Application;
+import br.com.aedes.ApplicationTest;
 import br.com.aedes.domain.entity.Prevencao;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@SpringApplicationConfiguration(classes = Application.class)
-public class AgrupadorPorMesTest {
+public class AgrupadorPorMesTest extends ApplicationTest {
 	
 	@Autowired
 	@Qualifier("agrupadorPorMes")
