@@ -18,7 +18,6 @@ dependencies:
     - ~/docker
   override:
     - mkdir -p ~/docker
-    # - if [[ ! -e ~/docker/holmes_base.tar ]]; then docker pull "holmes/mysql:5.6.21" && docker save "holmes/mysql:5.6.21" > ~/docker/holmes_base.tar; else docker load -i ~/docker/holmes_base.tar; fi
     - if [[ ! -e ~/docker/tomcat_base.tar ]]; then docker pull "java:8" && docker save "java:8" > ~/docker/tomcat_base.tar; else docker load -i ~/docker/tomcat_base.tar; fi
     - npm install -g bower
     - npm install -g gulp
@@ -33,9 +32,9 @@ test:
     #java
     - mvn versions:set -DnewVersion=$NUM_VERSION versions:commit
     - mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install -U
-    #- cp target/aedes.jar $CIRCLE_ARTIFACTS/aedes.jar
-    #- rm -f docker_tomcat/aedes.jar
-    #- cp target/aedes.jar docker_tomcat/aedes.jar
+    - cp target/aedes.jar $CIRCLE_ARTIFACTS/aedes.jar
+    - rm -f docker_tomcat/aedes.jar
+    - cp target/aedes.jar docker_tomcat/aedes.jar
 deployment:
   deploy:
     branch: deploy
