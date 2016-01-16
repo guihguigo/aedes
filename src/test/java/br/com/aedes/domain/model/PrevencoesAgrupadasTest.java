@@ -2,6 +2,7 @@ package br.com.aedes.domain.model;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import br.com.aedes.ApplicationTest;
@@ -23,6 +24,7 @@ public class PrevencoesAgrupadasTest extends ApplicationTest {
 		Mockito.when(prevencao.getId()).thenReturn(prevencaoId);
 	}
 	
+	@Test
 	public void test() {
 		Assert.assertTrue(true);
 	}
