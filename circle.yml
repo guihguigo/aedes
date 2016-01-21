@@ -35,6 +35,6 @@ test:
     - cp ./target/aedes.jar docker_tomcat/aedes.jar
 deployment:
   deploy:
-    branch: deploy
+    branch: master
     commands:
         - ./publicacao-deploy.sh
