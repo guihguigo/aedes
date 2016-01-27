@@ -1,7 +1,6 @@
 #!/bin/bash
 docker build -t aedes/aedes-producao:$BUILD_TAG docker_tomcat
-#docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-docker login -e guilherme.alves.vargas@gmail.com -u guihguigo -p partytime
+docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
 docker push aedes/aedes-producao:$BUILD_TAG
 # curl -X POST "http://187.33.39.86/hook/execute?token=teste&hook=aedes-producao&param=$BUILD_TAG"
 
