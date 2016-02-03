@@ -12,21 +12,18 @@ import br.com.aedes.dto.EnderecoDTO;
 
 public class PrevencaoSpecifications {
 	public static Specification<Prevencao> comEndereco(EnderecoDTO endereco) {
-		return new Specification<Prevencao>() {
-
-			@Override
-			public Predicate toPredicate(Root<Prevencao> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				if (endereco.getBairro() != null)
-					query.where(cb.equal(root.get("endereco").get("bairro"), endereco.getBairro()));
-
-				if (endereco.getCidade() != null)
-					query.where(cb.equal(root.get("endereco").get("cidade"), endereco.getCidade()));
-
-				if (endereco.getEstado() != null)
-					query.where(cb.equal(root.get("endereco").get("estado"), endereco.getEstado()));
-
-				return query.getGroupRestriction();
+		return (root, query, cb) -> {
+			
+			if (endereco.getBairro() != null) {
+				query.where(cb.and(cb.equal(root.get("endereco").get("bairro"), endereco.getBairro())));
 			}
+			if (endereco.getCidade() != null)
+				query.where(cb.and(cb.equal(root.get("endereco").get("cidade"), endereco.getCidade())));
+			
+			if (endereco.getEstado() != null) {
+				query.where(cb.and(cb.equal(root.get("endereco").get("estado"), endereco.getEstado())));
+			}
+			return query.getRestriction();
 		};
 	}
 
@@ -37,7 +34,7 @@ public class PrevencaoSpecifications {
 				if (codigoFoco != null) 
 					query.where(cb.equal(root.get("id").get("foco").get("codigo"), codigoFoco));
 				
-				return query.getGroupRestriction();
+				return query.getRestriction();
 			}
 		};
 	}
