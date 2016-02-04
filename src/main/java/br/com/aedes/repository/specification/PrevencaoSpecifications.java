@@ -1,5 +1,8 @@
 package br.com.aedes.repository.specification;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -13,17 +16,21 @@ import br.com.aedes.dto.EnderecoDTO;
 public class PrevencaoSpecifications {
 	public static Specification<Prevencao> comEndereco(EnderecoDTO endereco) {
 		return (root, query, cb) -> {
+			List<Predicate> predicates = new ArrayList<>();
 			
 			if (endereco.getBairro() != null) {
-				query.where(cb.and(cb.equal(root.get("endereco").get("bairro"), endereco.getBairro())));
+				predicates.add(cb.equal(root.get("endereco").get("bairro"), endereco.getBairro()));
 			}
-			if (endereco.getCidade() != null)
-				query.where(cb.and(cb.equal(root.get("endereco").get("cidade"), endereco.getCidade())));
+			
+			if (endereco.getCidade() != null) {
+				predicates.add(cb.equal(root.get("endereco").get("cidade"), endereco.getCidade()));
+			}
 			
 			if (endereco.getEstado() != null) {
-				query.where(cb.and(cb.equal(root.get("endereco").get("estado"), endereco.getEstado())));
+				predicates.add(cb.equal(root.get("endereco").get("estado"), endereco.getEstado()));
 			}
-			return query.getRestriction();
+			
+			return andTogether(predicates, cb);
 		};
 	}
 
@@ -31,11 +38,18 @@ public class PrevencaoSpecifications {
 		return new Specification<Prevencao>() {
 			@Override
 			public Predicate toPredicate(Root<Prevencao> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				if (codigoFoco != null) 
-					query.where(cb.equal(root.get("id").get("foco").get("codigo"), codigoFoco));
+				List<Predicate> predicates = new ArrayList<>();
 				
-				return query.getRestriction();
+				if (codigoFoco != null) { 
+					predicates.add(cb.equal(root.get("id").get("foco").get("codigo"), codigoFoco));
+				}
+				
+				return andTogether(predicates, cb);
 			}
 		};
+	}
+	
+	private static Predicate andTogether(List<Predicate> predicates, CriteriaBuilder cb) {
+		return cb.and(predicates.toArray(new Predicate[0]));
 	}
 }

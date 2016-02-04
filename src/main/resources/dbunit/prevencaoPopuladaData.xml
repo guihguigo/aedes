@@ -50,7 +50,7 @@
 	<endereco id="1" bairro="Jardim Quietude" cidade="Praia Grande"
 	estado="São Paulo" />
 	
-	<endereco id="2" bairro="Jardim Quietude" cidade="Rio de Janeiro"
+	<endereco id="2" bairro="Leblon" cidade="Rio de Janeiro"
 		estado="Rio de Janeiro" />
 		
 	<endereco id="3" bairro="Jardim Quietude" cidade="Salvador"
@@ -67,11 +67,17 @@
 		
 	<endereco id="7" bairro="Jardim Quietude" cidade="Fortaleza"
 		estado="Ceará" />
+	
+	<endereco id="8" bairro="Ocian" cidade="Praia Grande"
+	estado="São Paulo" />	
+	
+	<endereco id="9" bairro="Ocian" cidade="Petrópolis"
+	estado="Rio de Janeiro" />
 			
 	<prevencao codigo_celular="1234" foco_codigo="1"
 		data_criacao="2015-01-12 11:33:23" data_prazo="2015-01-15" data_efetuada="2015-01-13" endereco_id="7"/>
 	<prevencao codigo_celular="12345" foco_codigo="1"
-		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" endereco_id="1"/>
+		data_criacao="2015-01-12" data_prazo="2015-02-15" data_efetuada="2015-01-13" endereco_id="8"/>
 	<prevencao codigo_celular="123456" foco_codigo="1"
 		data_criacao="2015-01-12" data_prazo="2015-01-15" data_efetuada="2015-01-13" endereco_id="1"/>
 
@@ -97,9 +103,9 @@
 		data_criacao="2015-04-15" data_prazo="2015-04-15" data_efetuada="2015-01-13" endereco_id="2"/>
 
 	<prevencao codigo_celular="1234" foco_codigo="4"
-		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="3"/>
+		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="9"/>
 	<prevencao codigo_celular="12345" foco_codigo="2"
-		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="3"/>
+		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="9"/>
 	<prevencao codigo_celular="123456" foco_codigo="2"
 		data_criacao="2015-05-15" data_prazo="2015-05-15" data_efetuada="2015-01-13" endereco_id="3"/>
 
