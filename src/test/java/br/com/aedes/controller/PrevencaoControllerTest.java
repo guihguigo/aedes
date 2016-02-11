@@ -51,16 +51,93 @@ public class PrevencaoControllerTest extends ApplicationTest{
 	@Test
 	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
 	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
-	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto() throws Exception {
+	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto_Cidade() throws Exception {
 		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
 				.param("codigoFoco", "1")
 				.param("cidade", "Praia Grande");
 
 		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(2))
+				.assertThat("$.[*].chave", Matchers.contains("0", "1"))
+		    .assertThat("$.[*].descricao", Matchers.contains("Janeiro", "Fevereiro"));
+	}
+	
+	@Test
+	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
+	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
+	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto_EstadoECidade() throws Exception {
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
+				.param("estado", "Rio de Janeiro")
+				.param("cidade", "Rio de Janeiro");
+
+		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(2))
+				.assertThat("$.[*].chave", Matchers.contains("2", "3"))
+		    .assertThat("$.[*].descricao", Matchers.contains("Março", "Abril"));
+	}
+	
+	@Test
+	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
+	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
+	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto_EstadoECidadeEFoco() throws Exception {
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
+				.param("codigoFoco", "3")
+				.param("estado", "Rio de Janeiro")
+				.param("cidade", "Rio de Janeiro");
+
+		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
 		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(1))
-				.assertThat("$.[0].chave", Matchers.is("0"))
-		    .assertThat("$.[0].descricao", Matchers.is("Janeiro"));
+				.assertThat("$.[*].chave", Matchers.contains("2"))
+		    .assertThat("$.[*].descricao", Matchers.contains("Março"));
+	}
+	
+	@Test
+	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
+	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
+	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto_EstadoECidadeEBairro() throws Exception {
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
+				.param("estado", "Rio de Janeiro")
+				.param("cidade", "Rio de Janeiro")
+				.param("bairro", "Leblon");
+
+		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(2))
+				.assertThat("$.[*].chave", Matchers.contains("2", "3"))
+		    .assertThat("$.[*].descricao", Matchers.contains("Março", "Abril"));
+	}
+	
+	@Test
+	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
+	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
+	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto_Estado() throws Exception {
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
+				.param("estado", "Rio de Janeiro");
+				
+
+		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(3))
+				.assertThat("$.[*].chave", Matchers.contains("2", "3", "4"))
+		    .assertThat("$.[*].descricao", Matchers.contains("Março", "Abril", "Maio"));
+	}
+	
+	@Test
+	@DatabaseSetup("classpath:/dbunit/prevencaoPopuladaData.xml")
+	@DatabaseTearDown("classpath:/dbunit/prevencaoVazioData.xml")
+	public void listaTodasPrevencoesPorMesEFiltraPorEnderecoImcompleto_Foco() throws Exception {
+		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(PREVENCOES + POR_MES)
+				.param("codigoFoco", "3");
+				
+
+		MvcResult andReturn = this.mockMvc.perform(get).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(1))
+				.assertThat("$.[*].chave", Matchers.contains("2"))
+		    .assertThat("$.[*].descricao", Matchers.contains("Março"));
 	}
 
 	@Test
@@ -117,9 +194,9 @@ public class PrevencaoControllerTest extends ApplicationTest{
 				.isOk())
 				.andReturn();
 		
-		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(7));
+		jsonAserter(andReturn).assertThat("$", Matchers.hasSize(8));
 		jsonAserter(andReturn).assertThat("$.[*].chave", 
-				Matchers.containsInAnyOrder("Fortaleza", "Praia Grande", "Rio de Janeiro", "Salvador", "Belo Horizonte", "Recife", "Goiania"));
+				Matchers.containsInAnyOrder("Fortaleza", "Praia Grande", "Rio de Janeiro", "Salvador", "Belo Horizonte", "Recife", "Goiania", "Petrópolis"));
 	}
 	
 	@Test

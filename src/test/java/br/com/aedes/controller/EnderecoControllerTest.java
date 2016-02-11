@@ -60,13 +60,12 @@ public class EnderecoControllerTest extends ApplicationTest {
 	public void listarBairros() throws Exception {
 		MockHttpServletRequestBuilder get = MockMvcRequestBuilders.get(ENDERECOS + BAIRROS)
 				.param("estado", "São Paulo")
-				.param("cidade", "Praia Grande")
-				.param("bairro", "jardim");
+				.param("cidade", "Praia Grande");
 		
 		MvcResult andReturn = this.mockMvc.perform(get)
 				.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 		
-		this.jsonAserter(andReturn).assertThat("$", Matchers.hasSize(1));
+		this.jsonAserter(andReturn).assertThat("$", Matchers.hasSize(2));
 	}
 	
 	public JsonAsserter jsonAserter(MvcResult result) throws UnsupportedEncodingException {
