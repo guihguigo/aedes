@@ -1,6 +1,5 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.SincronizacaoURL.DELETAR;
 import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
 
 import java.util.Date;
@@ -28,7 +27,6 @@ import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 import br.com.aedes.ApplicationTest;
 import br.com.aedes.compose.Compose;
-import br.com.aedes.constante.PrevencaoURL;
 import br.com.aedes.constante.SincronizacaoURL;
 import br.com.aedes.domain.entity.Foco;
 import br.com.aedes.domain.entity.Prevencao;

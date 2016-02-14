@@ -1,16 +1,12 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.SincronizacaoURL.DELETAR;
 import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
-
-import java.util.Date;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
