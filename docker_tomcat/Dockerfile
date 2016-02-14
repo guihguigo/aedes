@@ -1,9 +1,9 @@
-FROM java:8
+FROM redspark/oracle-jdk:1.8
 
-ADD aedes.properties /config/aedes.properties
+COPY aedes.properties /config/aedes.properties
 ADD aedes.jar /opt/aedes.jar
-ENV AEDES_CONFIG_PATH file:/home2/app-configs/aedes.properties
+ENV AEDES_CONFIG_PATH="file:/app-config/aedes-prod.properties"
 
 EXPOSE 8080
 
-CMD java -Xms256M -Xmx512M -Duser.timezone=America/Sao_Paulo -jar /opt/aedes.jar
+CMD java -Xms256M -Xmx512M -Dspring.profiles.active=PRODUCAO -Duser.timezone=America/Sao_Paulo -jar /opt/aedes.jar
