@@ -1,7 +1,7 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
 import static br.com.aedes.constante.SincronizacaoURL.DELETAR;
+import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
 
 import java.util.Date;
 
