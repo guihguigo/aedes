@@ -16,16 +16,20 @@ public class ApplicationConfigurerAdapter extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-		registry.addResourceHandler("styles/**").addResourceLocations("builds/release/styles/");
-		registry.addResourceHandler("scripts/**").addResourceLocations("builds/release/scripts/");
-		registry.addResourceHandler("assets/**").addResourceLocations("builds/release/assets/");
-		registry.addResourceHandler("images/**").addResourceLocations("builds/release/images/");
-		registry.addResourceHandler("font/**").addResourceLocations("builds/release/font/");
+		registry.addResourceHandler("styles/**").addResourceLocations("builds/release/styles/").setCachePeriod(0);
+		registry.addResourceHandler("scripts/**").addResourceLocations("builds/release/scripts/").setCachePeriod(0);
+		registry.addResourceHandler("assets/**").addResourceLocations("builds/release/assets/").setCachePeriod(0);
+		registry.addResourceHandler("images/**").addResourceLocations("builds/release/images/").setCachePeriod(0);
+		registry.addResourceHandler("font/**").addResourceLocations("builds/release/font/").setCachePeriod(0);
+
+		super.addResourceHandlers(registry);
 	}
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 	    registry.addViewController("/").setViewName("forward:builds/release/index.html");
+	    
+	    super.addViewControllers(registry);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-docker rm -f aedes-prod && docker run -d -p 8095:8080 --name aedes-prod -v /app-config:/app-config -e JAVA_OPTS="-Dspring.profiles.active=PRODUCAO -Duser.timezone=America/Sao_Paulo" guihguigo/aedes:master-1.0.38 && docker logs -f aedes-prod
+docker rm -f aedes-prod && docker run -d -p 8080:8080 --name aedes-prod -v /app-config:/app-config -e JAVA_OPTS="-Dspring.profiles.active=PRODUCAO -Duser.timezone=America/Sao_Paulo" guihguigo/aedes:master-1.0.39 && docker logs -f aedes-prod
 
 Dockerfile oracle-jdk:1.8
 
