@@ -18,7 +18,7 @@ dependencies:
     - ~/docker
   override:
     - mkdir -p ~/docker
-    - if [[ ! -e ~/docker/tomcat_base.tar ]]; then docker pull "java:8" && docker save "java:8" > ~/docker/tomcat_base.tar; else docker load -i ~/docker/tomcat_base.tar; fi
+    - if [[ ! -e ~/docker/tomcat_base.tar ]]; then docker pull "openjdk-8-jre" && docker save "openjdk-8-jre" > ~/docker/tomcat_base.tar; else docker load -i ~/docker/tomcat_base.tar; fi
     - npm install -g bower
     - npm install -g gulp
     - cd src/main/webapp && npm install

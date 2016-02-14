@@ -78,13 +78,13 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-version}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${mysql-version}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>${h2db-version}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${h2db-version}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
 		<dependency>
@@ -96,7 +96,7 @@
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
-			<version>${json-path}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${json-path}</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
 		<dependency>
@@ -134,8 +134,36 @@
 			<url>http://repo.spring.io/milestone</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version><!--$NO-MVN-MAN-VER$-->
+				<configuration>
+					<useProjectReferences>false</useProjectReferences>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+		</plugins>
+		
 	</build>
 </project>
