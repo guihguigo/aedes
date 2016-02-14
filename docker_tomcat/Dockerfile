@@ -1,9 +1,10 @@
-FROM redspark/oracle-jdk:1.8
+FROM tomcat:8.0.30-jre8
 
-COPY aedes.properties /config/aedes.properties
-ADD aedes.jar /opt/aedes.jar
-ENV SPRING_CONFIG_NAME file:/app-config/aedes-prod.properties
+ADD aedes.properties /usr/share/config/
+ADD settings.xml /usr/local/tomcat/conf/
+ADD tomcat-users.xml /usr/local/tomcat/conf/
+ADD aedes.war /usr/local/tomcat/webapps/aedes.war
+ENV JAVA_OPTS="-Dspring.profiles.active=PRODUCAO -Duser.timezone=America/Sao_Paulo"
+ENV SPRING_CONFIG_PATH file:/app-config/aedes-prod.properties
 
-EXPOSE 8080
-
-CMD java -Xms256M -Xmx512M -Dspring.profiles.active=PRODUCAO -Duser.timezone=America/Sao_Paulo -jar /opt/aedes.jar --spring.config.location=classpath:producao.properties 
+ENTRYPOINT ["catalina.sh", "run"]
