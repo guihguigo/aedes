@@ -32,7 +32,7 @@ test:
     #java
     - mvn versions:set -DnewVersion=$NUM_VERSION versions:commit
     - mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install -U
-    - cp ./target/aedes.jar docker_tomcat/aedes.jar
+    - cp ./target/aedes.war docker_tomcat/aedes.war
 deployment:
   deploy:
     branch: master
