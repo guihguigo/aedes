@@ -14,8 +14,8 @@ import org.springframework.core.annotation.Order;
  *
  */
 @SpringBootApplication
-@EnableAutoConfiguration
 @EnableConfigurationProperties
+@EnableAutoConfiguration
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class Application extends SpringBootServletInitializer {
 
