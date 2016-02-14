@@ -1,8 +1,8 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.EnderecoURL.ENDERECOS;
 import static br.com.aedes.constante.EnderecoURL.BAIRROS;
 import static br.com.aedes.constante.EnderecoURL.CIDADES;
+import static br.com.aedes.constante.EnderecoURL.ENDERECOS;
 import static br.com.aedes.constante.EnderecoURL.ESTADOS;
 
 import java.io.UnsupportedEncodingException;

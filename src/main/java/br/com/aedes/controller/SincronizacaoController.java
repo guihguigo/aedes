@@ -8,10 +8,9 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +22,7 @@ import br.com.aedes.domain.entity.Foco;
 import br.com.aedes.domain.entity.Prevencao;
 import br.com.aedes.dto.FocoDTO;
 import br.com.aedes.dto.PrevencaoDTO;
+import br.com.aedes.dto.PrevencaoIdDTO;
 import br.com.aedes.repository.PrevencaoRepository;
 
 @RestController
@@ -31,6 +31,16 @@ public class SincronizacaoController {
 	@Autowired
 	private PrevencaoRepository repository;
 
+	/**
+	 * Define configurações para serialização de datas
+	 * 
+	 * @param binder
+	 */
+//	@InitBinder
+//	public void initBinder(final WebDataBinder binder) {
+//		binder.registerCustomEditor(LocalDateTime.class, new LocalDateTimePropertyEditor("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+//	}
+	
 	@Transactional
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED, reason = "Prevenção foi sincronizada com sucesso")
@@ -39,10 +49,10 @@ public class SincronizacaoController {
 	}
 
 	@Transactional
-	@RequestMapping(value = DELETAR, method = RequestMethod.DELETE)
-	public void deletar(@PathVariable String codigoCelular, @PathVariable Integer codigoFoco,
-	    @PathVariable  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date dataCriacao) {
-		this.repository.deleteByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(codigoCelular, codigoFoco, dataCriacao);
+//	@RequestMapping(value = DELETAR, method = RequestMethod.DELETE)
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deletar(@RequestBody @Valid PrevencaoIdDTO id) {
+		this.repository.deleteByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(id.getCodigoCelular(), id.getCodigoFoco(), id.getDataCriacao());
 	}
 
 	private Prevencao toEntity(PrevencaoDTO dto) {

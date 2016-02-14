@@ -1,7 +1,7 @@
 package br.com.aedes.controller;
 
-import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
 import static br.com.aedes.constante.SincronizacaoURL.DELETAR;
+import static br.com.aedes.constante.SincronizacaoURL.SINCRONIZACAO;
 
 import java.util.Date;
 import java.util.List;
@@ -28,12 +28,14 @@ import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 import br.com.aedes.ApplicationTest;
 import br.com.aedes.compose.Compose;
+import br.com.aedes.constante.PrevencaoURL;
 import br.com.aedes.constante.SincronizacaoURL;
 import br.com.aedes.domain.entity.Foco;
 import br.com.aedes.domain.entity.Prevencao;
 import br.com.aedes.dto.EnderecoDTO;
 import br.com.aedes.dto.FocoDTO;
 import br.com.aedes.dto.PrevencaoDTO;
+import br.com.aedes.dto.PrevencaoIdDTO;
 import br.com.aedes.repository.FocoRepository;
 import br.com.aedes.repository.PrevencaoRepository;
 
@@ -94,10 +96,21 @@ public class SincronizacaoControllerTest extends ApplicationTest{
 		List<Prevencao> prevencoes = this.prevencaoRepository.findAll();
 		Prevencao prevencao = prevencoes.get(0);
 		
-		MockHttpServletRequestBuilder delete = MockMvcRequestBuilders.delete(SINCRONIZACAO + DELETAR, 
-				prevencao.getId().getCodigoCelular(),
-				prevencao.getId().getFoco().getCodigo(), 
-				prevencao.getId().getDataCriacao());
+//		DateTimeZone dtz = DateTimeZone.getDefault();// Gets the default time zone.
+//		LocalDateTime dataCriacao = new LocalDateTime(prevencao.getId().getDataCriacao());
+		
+		PrevencaoIdDTO id = PrevencaoIdDTO.builder()
+				.codigoCelular(prevencao.getId().getCodigoCelular())
+				.codigoFoco(prevencao.getId().getFoco().getCodigo())
+				.dataCriacao(prevencao.getId().getDataCriacao())
+				.build();
+	
+		MockHttpServletRequestBuilder delete = MockMvcRequestBuilders.delete(SINCRONIZACAO)
+				.contentType(MediaType.APPLICATION_JSON)
+		    .content(new ObjectMapper().writeValueAsBytes(id));
+//				id.getCodigoCelular(),
+//				id.getCodigoFoco(), 
+//				id.getDataCriacao());
 		
 		this.mockMvc.perform(delete)
 		.andExpect(MockMvcResultMatchers.status().isOk());
