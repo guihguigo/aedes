@@ -15,7 +15,7 @@ import org.springframework.core.annotation.Order;
  * @author GSuaki
  *
  */
-@PropertySource(value = { "${AEDES_CONFIG_PATH}", "classpath:/producao.properties" }, ignoreResourceNotFound = true)
+@PropertySource(value = { "classpath:/application.properties", "${AEDES_CONFIG_LOCATION}" }, ignoreResourceNotFound = true)
 @SpringBootApplication
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ApplicationInitializer extends SpringBootServletInitializer {
