@@ -5,7 +5,7 @@ angular.module 'aedes'
       'ngInject'
       vm = this
 
-      vm.mobileFirst  = true
+      vm.mobileFirst  = false
       vm.currentState = $state.current.name
       vm.appName      = appConfig.NAME
       vm.abas = [
