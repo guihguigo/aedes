@@ -219,6 +219,14 @@ i {
     height: 6px;
 }
 
+#cidadesAfetadasContainer .determinate {
+    background-color: #DB4437 !important;
+}
+
+#cidadesAfetadasContainer .progress {
+    background-color: #FAB6C0;
+}
+
 #table-top-atrasadas .determinate {
     background-color: #DB4437 !important;
 }
@@ -226,6 +234,7 @@ i {
 #table-top-atrasadas .progress {
     background-color: #FAB6C0;
 }
+
 #table-top-em-dia .determinate {
     background-color: #4285F4 !important;
 }

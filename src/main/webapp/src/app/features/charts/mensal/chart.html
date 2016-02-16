@@ -13,7 +13,7 @@
           <label for="menuFocosMensal">Focos</label>
         </div>
         <div class="input-field col s6 left-align">
-          <input id="localidadeFilter" type="text" ng-autocomplete options="options" class="validate" ng-model="localidade">
+          <input id="localidadeFilter" type="text" ng-autocomplete options="options" class="validate" ng-model="localidade" ng-blur="changeLocalMensal(localidade)">
         </div>
       </div>
 

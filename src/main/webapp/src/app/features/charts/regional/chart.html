@@ -41,11 +41,11 @@
             </thead>
 
             <tbody>
-              <tr ng-repeat="(key, data) in localidades | orderBy:'-emDia'">
+              <tr ng-repeat="(key, data) in localidades | orderBy:'-atrasada' | limitTo : 5">
                 <td><span class="index" ng-bind="key + 1"></span> {{data.chave}}</td>
-                <td><div class="center-align">% {{data.emDia}}</div>
+                <td><div class="center-align">% {{data.atrasada}}</div>
                   <div class="progress center-align">
-                    <div class="determinate " style="width: {{data.emDia}}%"></div>
+                    <div class="determinate " style="width: {{data.atrasada}}%"></div>
                   </div></td>
               </tr>
             </tbody>

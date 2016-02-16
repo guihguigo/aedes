@@ -66,6 +66,11 @@ angular.module 'aedes'
           console.log 'FAIO'
       )
 
+    $scope.changeLocalMensal = (local) =>
+      unless local
+        @attrs.fields.endereco = ''
+        do @methods.showMensalChart
+
     setEvents = =>
       $scope.$on 'result:locale', (event, data) =>
         @attrs.fields.endereco = _.pick EnderecoService.getEnderecoFromLocalidade(data), 'bairro', 'cidade', 'estado'
