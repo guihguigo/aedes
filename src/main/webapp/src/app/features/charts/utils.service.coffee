@@ -30,4 +30,4 @@ angular.module 'aedes'
       NomeMes[10] = "Novembro"
       NomeMes[11] = "Dezembro"
 
-      return NomeMes[index - 1]
+      return NomeMes[index]

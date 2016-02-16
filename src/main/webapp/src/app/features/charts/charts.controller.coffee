@@ -3,6 +3,8 @@ angular.module 'aedes'
     'ngInject'
 
     vm = this
+    focos.data.unshift({codigo: null, nome: 'Todos os focos'})
+
     $scope.focos = focos.data
     $scope.prevencoesByFoco = prevencoesByFoco.data
 

@@ -54,14 +54,14 @@ angular.module 'aedes'
             resolution: 'provinces'
             displayMode: 'regions'
             colorAxis:
-              colors: ['red', 'blue']
+              colors: ['blue', 'red']
 
-          $scope.percentChartHeader = "Estados mais afestos"
+          $scope.percentChartHeader = "Estados mais afetados"
 
           do showChart
 
         (error) ->
-          console.log 'FAIO'
+          console.log error
       )
 
     $scope.methods.showCityChart   = ->
@@ -83,16 +83,16 @@ angular.module 'aedes'
             sizeAxis: {minValue: 0, maxValue: 100}
             region: 'BR'
             displayMode: 'markers'
-            colorAxis: {colors: ['red', 'blue']}
+            colorAxis: {colors: ['blue', 'red']}
             'width': 500
             'height': 300
 
-          $scope.percentChartHeader = "Cidades mais afestas"
+          $scope.percentChartHeader = "Cidades mais afetadas"
 
           do showChart
 
         (error) ->
-          throw error
+          console.log error
       )
 
     do $scope.methods.showRegiaoChart
