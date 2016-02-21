@@ -13,20 +13,21 @@ import lombok.ToString;
 
 @Entity
 @Builder
-@EqualsAndHashCode
 @ToString
+@Getter @Setter
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Foco implements Comparable<Foco> {
+	
 	@Id
-	@Setter @Getter
 	private Integer codigo;
 	
-	@Getter @Setter
 	private String nome;
 	
-	@Setter
 	private String comoLimpar;
+	
+	private String foto;
 
 	@Override
 	public int compareTo(Foco o) {

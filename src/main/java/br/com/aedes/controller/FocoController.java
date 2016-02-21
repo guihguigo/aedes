@@ -33,6 +33,8 @@ public class FocoController {
 		return FocoDTO.builder()
 				.codigo(f.getCodigo())
 				.nome(f.getNome())
+				.comoLimpar(f.getComoLimpar())
+				.foto(f.getFoto())
 				.build();
 	}
 }

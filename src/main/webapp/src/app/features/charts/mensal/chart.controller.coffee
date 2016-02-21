@@ -10,7 +10,7 @@ angular.module 'aedes'
 
     @attrs.focos   = $scope.$parent.focos
     @attrs.fields =
-      focoId: '1'
+      focoId: null
 
     ngAutocompleteConfig = ->
       $scope.localidade = ''

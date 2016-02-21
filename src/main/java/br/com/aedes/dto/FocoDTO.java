@@ -12,9 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FocoDTO {
+	
 	@NotNull
 	private Integer codigo;
 	
 	@NotNull
 	private String nome;
+	
+	private String comoLimpar;
+	
+	private String foto;
 }
