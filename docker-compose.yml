@@ -12,6 +12,7 @@ backend:
 
 frontend:
   image: nginx
+  links: backend
   ports:
   - "8081:80"
   volumes:
