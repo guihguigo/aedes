@@ -1,7 +1,7 @@
-server:
+api:
   image: java:8
   ports:
-    - "8080:8080"
+    - "8991:8080"
   volumes:
     - ./server/target/aedes.jar:/opt/aedes.jar
 
@@ -13,10 +13,10 @@ server:
 web:
   image: nginx
   links:
-    - server
+    - api
   ports:
-    - "8081:80"
+    - "80:80"
   volumes:
     - ./web/builds/release:/usr/share/nginx/html
-    - ./default.config:/etc/nginx/conf.d/default.config
+    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
   command: /bin/bash -c "nginx -g 'daemon off;'"
