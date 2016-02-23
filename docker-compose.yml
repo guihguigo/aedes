@@ -1,4 +1,4 @@
-core:
+backend:
   image: java:8
   ports:
   - "8080:8080"
@@ -9,3 +9,10 @@ core:
 
   environment:
     AEDES_CONFIG_PATH: classpath:/application.properties
+
+frontend:
+  image: nginx
+  ports:
+  - "8081:80"
+  volumes:
+   - ./default.config:/etc/nginx/conf.d/default.config

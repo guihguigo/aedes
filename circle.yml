@@ -33,6 +33,9 @@ test:
     - mvn versions:set -DnewVersion=$NUM_VERSION versions:commit
     - mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install -U
     - cp ./target/aedes.war docker_tomcat/aedes.war
+  post:
+    # Criar tarball (Front - Admin)
+    - cd web/admin/dist && tar -czf sesc-multiplat-admin.tar.gz *
 deployment:
   deploy:
     branch: master
