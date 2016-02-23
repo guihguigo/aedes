@@ -1,1 +1,1 @@
-docker rm -f aedes-prod | true && docker run -d -p 80:8080 --name aedes-prod -v /app-config:/app-config -e JAVA_OPTS="-Dspring.profiles.active=PRODUCAO -Duser.timezone=America/Sao_Paulo" guihguigo/aedes:master-1.0.55 && docker logs -f aedes-prod
+docker rm -f aedes-prod | true && docker run -d -p 80:8080 --name aedes-prod -v /app-config:/app-config -e JAVA_OPTS="-Dspring.profiles.active=PRODUCAO -Duser.timezone=America/Sao_Paulo" guihguigo/aedes:master-1.0.59 && docker logs -f aedes-prod
