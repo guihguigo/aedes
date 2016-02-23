@@ -18,7 +18,6 @@ dependencies:
     - ~/docker
   override:
     - mkdir -p ~/docker
-    - if [[ ! -e ~/docker/jdk_base.tar ]]; then docker pull "java8" && docker save "java8" > ~/docker/jdk_base.tar; else docker load -i ~/docker/jdk_base.tar; fi
     - npm install -g bower
     - npm install -g gulp
     - cd web && npm install
