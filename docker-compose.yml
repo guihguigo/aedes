@@ -1,19 +1,22 @@
-backend:
+server:
   image: java:8
   ports:
-  - "8080:8080"
+    - "8080:8080"
   volumes:
-  - ./target/aedes.jar:/opt/aedes.jar
+    - ./target/aedes.jar:/opt/aedes.jar
 
   command: java -jar /opt/aedes.jar
 
   environment:
     AEDES_CONFIG_PATH: classpath:/application.properties
 
-frontend:
+web:
   image: nginx
-  links: backend
+  links:
+    - server
   ports:
-  - "8081:80"
+    - "8081:80"
   volumes:
-   - ./default.config:/etc/nginx/conf.d/default.config
+    - ./web/builds/release:/usr/share/nginx/html
+    - ./default.config:/etc/nginx/conf.d/default.config
+  command: /bin/bash -c "nginx -g 'daemon off;'"
