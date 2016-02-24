@@ -1,17 +1,16 @@
 server:
-  image: aedes
+  image: aedes-server
   ports:
-    - "8080:8080"
+    - "8991:8080"
   command: java -jar /opt/aedes.jar
 
-
 web:
-  image:
+  image: aedes-web
   links:
     - server
   ports:
-    - "8081:80"
+    - "8080:80"
   volumes:
     - ./web/builds/release:/usr/share/nginx/html
-    - ./default.config:/etc/nginx/conf.d/default.config
+    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
   command: /bin/bash -c "nginx -g 'daemon off;'"
