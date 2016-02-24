@@ -1,6 +1,6 @@
 FROM nginx
 
-ADD /default.config:/etc/nginx/conf.d/default.config
+ADD default.conf /etc/nginx/conf.d/default.conf
 ADD ./web/builds/release /usr/share/nginx/html
 
 EXPOSE 80
