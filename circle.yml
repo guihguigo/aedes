@@ -29,13 +29,14 @@ dependencies:
     - mvn --fail-never dependency:go-offline || true
 test:
   override:
+    # Front
+    # Build (Front)
     - cd web && gulp clean
     - cd web && gulp build
     - ./generateVersion.sh
-    #java
-    #- mvn versions:set -DnewVersion=$NUM_VERSION versions:commit
-   # - mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install -U
+    - mv ./web/builds/release/ ./nginx/front
 
+    #java
     # Build (Back - Admin)
     - mvn versions:set -f server/pom.xml -DnewVersion=$NUM_VERSION versions:commit
     #- mvn install -f server/pom.xml jacoco:report
