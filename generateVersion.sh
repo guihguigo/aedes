@@ -11,4 +11,4 @@ echo "}" >> version.html
 echo "</body>" >> version.html
 echo "</pre>" >> version.html
 echo "</html>" >> version.html
-mv version.html src/main/webapp
+mv version.html web
