@@ -12,27 +12,26 @@ machine:
     version: oraclejdk8
 dependencies:
   cache_directories:
-    - src/main/webapp/node_modules
-    - src/main/webapp/bower_components
+    - web/node_modules
+    - web/bower_components
     - ~/.m2
     - ~/docker
   override:
     - mkdir -p ~/docker
-    - if [[ ! -e ~/docker/tomcat_base.tar ]]; then docker pull "openjdk-8-jre" && docker save "openjdk-8-jre" > ~/docker/tomcat_base.tar; else docker load -i ~/docker/tomcat_base.tar; fi
     - npm install -g bower
     - npm install -g gulp
-    - cd src/main/webapp && npm install
-    - cd src/main/webapp && bower install
+    - cd web && npm install
+    - cd web && bower install
     - mvn --fail-never dependency:go-offline || true
 test:
   override:
-    - cd src/main/webapp && gulp clean
-    - cd src/main/webapp && gulp build
+    - cd web && gulp clean
+    - cd web && gulp build
     - ./generateVersion.sh
     #java
     - mvn versions:set -DnewVersion=$NUM_VERSION versions:commit
     - mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install -U
-    - cp ./target/aedes.war docker_tomcat/aedes.war
+    - cp ./target/aedes.jar tomcat/aedes.jar
 deployment:
   deploy:
     branch: master

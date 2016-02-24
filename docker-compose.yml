@@ -1,11 +1,17 @@
-core:
-  image: java:8
+server:
+  image: aedes
   ports:
-  - "8080:8080"
-  volumes:
-  - ./target/aedes.jar:/opt/aedes.jar
-
+    - "8080:8080"
   command: java -jar /opt/aedes.jar
 
-  environment:
-    AEDES_CONFIG_PATH: classpath:/application.properties
+
+web:
+  image:
+  links:
+    - server
+  ports:
+    - "8081:80"
+  volumes:
+    - ./web/builds/release:/usr/share/nginx/html
+    - ./default.config:/etc/nginx/conf.d/default.config
+  command: /bin/bash -c "nginx -g 'daemon off;'"
