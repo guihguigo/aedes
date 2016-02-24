@@ -39,7 +39,7 @@ test:
     - mvn versions:set -f server/pom.xml -DnewVersion=$NUM_VERSION versions:commit
     #- mvn install -f server/pom.xml jacoco:report
     - mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install -f server/pom.xml
-    - cp ./target/aedes.jar tomcat/aedes.jar
+    - cp ./server/target/aedes.jar tomcat/aedes.jar
 deployment:
   deploy:
     branch: master
