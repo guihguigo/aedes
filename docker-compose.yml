@@ -1,5 +1,5 @@
 api:
-  image: guihguigo/aedes-server:master-1.0.77
+  image: guihguigo/aedes-server:master-1.0.79
   ports:
     - "8991:8080"
   command: java -jar /opt/aedes.jar
