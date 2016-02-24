@@ -21,6 +21,7 @@ dependencies:
     - npm install -g bower
     - npm install -g gulp
     - cd web && npm install
+    - cd web && npm rebuild node-sass
     - cd web && bower install
     - mvn --fail-never dependency:go-offline || true
 test:
