@@ -12,6 +12,6 @@ web:
     - "80:80"
   volumes:
   - ./nginx/front:/usr/share/nginx/html
-  - ./nginx/default.config:/etc/nginx/conf.d/default.config
+  - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
   command: /bin/bash -c "nginx -g 'daemon off;'"
 
