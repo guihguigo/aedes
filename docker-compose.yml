@@ -1,13 +1,17 @@
 api:
-  image: guihguigo/aedes-server:master-1.0.85
+  image: guihguigo/aedes-server:master-1.0.86
   ports:
     - "8991:8080"
   command: java -jar /opt/aedes.jar
 
 web:
-  image: guihguigo/aedes-web:master-1.0.85
+  image: guihguigo/aedes-web:master-1.0.86
   links:
     - api
   ports:
     - "80:80"
+  volumes:
+  - ./nginx/front:/usr/share/nginx/html
+  - ./nginx/default.config:/etc/nginx/conf.d/default.config
   command: /bin/bash -c "nginx -g 'daemon off;'"
+
