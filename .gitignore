@@ -1,8 +1,5 @@
-target/
+./server/target/
 .classpath
 .project
 .settings/
-src/main/webapp/builds/**/*
-src/main/webapp/builds/*
-src/main/webapp/builds/
-src/main/webapp/builds
+./web/builds/**
