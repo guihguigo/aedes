@@ -19,6 +19,7 @@
 		<c3p0-version>0.9.1.2</c3p0-version>
 		<json-path>2.0.0</json-path>
 		<project.artifactId>aedes</project.artifactId>
+		<mainClass>br.com.aedes.ApplicationInitializer</mainClass>
 	</properties>
 
 	<!-- Inherit defaults from Spring Boot -->
@@ -36,7 +37,7 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -118,6 +119,11 @@
 			<version>2.9.2</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
 	</dependencies>
 
 	<!-- Add Spring repositories -->

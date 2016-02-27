@@ -12,7 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringApplicationConfiguration(classes = {ApplicationInitializer.class, Application.class})
+@SpringApplicationConfiguration(classes = {ApplicationInitializer.class, ApplicationBeans.class})
 public abstract class ApplicationTest {
 	
 	protected MockMvc mockMvc;

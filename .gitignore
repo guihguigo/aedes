@@ -3,3 +3,4 @@
 .project
 .settings/
 ./web/builds/**
+/web/builds/**
