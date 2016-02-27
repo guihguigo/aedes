@@ -103,7 +103,7 @@ public class SincronizacaoControllerTest extends ApplicationTest{
 				.dataCriacao(prevencao.getId().getDataCriacao())
 				.build();
 	
-		MockHttpServletRequestBuilder delete = MockMvcRequestBuilders.delete(SINCRONIZACAO)
+		MockHttpServletRequestBuilder delete = MockMvcRequestBuilders.put(SINCRONIZACAO)
 				.contentType(MediaType.APPLICATION_JSON)
 		    .content(new ObjectMapper().writeValueAsBytes(id));
 //				id.getCodigoCelular(),

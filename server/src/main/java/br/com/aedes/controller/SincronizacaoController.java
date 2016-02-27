@@ -46,7 +46,7 @@ public class SincronizacaoController {
 
 	@Transactional
 //	@RequestMapping(value = DELETAR, method = RequestMethod.DELETE)
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(method = RequestMethod.PUT)
 	public void deletar(@RequestBody @Valid PrevencaoIdDTO id) {
 		this.repository.deleteByIdCodigoCelularAndIdFocoCodigoAndIdDataCriacao(id.getCodigoCelular(), id.getCodigoFoco(), id.getDataCriacao());
 	}
