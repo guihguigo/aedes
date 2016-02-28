@@ -22,4 +22,6 @@ public class FocoDTO {
 	private String comoLimpar;
 	
 	private String foto;
+	
+	private Integer periodicidade;
 }

@@ -28,6 +28,8 @@ public class Foco implements Comparable<Foco> {
 	private String comoLimpar;
 	
 	private String foto;
+	
+	private Integer periodicidade;
 
 	@Override
 	public int compareTo(Foco o) {

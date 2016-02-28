@@ -35,6 +35,7 @@ public class FocoController {
 				.nome(f.getNome())
 				.comoLimpar(f.getComoLimpar())
 				.foto(f.getFoto())
+				.periodicidade(f.getPeriodicidade())
 				.build();
 	}
 }
