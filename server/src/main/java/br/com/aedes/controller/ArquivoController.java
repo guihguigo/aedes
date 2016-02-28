@@ -75,6 +75,7 @@ public class ArquivoController {
 			result = FileUtils.readFileToByteArray(file);
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Não foi possível achar esta imagem no servidor");
 		}
 		
 		return result;

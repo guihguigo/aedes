@@ -4,6 +4,7 @@ api:
     - "9001:8080"
   volumes:
     - ./server/target/aedes.jar:/opt/aedes.jar
+    - /images:/images
   command: java -jar /opt/aedes.jar
 
 web:
