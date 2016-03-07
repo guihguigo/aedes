@@ -12,9 +12,9 @@ angular.module 'aedes'
 
     checkBrowser = ->
       if isMobile.iOS()
-        $scope.storeLink = "https://itunes.apple.com/br/app/temple-run-2/id572395608?mt=8"
+        $scope.storeLink = "https://play.google.com/store/apps/details?id=com.aedesapp"
       else
-        $scope.storeLink = "https://play.google.com/store/apps/details?id=com.facebook.katana"
+        $scope.storeLink = "https://play.google.com/store/apps/details?id=com.aedesapp"
 
 
     isMobile = {
